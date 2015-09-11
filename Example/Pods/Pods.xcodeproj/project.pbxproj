@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0592BB50100DE35061FBB6AC7BB6DC56 /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C57947F8D4ED448169AA50F0050234E /* ReplaceMe.swift */; };
 		2AC974D99A98A6B97C44EECBDC020ADC /* DataStoreKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 20A44420EB0A4045044B0E2069B916A4 /* DataStoreKit.bundle */; };
 		52420FC3087CA8A51D9B250FEDD010CA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6DF65D1C43B230016D56A726AD4992B /* Foundation.framework */; };
 		64E70FB5986D4DAFDE17C3BE1EDC71F2 /* Pods-DataStoreKit_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 806BB125D43158D8F62D41CF27F9D352 /* Pods-DataStoreKit_Example-dummy.m */; };
@@ -15,6 +14,17 @@
 		7D4090F0F2AB5DA87C99397F73FA0ED4 /* Pods-DataStoreKit_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A45110F2860A2162149D0DCE4608DDD /* Pods-DataStoreKit_Tests-dummy.m */; };
 		9BB3D2B44AFA79F87A194863ED6FF512 /* DataStoreKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6884354CEA824B4526B2F2C7105578D2 /* DataStoreKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B5878A9208138DB77C2B287BADB437F1 /* Pods-DataStoreKit_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = ACC5E9C738D59A7A170906CDDA3E325A /* Pods-DataStoreKit_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D59FD6E31BA2D2FA0074B6BB /* CoreDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59FD6D81BA2D2FA0074B6BB /* CoreDataStore.swift */; };
+		D59FD6E41BA2D2FA0074B6BB /* DataStoreKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D59FD6D91BA2D2FA0074B6BB /* DataStoreKit.h */; };
+		D59FD6E51BA2D2FA0074B6BB /* FileDeserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59FD6DA1BA2D2FA0074B6BB /* FileDeserializer.swift */; };
+		D59FD6E61BA2D2FA0074B6BB /* FileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59FD6DB1BA2D2FA0074B6BB /* FileModel.swift */; };
+		D59FD6E71BA2D2FA0074B6BB /* Model-Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59FD6DC1BA2D2FA0074B6BB /* Model-Protocol.swift */; };
+		D59FD6E81BA2D2FA0074B6BB /* NetWork-Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59FD6DD1BA2D2FA0074B6BB /* NetWork-Protocol.swift */; };
+		D59FD6E91BA2D2FA0074B6BB /* ObjectCoder-Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59FD6DE1BA2D2FA0074B6BB /* ObjectCoder-Protocol.swift */; };
+		D59FD6EA1BA2D2FA0074B6BB /* ObjectDeserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59FD6DF1BA2D2FA0074B6BB /* ObjectDeserializer.swift */; };
+		D59FD6EB1BA2D2FA0074B6BB /* QueryEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59FD6E01BA2D2FA0074B6BB /* QueryEngine.swift */; };
+		D59FD6EC1BA2D2FA0074B6BB /* Restify.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59FD6E11BA2D2FA0074B6BB /* Restify.swift */; };
+		D59FD6ED1BA2D2FA0074B6BB /* UserDefaultStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59FD6E21BA2D2FA0074B6BB /* UserDefaultStore.swift */; };
 		E602A3E3EF17F7808F8479CC2F301D6A /* DataStoreKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D8E8BECB6331405594ACB84F0FB3CB /* DataStoreKit-dummy.m */; };
 		FC5FE3F88B28E44041B7BCAA192E4D8E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6DF65D1C43B230016D56A726AD4992B /* Foundation.framework */; };
 		FF5040D95A1DAC9190EE9585BB3F9338 /* Pods-DataStoreKit_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B430C8782C52BA59F33D3D93E36A150 /* Pods-DataStoreKit_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -55,7 +65,6 @@
 		4765EB8CBCFBB6CD26E6248A1237BA29 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B2AAC971F9C230739AF5C0510301073 /* Pods-DataStoreKit_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DataStoreKit_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		4EF49DE6C0BE0A1BD9A7741DC9E82E65 /* Pods-DataStoreKit_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-DataStoreKit_Example-resources.sh"; sourceTree = "<group>"; };
-		5C57947F8D4ED448169AA50F0050234E /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ReplaceMe.swift; sourceTree = "<group>"; };
 		5EA835DB404CC0AB48BD05DF10C9F595 /* Pods-DataStoreKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DataStoreKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		6884354CEA824B4526B2F2C7105578D2 /* DataStoreKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DataStoreKit-umbrella.h"; sourceTree = "<group>"; };
 		6D0ED0450C5907D5EA65BDDD6F13923B /* Pods-DataStoreKit_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-DataStoreKit_Tests-resources.sh"; sourceTree = "<group>"; };
@@ -77,6 +86,17 @@
 		CBF18A1D926D3C65F79024BE8F8A9F8A /* DataStoreKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = DataStoreKit.modulemap; sourceTree = "<group>"; };
 		D0BAA9FCE303C03555C2B9D4AEE02DC6 /* Pods_DataStoreKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DataStoreKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D48B91FA6E54C8085FA19E49502E114D /* DataStoreKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DataStoreKit-prefix.pch"; sourceTree = "<group>"; };
+		D59FD6D81BA2D2FA0074B6BB /* CoreDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStore.swift; sourceTree = "<group>"; };
+		D59FD6D91BA2D2FA0074B6BB /* DataStoreKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataStoreKit.h; sourceTree = "<group>"; };
+		D59FD6DA1BA2D2FA0074B6BB /* FileDeserializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDeserializer.swift; sourceTree = "<group>"; };
+		D59FD6DB1BA2D2FA0074B6BB /* FileModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileModel.swift; sourceTree = "<group>"; };
+		D59FD6DC1BA2D2FA0074B6BB /* Model-Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Model-Protocol.swift"; sourceTree = "<group>"; };
+		D59FD6DD1BA2D2FA0074B6BB /* NetWork-Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetWork-Protocol.swift"; sourceTree = "<group>"; };
+		D59FD6DE1BA2D2FA0074B6BB /* ObjectCoder-Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObjectCoder-Protocol.swift"; sourceTree = "<group>"; };
+		D59FD6DF1BA2D2FA0074B6BB /* ObjectDeserializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectDeserializer.swift; sourceTree = "<group>"; };
+		D59FD6E01BA2D2FA0074B6BB /* QueryEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryEngine.swift; sourceTree = "<group>"; };
+		D59FD6E11BA2D2FA0074B6BB /* Restify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restify.swift; sourceTree = "<group>"; };
+		D59FD6E21BA2D2FA0074B6BB /* UserDefaultStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultStore.swift; sourceTree = "<group>"; };
 		D9582E8FDA54BB0BDFD64468CF224204 /* DataStoreKit-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "DataStoreKit-Private.xcconfig"; sourceTree = "<group>"; };
 		E210406EA7CC03A3022601CAC32450E7 /* Pods-DataStoreKit_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-DataStoreKit_Tests-frameworks.sh"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -135,7 +155,17 @@
 		58999346B175193D942A15CD255CE72F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				5C57947F8D4ED448169AA50F0050234E /* ReplaceMe.swift */,
+				D59FD6D81BA2D2FA0074B6BB /* CoreDataStore.swift */,
+				D59FD6D91BA2D2FA0074B6BB /* DataStoreKit.h */,
+				D59FD6DA1BA2D2FA0074B6BB /* FileDeserializer.swift */,
+				D59FD6DB1BA2D2FA0074B6BB /* FileModel.swift */,
+				D59FD6DC1BA2D2FA0074B6BB /* Model-Protocol.swift */,
+				D59FD6DD1BA2D2FA0074B6BB /* NetWork-Protocol.swift */,
+				D59FD6DE1BA2D2FA0074B6BB /* ObjectCoder-Protocol.swift */,
+				D59FD6DF1BA2D2FA0074B6BB /* ObjectDeserializer.swift */,
+				D59FD6E01BA2D2FA0074B6BB /* QueryEngine.swift */,
+				D59FD6E11BA2D2FA0074B6BB /* Restify.swift */,
+				D59FD6E21BA2D2FA0074B6BB /* UserDefaultStore.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -272,6 +302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9BB3D2B44AFA79F87A194863ED6FF512 /* DataStoreKit-umbrella.h in Headers */,
+				D59FD6E41BA2D2FA0074B6BB /* DataStoreKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,8 +456,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D59FD6E31BA2D2FA0074B6BB /* CoreDataStore.swift in Sources */,
+				D59FD6E51BA2D2FA0074B6BB /* FileDeserializer.swift in Sources */,
+				D59FD6E81BA2D2FA0074B6BB /* NetWork-Protocol.swift in Sources */,
+				D59FD6E71BA2D2FA0074B6BB /* Model-Protocol.swift in Sources */,
+				D59FD6ED1BA2D2FA0074B6BB /* UserDefaultStore.swift in Sources */,
 				E602A3E3EF17F7808F8479CC2F301D6A /* DataStoreKit-dummy.m in Sources */,
-				0592BB50100DE35061FBB6AC7BB6DC56 /* ReplaceMe.swift in Sources */,
+				D59FD6EA1BA2D2FA0074B6BB /* ObjectDeserializer.swift in Sources */,
+				D59FD6E61BA2D2FA0074B6BB /* FileModel.swift in Sources */,
+				D59FD6E91BA2D2FA0074B6BB /* ObjectCoder-Protocol.swift in Sources */,
+				D59FD6EC1BA2D2FA0074B6BB /* Restify.swift in Sources */,
+				D59FD6EB1BA2D2FA0074B6BB /* QueryEngine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -631,6 +671,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D9582E8FDA54BB0BDFD64468CF224204 /* DataStoreKit-Private.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -670,6 +711,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D9582E8FDA54BB0BDFD64468CF224204 /* DataStoreKit-Private.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;

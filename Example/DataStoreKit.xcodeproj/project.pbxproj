@@ -12,8 +12,20 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
-		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		86E9852AF0528AF6078F040B /* Pods_DataStoreKit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 750DAFB5559CBE95671DB3E1 /* Pods_DataStoreKit_Example.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		D59FD6F71BA2D4C20074B6BB /* CacheEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59FD6EE1BA2D4C20074B6BB /* CacheEntry.swift */; };
+		D59FD6FA1BA2D4C20074B6BB /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59FD6F11BA2D4C20074B6BB /* Message.swift */; };
+		D59FD6FB1BA2D4C20074B6BB /* TestCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59FD6F21BA2D4C20074B6BB /* TestCoreDataStack.swift */; };
+		D59FD6FE1BA2D4C20074B6BB /* TestSample.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D59FD6F51BA2D4C20074B6BB /* TestSample.xcdatamodeld */; };
+		D59FD6FF1BA2D4F00074B6BB /* CacheEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59FD6EE1BA2D4C20074B6BB /* CacheEntry.swift */; };
+		D59FD7001BA2D4F40074B6BB /* CoreDataStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59FD6EF1BA2D4C20074B6BB /* CoreDataStoreTests.swift */; };
+		D59FD7011BA2D4F70074B6BB /* DataStoreKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59FD6F01BA2D4C20074B6BB /* DataStoreKitTests.swift */; };
+		D59FD7021BA2D4F90074B6BB /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59FD6F11BA2D4C20074B6BB /* Message.swift */; };
+		D59FD7031BA2D4FC0074B6BB /* TestCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59FD6F21BA2D4C20074B6BB /* TestCoreDataStack.swift */; };
+		D59FD7041BA2D4FF0074B6BB /* TestRestify.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59FD6F31BA2D4C20074B6BB /* TestRestify.swift */; };
+		D59FD7051BA2D5020074B6BB /* TestSample.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D59FD6F51BA2D4C20074B6BB /* TestSample.xcdatamodeld */; };
+		D59FD7061BA2D6070074B6BB /* TestSample.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = D59FD6F51BA2D4C20074B6BB /* TestSample.xcdatamodeld */; };
+		D59FD7081BA2D6450074B6BB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D59FD7071BA2D6450074B6BB /* CoreData.framework */; };
 		DB8422CB2F934025E7939D3B /* Pods_DataStoreKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B6D79CF11E7EDDF00D37A7C /* Pods_DataStoreKit_Tests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -39,12 +51,19 @@
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = Tests.xctest; path = DataStoreKit_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		62EC7BCD8ACA19CA2614AEC0 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		750DAFB5559CBE95671DB3E1 /* Pods_DataStoreKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DataStoreKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E3CAAEF49289091DE550611 /* DataStoreKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = DataStoreKit.podspec; path = ../DataStoreKit.podspec; sourceTree = "<group>"; };
 		986A0EC1F0B7F6995F12770A /* Pods-DataStoreKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DataStoreKit_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DataStoreKit_Example/Pods-DataStoreKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		9969EC2F30F2776FF1530277 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		D59FD6EE1BA2D4C20074B6BB /* CacheEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheEntry.swift; sourceTree = "<group>"; };
+		D59FD6EF1BA2D4C20074B6BB /* CoreDataStoreTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStoreTests.swift; sourceTree = "<group>"; };
+		D59FD6F01BA2D4C20074B6BB /* DataStoreKitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStoreKitTests.swift; sourceTree = "<group>"; };
+		D59FD6F11BA2D4C20074B6BB /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		D59FD6F21BA2D4C20074B6BB /* TestCoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestCoreDataStack.swift; sourceTree = "<group>"; };
+		D59FD6F31BA2D4C20074B6BB /* TestRestify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestRestify.swift; sourceTree = "<group>"; };
+		D59FD6F61BA2D4C20074B6BB /* TestSample.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TestSample.xcdatamodel; sourceTree = "<group>"; };
+		D59FD7071BA2D6450074B6BB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		F78718E402FE302F7AE325BD /* Pods-DataStoreKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DataStoreKit_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DataStoreKit_Tests/Pods-DataStoreKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		FD12141A2705AEE0A2155832 /* Pods-DataStoreKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DataStoreKit_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-DataStoreKit_Example/Pods-DataStoreKit_Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -62,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D59FD7081BA2D6450074B6BB /* CoreData.framework in Frameworks */,
 				DB8422CB2F934025E7939D3B /* Pods_DataStoreKit_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -126,7 +146,13 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				607FACEB1AFB9204008FA782 /* Tests.swift */,
+				D59FD6EE1BA2D4C20074B6BB /* CacheEntry.swift */,
+				D59FD6EF1BA2D4C20074B6BB /* CoreDataStoreTests.swift */,
+				D59FD6F01BA2D4C20074B6BB /* DataStoreKitTests.swift */,
+				D59FD6F11BA2D4C20074B6BB /* Message.swift */,
+				D59FD6F21BA2D4C20074B6BB /* TestCoreDataStack.swift */,
+				D59FD6F31BA2D4C20074B6BB /* TestRestify.swift */,
+				D59FD6F51BA2D4C20074B6BB /* TestSample.xcdatamodeld */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -153,6 +179,7 @@
 		E1B823EACC68A03579E90BB8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D59FD7071BA2D6450074B6BB /* CoreData.framework */,
 				750DAFB5559CBE95671DB3E1 /* Pods_DataStoreKit_Example.framework */,
 				4B6D79CF11E7EDDF00D37A7C /* Pods_DataStoreKit_Tests.framework */,
 			);
@@ -255,6 +282,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D59FD7061BA2D6070074B6BB /* TestSample.xcdatamodeld in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,7 +387,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				D59FD6FB1BA2D4C20074B6BB /* TestCoreDataStack.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				D59FD6FA1BA2D4C20074B6BB /* Message.swift in Sources */,
+				D59FD6F71BA2D4C20074B6BB /* CacheEntry.swift in Sources */,
+				D59FD6FE1BA2D4C20074B6BB /* TestSample.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,7 +399,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
+				D59FD7041BA2D4FF0074B6BB /* TestRestify.swift in Sources */,
+				D59FD7001BA2D4F40074B6BB /* CoreDataStoreTests.swift in Sources */,
+				D59FD7031BA2D4FC0074B6BB /* TestCoreDataStack.swift in Sources */,
+				D59FD7021BA2D4F90074B6BB /* Message.swift in Sources */,
+				D59FD7011BA2D4F70074B6BB /* DataStoreKitTests.swift in Sources */,
+				D59FD6FF1BA2D4F00074B6BB /* CacheEntry.swift in Sources */,
+				D59FD7051BA2D5020074B6BB /* TestSample.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -573,6 +611,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		D59FD6F51BA2D4C20074B6BB /* TestSample.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D59FD6F61BA2D4C20074B6BB /* TestSample.xcdatamodel */,
+			);
+			currentVersion = D59FD6F61BA2D4C20074B6BB /* TestSample.xcdatamodel */;
+			path = TestSample.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 607FACC81AFB9204008FA782 /* Project object */;
 }

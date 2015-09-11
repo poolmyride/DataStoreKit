@@ -1,8 +1,15 @@
+//
+//  DataStoreKitTests.swift
+//  DataStoreKitTests
+//
+//  Created by Rohit Talwar on 09/09/15.
+//  Copyright (c) 2015 Rajat Talwar. All rights reserved.
+//
+
 import UIKit
 import XCTest
-import DataStoreKit
 
-class Tests: XCTestCase {
+class DataStoreKitTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
