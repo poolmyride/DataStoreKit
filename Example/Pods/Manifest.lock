@@ -1,0 +1,14 @@
+PODS:
+  - DataStoreKit (0.1.0)
+
+DEPENDENCIES:
+  - DataStoreKit (from `../`)
+
+EXTERNAL SOURCES:
+  DataStoreKit:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  DataStoreKit: 6d5423c8d838fe61c050bc975aca59fb05488dda
+
+COCOAPODS: 0.38.0

@@ -1,0 +1,6 @@
+framework module DataStoreKit {
+  umbrella header "DataStoreKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

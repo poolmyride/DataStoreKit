@@ -1,0 +1,25 @@
+{
+  "name": "DataStoreKit",
+  "version": "0.1.0",
+  "summary": "A short description of DataStoreKit.",
+  "description": "",
+  "homepage": "https://github.com/<GITHUB_USERNAME>/DataStoreKit",
+  "license": "MIT",
+  "authors": {
+    "Rajat Talwar": "cuterajat26@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/<GITHUB_USERNAME>/DataStoreKit.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "requires_arc": true,
+  "source_files": "Pod/Classes/**/*",
+  "resource_bundles": {
+    "DataStoreKit": [
+      "Pod/Assets/*.png"
+    ]
+  }
+}

@@ -9,17 +9,16 @@
 Pod::Spec.new do |s|
   s.name             = "DataStoreKit"
   s.version          = "0.1.0"
-  s.summary          = "A short description of DataStoreKit."
+  s.summary          = "Consistent interface for accessing data across different ios storage components"
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
 #   * Try to keep it short, snappy and to the point.
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!  
-  s.description      = <<-DESC
-                       DESC
+  s.description      = "DataStoreKit is a light-weight collection of classes providing the tools for modelling and interacting with data collections and objects. It is designed to work with a variety of data storage mediums(CoreData,Network,File,NSUserDefaults), and provide a consistent interface for accessing data across different storage components"
 
-  s.homepage         = "https://github.com/<GITHUB_USERNAME>/DataStoreKit"
+  s.homepage         = "https://github.com/poolmyride/DataStoreKit"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.author           = { "Rajat Talwar" => "cuterajat26@gmail.com" }
