@@ -9,7 +9,83 @@
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
+Create your model class as shown in example below
+
+```Swift
+import Foundation
+import DataStoreKit
+class Message:ObjectCoder {
+    var id:String?
+    var from:String?
+    var to:String?
+    var message:String?
+    var created_ts:Double? //created timestamp in Double
+    
+    static func identifierKey() -> String {
+        return "id"
+    }
+    
+    required init(dictionary withDictionary:NSDictionary){
+        self.id = withDictionary["id"] as? String
+        self.from = withDictionary["from"] as? String
+        self.to = withDictionary["to"] as? String
+        self.message = withDictionary["message"] as? String
+        var created_ts_str = withDictionary["created_ts"] as? Double
+        self.created_ts = created_ts_str
+    }
+    
+    func toDictionary() -> NSDictionary {
+        var dic = [
+            "id" : self.id ?? "",
+            "from" : self.from ?? "",
+            "to" : self.to ?? "" ,
+            "message": self.message ?? "" ,
+            "created_ts" : self.created_ts ?? NSDate().timeIntervalSince1970
+        ]
+        return dic
+    }
+}
+```
+
+## Concept
+
+DataStoreKit works on two high level protocols 
+
+#### ModelProtocol
+
+ModelProtocol protocol is implemented by all the DataStores i.e. the CoreDataStore, Restify, UserDefaultStore etc.This provides a consistent api to access your data.
+
+```Swift
+public protocol ModelProtocol:class {
+    
+    func query(#params:[String:AnyObject]?, options:[String:AnyObject]?, callback: ModelArrayCallback? )
+    func all(callback:ModelArrayCallback?)
+    func get(#id:String?, callback: ModelObjectCallback? )
+    func put(#id:String?,object:ObjectCoder, callback: ModelObjectCallback? )
+    func add(object:ObjectCoder, callback: ModelObjectCallback? )
+
+}
+``` 
+
+
+
+#### ObjectCoder
+
+This  protocol enforces a consistent api to convert your Swift objects to and from NSDictionary representations.The NSDictionary representations are used for network transfer or storage on disk(CoreData)
+
+```Swift
+
+public protocol ObjectCoder:class{
+
+    init(dictionary withDictionary:NSDictionary)
+    func toDictionary() -> NSDictionary
+    static func identifierKey() -> String
+    
+}
+``` 
+
 ## Requirements
+ios 8.0 and above
 
 ## Installation
 
