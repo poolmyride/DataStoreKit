@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import DataStoreKit
 
 public class ObjectDeserializer<T where T:ObjectCoder> {
 
