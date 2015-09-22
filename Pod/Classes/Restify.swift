@@ -41,8 +41,8 @@ public class Restify<T where T:ObjectCoder>:ModelProtocol{
      
     }
     
-     public func query(params:[String:AnyObject]? = nil, options:[String:AnyObject]? = nil, callback: ModelArrayCallback? ){
-        var path  = base_url
+     public func query(params params:[String:AnyObject]? = nil, options:[String:AnyObject]? = nil, callback: ModelArrayCallback? ){
+        let path  = base_url
         
         networkClient.GET(path, parameters: params) { (error, jsonObject) -> Void in
             
@@ -53,7 +53,7 @@ public class Restify<T where T:ObjectCoder>:ModelProtocol{
     }
     
     public func all(callback:ModelArrayCallback?){
-        var path  = base_url + ALL_PATH
+        let path  = base_url + ALL_PATH
         
         networkClient.GET(path, parameters: nil) { (error, jsonObject) -> Void in
             (error == nil) ? self._deserializeArray(jsonObject, callback: callback) : callback?(error,nil)
@@ -63,9 +63,9 @@ public class Restify<T where T:ObjectCoder>:ModelProtocol{
         
     }
     
-    public func get(#id:String?, callback: ModelObjectCallback? ){
+    public func get(id id:String?, callback: ModelObjectCallback? ){
     
-        var path  = base_url + "/" + id!
+        let path  = base_url + "/" + id!
         
         networkClient.GET(path, parameters: nil) { (error, jsonObject) -> Void in
             
@@ -75,14 +75,14 @@ public class Restify<T where T:ObjectCoder>:ModelProtocol{
 
     }
 
-    public func put(#id: String?, object: ObjectCoder, callback: ModelObjectCallback?) {
+    public func put(id id: String?, object: ObjectCoder, callback: ModelObjectCallback?) {
         
     }
     
     public func add(object: ObjectCoder, callback: ModelObjectCallback?) {
-        var path = base_url
-        var dic = NSMutableDictionary(dictionary: object.toDictionary())
-        var access_token = NSUserDefaults.standardUserDefaults().objectForKey("app_access_token") as? String ?? ""
+        let path = base_url
+        let dic = NSMutableDictionary(dictionary: object.toDictionary())
+        let access_token = NSUserDefaults.standardUserDefaults().objectForKey("app_access_token") as? String ?? ""
         dic["access_token"] = access_token.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLHostAllowedCharacterSet())
             networkClient.POST(path, parameters: dic) { (error, object) -> Void in
                 

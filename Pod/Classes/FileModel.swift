@@ -22,9 +22,9 @@ public class FileModel<T where T:ObjectCoder,T:AnyObject>: ModelProtocol {
     }
     
     
-    public  func query(params:[String:AnyObject]? = nil, options:[String:AnyObject]? = nil, callback: ModelArrayCallback? ){
+    public  func query(params params:[String:AnyObject]? = nil, options:[String:AnyObject]? = nil, callback: ModelArrayCallback? ){
         
-        var fd = FileDeserializer<T>()
+        let fd = FileDeserializer<T>()
         fd.getObjectArrayFrom(fielName: self.fileName!) { (error, conferences) -> Void in
             callback?(nil,conferences)
         }
@@ -32,12 +32,12 @@ public class FileModel<T where T:ObjectCoder,T:AnyObject>: ModelProtocol {
         
     }
     
-    public func get(#id:String?, callback: ModelObjectCallback? ){
+    public func get(id id:String?, callback: ModelObjectCallback? ){
     
         callback?(nil,nil)
     }
     
-    public func put(#id: String?, object: ObjectCoder, callback: ModelObjectCallback?) {
+    public func put(id id: String?, object: ObjectCoder, callback: ModelObjectCallback?) {
         
     }
     

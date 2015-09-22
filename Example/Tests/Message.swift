@@ -28,7 +28,7 @@ class Message:ObjectCoder {
 
      required init(dictionary withDictionary:NSDictionary){
         
-        var df = NSDateFormatter()
+        let df = NSDateFormatter()
         df.dateFormat = "yyyy-MM-ddHH:mm:ss"
         var date  = df.dateFromString((withDictionary["created_ts"] as? String) ?? "") ?? NSDate()
 
@@ -36,17 +36,17 @@ class Message:ObjectCoder {
         self.from_attendee = withDictionary["from_attendee"] as? String
         self.to_attendee = withDictionary["to_attendee"] as? String
         self.message = withDictionary["message"] as? String
-        var created_ts_str = withDictionary["created_ts"] as? Double
+        let created_ts_str = withDictionary["created_ts"] as? Double
         self.created_ts = created_ts_str
         self.type = (withDictionary["type"] as? String) ?? "chat"
-        var timeStamp = (created_ts_str) ?? NSDate().timeIntervalSince1970
+        let timeStamp = (created_ts_str) ?? NSDate().timeIntervalSince1970
         self.date = NSDate(timeIntervalSince1970: timeStamp )
         
         
     }
     
     func toDictionary() -> NSDictionary {
-        var dic = [
+        let dic = [
             "id" : (self.id ?? "") as String,
             "from_attendee" : (self.from_attendee ?? "") as String,
             "to_attendee" : (self.to_attendee ?? "") as String,

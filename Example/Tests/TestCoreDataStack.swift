@@ -27,9 +27,17 @@ class TestCoreDataStack {
             self.model)
         var error: NSError? = nil
         
-        var ps = psc!.addPersistentStoreWithType(
-            NSInMemoryStoreType, configuration: nil,
-            URL: nil, options: nil, error: &error)
+        var ps: NSPersistentStore?
+        do {
+            ps = try psc!.addPersistentStoreWithType(
+                        NSInMemoryStoreType, configuration: nil,
+                        URL: nil, options: nil)
+        } catch var error1 as NSError {
+            error = error1
+            ps = nil
+        } catch {
+            fatalError()
+        }
         
         if (ps == nil) {
             abort()
@@ -49,7 +57,7 @@ class TestCoreDataStack {
     
     var applicationDocumentsDirectory: NSURL = {
         let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
-        return urls[urls.count-1] as! NSURL
+        return urls[urls.count-1] 
         }()
     
     
@@ -63,7 +71,13 @@ class TestCoreDataStack {
         let description = NSEntityDescription.entityForName(entityName, inManagedObjectContext: TestCoreDataStack.sharedInstance.context)
         fetchRequest.entity = description
         var error:NSError?
-        var results =  TestCoreDataStack.sharedInstance.context.executeFetchRequest(fetchRequest, error: &error)
+        var results: [AnyObject]?
+        do {
+            results = try TestCoreDataStack.sharedInstance.context.executeFetchRequest(fetchRequest)
+        } catch let error1 as NSError {
+            error = error1
+            results = nil
+        }
         
         for manageObject in results! {
             TestCoreDataStack.sharedInstance.context.deleteObject(manageObject as! NSManagedObject)
@@ -73,8 +87,13 @@ class TestCoreDataStack {
     
     func saveContext(){
         var error:NSError? = nil
-        if context.hasChanges && !context.save(&error){
-            println("Could not save:\(error),\(error?.userInfo)")
+        if context.hasChanges{
+            do {
+                try context.save()
+            } catch let error1 as NSError {
+                error = error1
+                print("Could not save:\(error),\(error?.userInfo)")
+            }
         }
     }
  

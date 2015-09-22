@@ -43,7 +43,7 @@ class TestRestify: XCTestCase {
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 
-                var pass = URLString.rangeOfString("pass", options: NSStringCompareOptions.CaseInsensitiveSearch)
+                let pass = URLString.rangeOfString("pass", options: NSStringCompareOptions.CaseInsensitiveSearch)
                 
                     (pass != nil) ? callback(nil,["name":"rajat","age":5]) : callback(NSError(domain: "Network Error", code: 404, userInfo: nil) ,nil)
             })

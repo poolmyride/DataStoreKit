@@ -20,19 +20,19 @@ class QueryEngine {
             let range = key.rangeOfCharacterFromSet(NSCharacterSet(charactersInString: "<>="))
             
             if (range == nil && val is String){
-                var predicate =  NSPredicate(format: "%K == %@",key, (val as? String) ?? "")
+                let predicate =  NSPredicate(format: "%K == %@",key, (val as? String) ?? "")
                 predicates.append(predicate)
             }else {
                 
-                var queryOperator = key.substringFromIndex(range!.startIndex)
-                var keyName = key.substringToIndex(range!.startIndex).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+                let queryOperator = key.substringFromIndex(range!.startIndex)
+                let keyName = key.substringToIndex(range!.startIndex).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
                 if (val is String){
-                    var queryFormat = "%K \(queryOperator) %@"
+                    let queryFormat = "%K \(queryOperator) %@"
                     predicates.append(NSPredicate(format: queryFormat,keyName, val as! String))
                     
                     
                 }else if (val is NSNumber){
-                    var queryFormat = "%K \(queryOperator) %f"
+                    let queryFormat = "%K \(queryOperator) %f"
                     predicates.append(NSPredicate(format: queryFormat,keyName, (val as! NSNumber).doubleValue))
                     
                 }
@@ -55,11 +55,11 @@ class QueryEngine {
         */
         if let sort: AnyObject = options!["sort"] {
             
-            var sortDic = sort as! NSDictionary
+            let sortDic = sort as! NSDictionary
             var sortDescriptors  = [NSSortDescriptor]()
             for (key,val) in sortDic {
-                var isAscending = (((val as? NSDictionary) ?? NSDictionary())["ascending"] as? Bool) == true
-                var sortDescriptor = NSSortDescriptor(key: key as! String, ascending: isAscending)
+                let isAscending = (((val as? NSDictionary) ?? NSDictionary())["ascending"] as? Bool) == true
+                let sortDescriptor = NSSortDescriptor(key: key as! String, ascending: isAscending)
                 sortDescriptors.append(sortDescriptor)
             }
             
@@ -68,7 +68,7 @@ class QueryEngine {
         }
         
         
-        var compound = NSCompoundPredicate(type: NSCompoundPredicateType.AndPredicateType, subpredicates: predicates)
+        let compound = NSCompoundPredicate(type: NSCompoundPredicateType.AndPredicateType, subpredicates: predicates)
         fetchRequest.predicate = compound
         return fetchRequest
 

@@ -12,10 +12,10 @@ public typealias ModelObjectCallback = (NSError?,AnyObject?)->Void
 
 public protocol ModelProtocol:class {
     
-    func query(#params:[String:AnyObject]?, options:[String:AnyObject]?, callback: ModelArrayCallback? )
+    func query(params params:[String:AnyObject]?, options:[String:AnyObject]?, callback: ModelArrayCallback? )
     func all(callback:ModelArrayCallback?)
-    func get(#id:String?, callback: ModelObjectCallback? )
-    func put(#id:String?,object:ObjectCoder, callback: ModelObjectCallback? )
+    func get(id id:String?, callback: ModelObjectCallback? )
+    func put(id id:String?,object:ObjectCoder, callback: ModelObjectCallback? )
     func add(object:ObjectCoder, callback: ModelObjectCallback? )
 
 }

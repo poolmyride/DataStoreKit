@@ -18,12 +18,12 @@ public class FileDeserializer<T where T:AnyObject,T:ObjectCoder> {
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), { () -> Void in
             
-            var url = NSBundle.mainBundle().URLForResource(fileName, withExtension: "");
+            let url = NSBundle.mainBundle().URLForResource(fileName, withExtension: "");
             
-            var array:NSArray? = (url != nil) ? NSArray(contentsOfURL: url!)  : []
+            let array:NSArray? = (url != nil) ? NSArray(contentsOfURL: url!)  : []
             
-            var objectDeserializer = ObjectDeserializer<T>();
-            var results:NSArray =  objectDeserializer.deSerializeArray(array!)
+            let objectDeserializer = ObjectDeserializer<T>();
+            let results:NSArray =  objectDeserializer.deSerializeArray(array!)
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 callback(nil,results)

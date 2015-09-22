@@ -16,17 +16,17 @@ public class UserDefaultStore<T where T:ObjectCoder>:ModelProtocol{
     public init(){
         
     }
-    public func get(#id:String?, callback: ModelObjectCallback? ){
-        var identifier = id ?? defaultKey
+    public func get(id id:String?, callback: ModelObjectCallback? ){
+        let identifier = id ?? defaultKey
         
-        var obj: NSDictionary?  = NSUserDefaults.standardUserDefaults().objectForKey(identifier) as? NSDictionary
+        let obj: NSDictionary?  = NSUserDefaults.standardUserDefaults().objectForKey(identifier) as? NSDictionary
         
         obj != nil ? callback?(nil,T(dictionary: obj!)) : callback?(NSError(domain: "Not found", code: 0, userInfo: nil),nil)
     }
     
-    public func put(#id:String?,object:ObjectCoder, callback: ModelObjectCallback? ){
+    public func put(id id:String?,object:ObjectCoder, callback: ModelObjectCallback? ){
         
-        var dic = object.toDictionary()
+        let dic = object.toDictionary()
         NSUserDefaults.standardUserDefaults().setObject(dic, forKey: (id ?? defaultKey))
         callback?(nil,object)
 
@@ -35,7 +35,7 @@ public class UserDefaultStore<T where T:ObjectCoder>:ModelProtocol{
         
     }
     
-    public func query(#params:[String:AnyObject]?, options:[String:AnyObject]?, callback: ModelArrayCallback? ){
+    public func query(params params:[String:AnyObject]?, options:[String:AnyObject]?, callback: ModelArrayCallback? ){
         //DO nothing
     }
     public func all(callback:ModelArrayCallback?){

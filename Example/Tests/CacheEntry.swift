@@ -22,7 +22,7 @@ public class CacheEntry: ObjectCoder {
         self.data = withDictionary["data"] as? NSData
     }
     public func toDictionary() -> NSDictionary{
-        var dic:NSDictionary = [
+        let dic:NSDictionary = [
             "data": self.data ?? NSData(),
             "id": self.id ?? ""
         ];
