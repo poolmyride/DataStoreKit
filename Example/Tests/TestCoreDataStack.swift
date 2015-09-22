@@ -70,12 +70,11 @@ class TestCoreDataStack {
         let fetchRequest = NSFetchRequest()
         let description = NSEntityDescription.entityForName(entityName, inManagedObjectContext: TestCoreDataStack.sharedInstance.context)
         fetchRequest.entity = description
-        var error:NSError?
         var results: [AnyObject]?
         do {
             results = try TestCoreDataStack.sharedInstance.context.executeFetchRequest(fetchRequest)
-        } catch let error1 as NSError {
-            error = error1
+        } catch _ as NSError {
+
             results = nil
         }
         

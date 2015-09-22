@@ -30,8 +30,6 @@ class Message:ObjectCoder {
         
         let df = NSDateFormatter()
         df.dateFormat = "yyyy-MM-ddHH:mm:ss"
-        var date  = df.dateFromString((withDictionary["created_ts"] as? String) ?? "") ?? NSDate()
-
         self.id = withDictionary["id"] as? String
         self.from_attendee = withDictionary["from_attendee"] as? String
         self.to_attendee = withDictionary["to_attendee"] as? String

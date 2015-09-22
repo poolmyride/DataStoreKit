@@ -59,7 +59,7 @@ class QueryEngine {
             var sortDescriptors  = [NSSortDescriptor]()
             for (key,val) in sortDic {
                 let isAscending = (((val as? NSDictionary) ?? NSDictionary())["ascending"] as? Bool) == true
-                let sortDescriptor = NSSortDescriptor(key: key as! String, ascending: isAscending)
+                let sortDescriptor = NSSortDescriptor(key: key as? String, ascending: isAscending)
                 sortDescriptors.append(sortDescriptor)
             }
             

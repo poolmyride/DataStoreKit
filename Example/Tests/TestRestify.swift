@@ -71,7 +71,7 @@ class TestRestify: XCTestCase {
     func testNetworkCallSuccess() {
         // This is an example of a functional test case.
         restClient = Restify<MyObject>(path: "pass", networkClient: MockNetwork())
-        var expectation = self.expectationWithDescription("Test Restify")
+        let expectation = self.expectationWithDescription("Test Restify")
         restClient.get(id: "12") { (error, result) -> Void in
             
             XCTAssertTrue(result != nil, "Successfully Deserialized object on successful network call")
@@ -86,7 +86,7 @@ class TestRestify: XCTestCase {
     func testNetworkCallFailure() {
         // This is an example of a functional test case.
         restClient = Restify<MyObject>(path: "fail", networkClient: MockNetwork())
-        var expectation = self.expectationWithDescription("Test Restify")
+        let expectation = self.expectationWithDescription("Test Restify")
         restClient.get(id: "12") { (error, result) -> Void in
             
             XCTAssertTrue(result == nil, "Result must be nil")

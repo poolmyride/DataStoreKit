@@ -29,16 +29,16 @@ class CoreDataStoreTests: XCTestCase {
     
     func test1Save() {
         // This is an example of a functional test case.
-        var dic = ["id" : "1234",
+        let dic = ["id" : "1234",
             "from_attendee" : "26",
             "to_attendee" : "28",
             "type": "chat",
             "message": "hello",
             "created_ts" : 1437108258
         ]
-        var expectation = self.expectationWithDescription("test save")
+        let expectation = self.expectationWithDescription("test save")
         
-        var obj = Message(dictionary: dic)
+        let obj = Message(dictionary: dic)
         
         self.messageModel!.add(obj, callback: { (error, obj) -> Void in
             XCTAssert(error == nil, "Pass")
@@ -57,7 +57,7 @@ class CoreDataStoreTests: XCTestCase {
     func test2Query() {
         // This is an example of a functional test case.
         
-        var dic = ["id" : "1235",
+        let dic = ["id" : "1235",
             "from_attendee" : "26",
             "to_attendee" : "29",
             "type": "chat",
@@ -65,17 +65,17 @@ class CoreDataStoreTests: XCTestCase {
             "created_ts" : 1437108358
         ]
         
-        var dic2 = ["id" : "1236",
+        let dic2 = ["id" : "1236",
             "from_attendee" : "26",
             "to_attendee" : "29",
             "type": "chat",
             "message": "hello",
             "created_ts" : 1437108458
         ]
-        var expectation = self.expectationWithDescription("test query")
+        let expectation = self.expectationWithDescription("test query")
         
-        var obj = Message(dictionary: dic)
-        var obj2 = Message(dictionary: dic2)
+        let obj = Message(dictionary: dic)
+        let obj2 = Message(dictionary: dic2)
         self.messageModel!.add(obj, callback: { (error, obj) -> Void in
             XCTAssert(error == nil, "Pass")
             
@@ -100,7 +100,7 @@ class CoreDataStoreTests: XCTestCase {
     func test3Query() {
         // This is an example of a functional test case.
         
-        var dic = ["id" : "1235",
+        let dic = ["id" : "1235",
             "from_attendee" : "26",
             "to_attendee" : "29",
             "type": "chat",
@@ -108,17 +108,17 @@ class CoreDataStoreTests: XCTestCase {
             "created_ts" : 1437108358
         ]
         
-        var dic2 = ["id" : "1236",
+        let dic2 = ["id" : "1236",
             "from_attendee" : "26",
             "to_attendee" : "28",
             "type": "chat",
             "message": "hello",
             "created_ts" : 1437108458
         ]
-        var expectation = self.expectationWithDescription("test query")
+        let expectation = self.expectationWithDescription("test query")
         
-        var obj = Message(dictionary: dic)
-        var obj2 = Message(dictionary: dic2)
+        let obj = Message(dictionary: dic)
+        let obj2 = Message(dictionary: dic2)
         self.messageModel!.add(obj, callback: { (error, obj) -> Void in
             XCTAssert(error == nil, "Pass")
             
@@ -144,7 +144,7 @@ class CoreDataStoreTests: XCTestCase {
     func test4QueryWithOperand() {
         // This is an example of a functional test case.
         
-        var dic = ["id" : "1235",
+        let dic = ["id" : "1235",
             "from_attendee" : "26",
             "to_attendee" : "29",
             "type": "chat",
@@ -152,17 +152,17 @@ class CoreDataStoreTests: XCTestCase {
             "created_ts" : 1437108558
         ]
         
-        var dic2 = ["id" : "1236",
+        let dic2 = ["id" : "1236",
             "from_attendee" : "26",
             "to_attendee" : "29",
             "type": "chat",
             "message": "hello",
             "created_ts" : 1437108658
         ]
-        var expectation = self.expectationWithDescription("test query")
+        let expectation = self.expectationWithDescription("test query")
         
-        var obj = Message(dictionary: dic)
-        var obj2 = Message(dictionary: dic2)
+        let obj = Message(dictionary: dic)
+        let obj2 = Message(dictionary: dic2)
         self.messageModel!.add(obj, callback: { (error, obj) -> Void in
             XCTAssert(error == nil, "Pass")
             
@@ -187,7 +187,7 @@ class CoreDataStoreTests: XCTestCase {
     func test5Put() {
         // This is an example of a functional test case.
         
-        var dic = ["id" : "1235",
+        let dic = ["id" : "1235",
             "from_attendee" : "26",
             "to_attendee" : "29",
             "type": "chat",
@@ -196,9 +196,9 @@ class CoreDataStoreTests: XCTestCase {
         ]
         
         
-        var expectation = self.expectationWithDescription("test query")
+        let expectation = self.expectationWithDescription("test query")
         
-        var obj = Message(dictionary: dic)
+        let obj = Message(dictionary: dic)
         
         self.messageModel!.add(obj, callback: { (error, result) -> Void in
             
@@ -208,12 +208,12 @@ class CoreDataStoreTests: XCTestCase {
             
                 self.messageModel!.put(id: "1235", object: obj) { (error, resultPut) -> Void in
                     
-                    var message = resultPut as? Message
+                    let message = resultPut as? Message
                     XCTAssertNil(error, "Pass")
                     XCTAssert(message?.message == "hello world", "Pass")
                     
                     self.messageModel!.get(id: "1235", callback: { (errorGet, resultGet) -> Void in
-                        var fetchedMessage = resultGet as? Message
+                        let fetchedMessage = resultGet as? Message
                         XCTAssertNil(errorGet, "Pass")
 
                         XCTAssert(fetchedMessage?.message == "hello world", "Pass")
@@ -230,25 +230,25 @@ class CoreDataStoreTests: XCTestCase {
     
     func test5PutBindaryData() {
         // This is an example of a functional test case.
-        var testID = "v1/proposals/123"
-        var testString:NSString = "testString"
-        var testData = testString.dataUsingEncoding(NSUTF8StringEncoding)
+        let testID = "v1/proposals/123"
+        let testString:NSString = "testString"
+        let testData = testString.dataUsingEncoding(NSUTF8StringEncoding)
         // This is an example of a functional test case.
-        var dic:NSDictionary = [
+        let dic:NSDictionary = [
             "id" : testID,
             "data" : testData!
         ]
-        var expectation = self.expectationWithDescription("test save")
+        let expectation = self.expectationWithDescription("test save")
         
-        var obj = CacheEntry(dictionary: dic)
+        let obj = CacheEntry(dictionary: dic)
         
         self.cacheModel!.add(obj, callback: { (error, obj) -> Void in
             XCTAssert(error == nil, "Pass")
             
             self.cacheModel!.get(id: testID) { (error, obj) -> Void in
                 XCTAssert(error == nil, "Pass")
-                var cacheObj = obj as? CacheEntry
-                var str = NSString(data: cacheObj?.data ?? NSData(), encoding: NSUTF8StringEncoding)
+                let cacheObj = obj as? CacheEntry
+                let str = NSString(data: cacheObj?.data ?? NSData(), encoding: NSUTF8StringEncoding)
                 XCTAssert(str == testString, "Pass")
                 expectation.fulfill()
             }
