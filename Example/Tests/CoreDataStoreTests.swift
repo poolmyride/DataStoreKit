@@ -13,16 +13,21 @@ class CoreDataStoreTests: XCTestCase {
     
     var messageModel : CoreDataStore<Message>?
     var cacheModel : CoreDataStore<CacheEntry>?
+    var coreDataStack :TestCoreDataStack?
     override func setUp() {
         super.setUp()
-        self.messageModel = CoreDataStore<Message>(entityName: "Message", managedContext: TestCoreDataStack.sharedInstance.context)
-        self.cacheModel = CoreDataStore<CacheEntry>(entityName: "CacheEntry", managedContext: TestCoreDataStack.sharedInstance.context)
+        self.coreDataStack = TestCoreDataStack(dbName: "TestSample")
+        
+    
+        self.messageModel = CoreDataStore<Message>(entityName: "Message", managedContext: self.coreDataStack!.context)
+        
+        self.cacheModel  = CoreDataStore<CacheEntry>(entityName: "CacheEntry", managedContext: coreDataStack!.context)
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
-        TestCoreDataStack.cleanDB("Message")
+        self.coreDataStack?.cleanTable("Message")
         super.tearDown()
     }
     

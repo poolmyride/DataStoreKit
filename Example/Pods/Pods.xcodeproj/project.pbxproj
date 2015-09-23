@@ -14,6 +14,11 @@
 		7D4090F0F2AB5DA87C99397F73FA0ED4 /* Pods-DataStoreKit_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A45110F2860A2162149D0DCE4608DDD /* Pods-DataStoreKit_Tests-dummy.m */; };
 		9BB3D2B44AFA79F87A194863ED6FF512 /* DataStoreKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6884354CEA824B4526B2F2C7105578D2 /* DataStoreKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B5878A9208138DB77C2B287BADB437F1 /* Pods-DataStoreKit_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = ACC5E9C738D59A7A170906CDDA3E325A /* Pods-DataStoreKit_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D586E7EE1BB24E6D004BB004 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D586E7ED1BB24E6D004BB004 /* CoreDataStack.swift */; settings = {ASSET_TAGS = (); }; };
+		D586E7F11BB250B0004BB004 /* CoreDataFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D586E7F01BB250B0004BB004 /* CoreDataFactory.swift */; settings = {ASSET_TAGS = (); }; };
+		D586E7F31BB260DD004BB004 /* TestC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D586E7F21BB260DD004BB004 /* TestC.swift */; settings = {ASSET_TAGS = (); }; };
+		D586E7F61BB26196004BB004 /* TestCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D586E7F51BB26196004BB004 /* TestCoreDataStack.swift */; settings = {ASSET_TAGS = (); }; };
+		D586E7F81BB2640B004BB004 /* TestCoreDataFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D586E7F71BB2640B004BB004 /* TestCoreDataFactory.swift */; settings = {ASSET_TAGS = (); }; };
 		D59FD6E31BA2D2FA0074B6BB /* CoreDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59FD6D81BA2D2FA0074B6BB /* CoreDataStore.swift */; };
 		D59FD6E41BA2D2FA0074B6BB /* DataStoreKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D59FD6D91BA2D2FA0074B6BB /* DataStoreKit.h */; };
 		D59FD6E51BA2D2FA0074B6BB /* FileDeserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59FD6DA1BA2D2FA0074B6BB /* FileDeserializer.swift */; };
@@ -86,6 +91,11 @@
 		CBF18A1D926D3C65F79024BE8F8A9F8A /* DataStoreKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = DataStoreKit.modulemap; sourceTree = "<group>"; };
 		D0BAA9FCE303C03555C2B9D4AEE02DC6 /* Pods_DataStoreKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DataStoreKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D48B91FA6E54C8085FA19E49502E114D /* DataStoreKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DataStoreKit-prefix.pch"; sourceTree = "<group>"; };
+		D586E7ED1BB24E6D004BB004 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		D586E7F01BB250B0004BB004 /* CoreDataFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataFactory.swift; sourceTree = "<group>"; };
+		D586E7F21BB260DD004BB004 /* TestC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestC.swift; sourceTree = "<group>"; };
+		D586E7F51BB26196004BB004 /* TestCoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestCoreDataStack.swift; sourceTree = "<group>"; };
+		D586E7F71BB2640B004BB004 /* TestCoreDataFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestCoreDataFactory.swift; sourceTree = "<group>"; };
 		D59FD6D81BA2D2FA0074B6BB /* CoreDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStore.swift; sourceTree = "<group>"; };
 		D59FD6D91BA2D2FA0074B6BB /* DataStoreKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataStoreKit.h; sourceTree = "<group>"; };
 		D59FD6DA1BA2D2FA0074B6BB /* FileDeserializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDeserializer.swift; sourceTree = "<group>"; };
@@ -155,6 +165,10 @@
 		58999346B175193D942A15CD255CE72F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D586E7F51BB26196004BB004 /* TestCoreDataStack.swift */,
+				D586E7F01BB250B0004BB004 /* CoreDataFactory.swift */,
+				D586E7F71BB2640B004BB004 /* TestCoreDataFactory.swift */,
+				D586E7ED1BB24E6D004BB004 /* CoreDataStack.swift */,
 				D59FD6D81BA2D2FA0074B6BB /* CoreDataStore.swift */,
 				D59FD6D91BA2D2FA0074B6BB /* DataStoreKit.h */,
 				D59FD6DA1BA2D2FA0074B6BB /* FileDeserializer.swift */,
@@ -166,6 +180,7 @@
 				D59FD6E01BA2D2FA0074B6BB /* QueryEngine.swift */,
 				D59FD6E11BA2D2FA0074B6BB /* Restify.swift */,
 				D59FD6E21BA2D2FA0074B6BB /* UserDefaultStore.swift */,
+				D586E7F21BB260DD004BB004 /* TestC.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -460,14 +475,19 @@
 				D59FD6E31BA2D2FA0074B6BB /* CoreDataStore.swift in Sources */,
 				D59FD6E51BA2D2FA0074B6BB /* FileDeserializer.swift in Sources */,
 				D59FD6E81BA2D2FA0074B6BB /* NetWork-Protocol.swift in Sources */,
+				D586E7EE1BB24E6D004BB004 /* CoreDataStack.swift in Sources */,
 				D59FD6E71BA2D2FA0074B6BB /* Model-Protocol.swift in Sources */,
 				D59FD6ED1BA2D2FA0074B6BB /* UserDefaultStore.swift in Sources */,
 				E602A3E3EF17F7808F8479CC2F301D6A /* DataStoreKit-dummy.m in Sources */,
 				D59FD6EA1BA2D2FA0074B6BB /* ObjectDeserializer.swift in Sources */,
 				D59FD6E61BA2D2FA0074B6BB /* FileModel.swift in Sources */,
+				D586E7F31BB260DD004BB004 /* TestC.swift in Sources */,
 				D59FD6E91BA2D2FA0074B6BB /* ObjectCoder-Protocol.swift in Sources */,
+				D586E7F61BB26196004BB004 /* TestCoreDataStack.swift in Sources */,
 				D59FD6EC1BA2D2FA0074B6BB /* Restify.swift in Sources */,
+				D586E7F11BB250B0004BB004 /* CoreDataFactory.swift in Sources */,
 				D59FD6EB1BA2D2FA0074B6BB /* QueryEngine.swift in Sources */,
+				D586E7F81BB2640B004BB004 /* TestCoreDataFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,6 +519,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5EA835DB404CC0AB48BD05DF10C9F595 /* Pods-DataStoreKit_Tests.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -741,6 +762,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 84B033C84B125DFFC3EF700746DC0E95 /* Pods-DataStoreKit_Tests.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
