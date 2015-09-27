@@ -12,6 +12,7 @@ public protocol NetworkInterface{
     
     func setHTTPHeaders(headers:[String:String])
     func GET(URLString: String!, parameters: AnyObject!, callback: ((NSError?, AnyObject?) -> Void)!)
-   func POST(URLString: String!, parameters: AnyObject!,callback: ((NSError?, AnyObject?) -> Void)!)
+    func POST(URLString: String!, parameters: AnyObject!,callback: ((NSError?, AnyObject?) -> Void)!)
+    func PUT(URLString: String!, parameters: AnyObject!,callback: ((NSError?, AnyObject?) -> Void)!)
 
 }

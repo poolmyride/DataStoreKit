@@ -8,12 +8,12 @@
 
 import Foundation
 import CoreData
-public class TestCoreDataFactory{
+public class InMemoryDataFactory{
     
     static var managedContexts:[String:NSManagedObjectContext] = [:]
     var context:NSManagedObjectContext
     public init(dbName:String){
-        let stack = TestCoreDataStack(dbName: "TestSample")
+        let stack = InMemoryDataStack(dbName: "TestSample")
         self.context = stack.context
     }
     

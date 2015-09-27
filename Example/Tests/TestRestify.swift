@@ -38,7 +38,9 @@ class TestRestify: XCTestCase {
         func POST(URLString: String!, parameters: AnyObject!,callback: ((NSError?, AnyObject?) -> Void)!){
         
         }
-
+        func PUT(URLString: String!, parameters: AnyObject!, callback: ((NSError?, AnyObject?) -> Void)!) {
+            
+        }
         func GET(URLString: String!, parameters: AnyObject!, callback: ((NSError?, AnyObject?) -> Void)!){
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in

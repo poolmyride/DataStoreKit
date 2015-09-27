@@ -17,7 +17,7 @@
 		D586E7EE1BB24E6D004BB004 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D586E7ED1BB24E6D004BB004 /* CoreDataStack.swift */; settings = {ASSET_TAGS = (); }; };
 		D586E7F11BB250B0004BB004 /* CoreDataFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D586E7F01BB250B0004BB004 /* CoreDataFactory.swift */; settings = {ASSET_TAGS = (); }; };
 		D586E7F31BB260DD004BB004 /* TestC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D586E7F21BB260DD004BB004 /* TestC.swift */; settings = {ASSET_TAGS = (); }; };
-		D586E7F61BB26196004BB004 /* TestCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D586E7F51BB26196004BB004 /* TestCoreDataStack.swift */; settings = {ASSET_TAGS = (); }; };
+		D586E7F61BB26196004BB004 /* InMemoryDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D586E7F51BB26196004BB004 /* InMemoryDataStack.swift */; settings = {ASSET_TAGS = (); }; };
 		D586E7F81BB2640B004BB004 /* TestCoreDataFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D586E7F71BB2640B004BB004 /* TestCoreDataFactory.swift */; settings = {ASSET_TAGS = (); }; };
 		D59FD6E31BA2D2FA0074B6BB /* CoreDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59FD6D81BA2D2FA0074B6BB /* CoreDataStore.swift */; };
 		D59FD6E41BA2D2FA0074B6BB /* DataStoreKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D59FD6D91BA2D2FA0074B6BB /* DataStoreKit.h */; };
@@ -94,7 +94,7 @@
 		D586E7ED1BB24E6D004BB004 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		D586E7F01BB250B0004BB004 /* CoreDataFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataFactory.swift; sourceTree = "<group>"; };
 		D586E7F21BB260DD004BB004 /* TestC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestC.swift; sourceTree = "<group>"; };
-		D586E7F51BB26196004BB004 /* TestCoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestCoreDataStack.swift; sourceTree = "<group>"; };
+		D586E7F51BB26196004BB004 /* InMemoryDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InMemoryDataStack.swift; sourceTree = "<group>"; };
 		D586E7F71BB2640B004BB004 /* TestCoreDataFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestCoreDataFactory.swift; sourceTree = "<group>"; };
 		D59FD6D81BA2D2FA0074B6BB /* CoreDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStore.swift; sourceTree = "<group>"; };
 		D59FD6D91BA2D2FA0074B6BB /* DataStoreKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataStoreKit.h; sourceTree = "<group>"; };
@@ -165,7 +165,7 @@
 		58999346B175193D942A15CD255CE72F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				D586E7F51BB26196004BB004 /* TestCoreDataStack.swift */,
+				D586E7F51BB26196004BB004 /* InMemoryDataStack.swift */,
 				D586E7F01BB250B0004BB004 /* CoreDataFactory.swift */,
 				D586E7F71BB2640B004BB004 /* TestCoreDataFactory.swift */,
 				D586E7ED1BB24E6D004BB004 /* CoreDataStack.swift */,
@@ -483,7 +483,7 @@
 				D59FD6E61BA2D2FA0074B6BB /* FileModel.swift in Sources */,
 				D586E7F31BB260DD004BB004 /* TestC.swift in Sources */,
 				D59FD6E91BA2D2FA0074B6BB /* ObjectCoder-Protocol.swift in Sources */,
-				D586E7F61BB26196004BB004 /* TestCoreDataStack.swift in Sources */,
+				D586E7F61BB26196004BB004 /* InMemoryDataStack.swift in Sources */,
 				D59FD6EC1BA2D2FA0074B6BB /* Restify.swift in Sources */,
 				D586E7F11BB250B0004BB004 /* CoreDataFactory.swift in Sources */,
 				D59FD6EB1BA2D2FA0074B6BB /* QueryEngine.swift in Sources */,

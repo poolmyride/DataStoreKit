@@ -13,10 +13,10 @@ class CoreDataStoreTests: XCTestCase {
     
     var messageModel : CoreDataStore<Message>?
     var cacheModel : CoreDataStore<CacheEntry>?
-    var coreDataStack :TestCoreDataStack?
+    var coreDataStack :InMemoryDataStack?
     override func setUp() {
         super.setUp()
-        self.coreDataStack = TestCoreDataStack(dbName: "TestSample")
+        self.coreDataStack = InMemoryDataStack(dbName: "TestSample")
         
     
         self.messageModel = CoreDataStore<Message>(entityName: "Message", managedContext: self.coreDataStack!.context)

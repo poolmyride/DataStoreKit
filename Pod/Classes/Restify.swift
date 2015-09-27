@@ -76,7 +76,14 @@ public class Restify<T where T:ObjectCoder>:ModelProtocol{
     }
 
     public func put(id id: String?, object: ObjectCoder, callback: ModelObjectCallback?) {
-        
+        let path  = base_url + "/" + id!
+        let dic = NSMutableDictionary(dictionary: object.toDictionary())
+        let access_token = NSUserDefaults.standardUserDefaults().objectForKey("app_access_token") as? String ?? ""
+        dic["access_token"] = access_token.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLHostAllowedCharacterSet())
+        networkClient.PUT(path, parameters: dic) { (error, object) -> Void in
+            
+            callback?(error,object)
+        }
     }
     
     public func add(object: ObjectCoder, callback: ModelObjectCallback?) {

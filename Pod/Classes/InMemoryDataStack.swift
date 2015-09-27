@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-public class TestCoreDataStack: CoreDataStack {
+public class InMemoryDataStack: CoreDataStack {
 
     
       override func persistentStoreCoordinator() -> NSPersistentStoreCoordinator? {
