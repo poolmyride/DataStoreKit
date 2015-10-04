@@ -184,5 +184,8 @@ public class CoreDataStore<T where T:ObjectCoder>:ModelProtocol{
         
     }
     
+    public func remove(id id: String?, object: ObjectCoder, callback: ModelObjectCallback?) {
+        
+    }
 }
 

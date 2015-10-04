@@ -52,6 +52,9 @@ class TestRestify: XCTestCase {
           
         }
         
+        func DELETE(URLString: String!, parameters: AnyObject!, callback: ((NSError?, AnyObject?) -> Void)!) {
+            
+        }
         func setHTTPHeaders(headers: [String : String]) {
             
         }

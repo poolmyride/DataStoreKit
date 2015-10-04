@@ -44,5 +44,9 @@ public class FileModel<T where T:ObjectCoder,T:AnyObject>: ModelProtocol {
     public func add(object: ObjectCoder, callback: ModelObjectCallback?) {
         
     }
+    
+    public func remove(id id: String?, object: ObjectCoder, callback: ModelObjectCallback?) {
+        
+    }
 
 }

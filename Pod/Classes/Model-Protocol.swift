@@ -17,5 +17,6 @@ public protocol ModelProtocol:class {
     func get(id id:String?, callback: ModelObjectCallback? )
     func put(id id:String?,object:ObjectCoder, callback: ModelObjectCallback? )
     func add(object:ObjectCoder, callback: ModelObjectCallback? )
+    func remove(id id:String?,object:ObjectCoder, callback: ModelObjectCallback? )
 
 }
