@@ -15,6 +15,6 @@ public protocol NetworkInterface{
     func POST(URLString: String!, parameters: AnyObject!,callback: ((NSError?, AnyObject?) -> Void)!)
     func PUT(URLString: String!, parameters: AnyObject!,callback: ((NSError?, AnyObject?) -> Void)!)
     
-    func DELETE(URLString: String!, parameters: AnyObject!,callback: ((NSError?, AnyObject?) -> Void)!)
+    func DELETE(URLString: String!, parameters: AnyObject?,callback: ((NSError?, AnyObject?) -> Void)!)
 
 }

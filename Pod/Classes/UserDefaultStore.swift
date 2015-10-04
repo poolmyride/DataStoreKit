@@ -42,7 +42,7 @@ public class UserDefaultStore<T where T:ObjectCoder>:ModelProtocol{
         //DO nothing
     }
    
-    public func remove(id id: String?, object: ObjectCoder, callback: ModelObjectCallback?) {
+    public func remove(id id: String?, object: ObjectCoder?, callback: ModelObjectCallback?) {
         
     }
     
