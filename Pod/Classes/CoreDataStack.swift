@@ -65,7 +65,7 @@ public class CoreDataStack{
         }()
 
     
-    func saveContext(){
+    public func saveContext(){
         var error:NSError? = nil
         if context.hasChanges{
             do {
