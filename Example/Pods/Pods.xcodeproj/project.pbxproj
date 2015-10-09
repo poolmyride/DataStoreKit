@@ -15,10 +15,8 @@
 		9BB3D2B44AFA79F87A194863ED6FF512 /* DataStoreKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6884354CEA824B4526B2F2C7105578D2 /* DataStoreKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B5878A9208138DB77C2B287BADB437F1 /* Pods-DataStoreKit_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = ACC5E9C738D59A7A170906CDDA3E325A /* Pods-DataStoreKit_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D586E7EE1BB24E6D004BB004 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D586E7ED1BB24E6D004BB004 /* CoreDataStack.swift */; settings = {ASSET_TAGS = (); }; };
-		D586E7F11BB250B0004BB004 /* CoreDataFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D586E7F01BB250B0004BB004 /* CoreDataFactory.swift */; settings = {ASSET_TAGS = (); }; };
 		D586E7F31BB260DD004BB004 /* TestC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D586E7F21BB260DD004BB004 /* TestC.swift */; settings = {ASSET_TAGS = (); }; };
 		D586E7F61BB26196004BB004 /* InMemoryDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D586E7F51BB26196004BB004 /* InMemoryDataStack.swift */; settings = {ASSET_TAGS = (); }; };
-		D586E7F81BB2640B004BB004 /* TestCoreDataFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D586E7F71BB2640B004BB004 /* TestCoreDataFactory.swift */; settings = {ASSET_TAGS = (); }; };
 		D59FD6E31BA2D2FA0074B6BB /* CoreDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59FD6D81BA2D2FA0074B6BB /* CoreDataStore.swift */; };
 		D59FD6E41BA2D2FA0074B6BB /* DataStoreKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D59FD6D91BA2D2FA0074B6BB /* DataStoreKit.h */; };
 		D59FD6E51BA2D2FA0074B6BB /* FileDeserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59FD6DA1BA2D2FA0074B6BB /* FileDeserializer.swift */; };
@@ -92,10 +90,8 @@
 		D0BAA9FCE303C03555C2B9D4AEE02DC6 /* Pods_DataStoreKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DataStoreKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D48B91FA6E54C8085FA19E49502E114D /* DataStoreKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DataStoreKit-prefix.pch"; sourceTree = "<group>"; };
 		D586E7ED1BB24E6D004BB004 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
-		D586E7F01BB250B0004BB004 /* CoreDataFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataFactory.swift; sourceTree = "<group>"; };
 		D586E7F21BB260DD004BB004 /* TestC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestC.swift; sourceTree = "<group>"; };
 		D586E7F51BB26196004BB004 /* InMemoryDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InMemoryDataStack.swift; sourceTree = "<group>"; };
-		D586E7F71BB2640B004BB004 /* TestCoreDataFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestCoreDataFactory.swift; sourceTree = "<group>"; };
 		D59FD6D81BA2D2FA0074B6BB /* CoreDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStore.swift; sourceTree = "<group>"; };
 		D59FD6D91BA2D2FA0074B6BB /* DataStoreKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataStoreKit.h; sourceTree = "<group>"; };
 		D59FD6DA1BA2D2FA0074B6BB /* FileDeserializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDeserializer.swift; sourceTree = "<group>"; };
@@ -166,8 +162,6 @@
 			isa = PBXGroup;
 			children = (
 				D586E7F51BB26196004BB004 /* InMemoryDataStack.swift */,
-				D586E7F01BB250B0004BB004 /* CoreDataFactory.swift */,
-				D586E7F71BB2640B004BB004 /* TestCoreDataFactory.swift */,
 				D586E7ED1BB24E6D004BB004 /* CoreDataStack.swift */,
 				D59FD6D81BA2D2FA0074B6BB /* CoreDataStore.swift */,
 				D59FD6D91BA2D2FA0074B6BB /* DataStoreKit.h */,
@@ -485,9 +479,7 @@
 				D59FD6E91BA2D2FA0074B6BB /* ObjectCoder-Protocol.swift in Sources */,
 				D586E7F61BB26196004BB004 /* InMemoryDataStack.swift in Sources */,
 				D59FD6EC1BA2D2FA0074B6BB /* Restify.swift in Sources */,
-				D586E7F11BB250B0004BB004 /* CoreDataFactory.swift in Sources */,
 				D59FD6EB1BA2D2FA0074B6BB /* QueryEngine.swift in Sources */,
-				D586E7F81BB2640B004BB004 /* TestCoreDataFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
