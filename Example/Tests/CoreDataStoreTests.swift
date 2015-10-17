@@ -59,6 +59,40 @@ class CoreDataStoreTests: XCTestCase {
         
     }
     
+    func test11Save() {
+        // This is an example of a functional test case.
+        let dic = ["id" : "1234",
+            "from_attendee" : "26",
+            "to_attendee" : "28",
+            "type": "chat",
+            "message": "hello",
+            "created_ts" : 1437108258
+        ]
+        let expectation = self.expectationWithDescription("test save")
+        
+        let obj = Message(dictionary: dic)
+        
+        self.messageModel!.add(obj, callback: { (error, obj) -> Void in
+            XCTAssert(error == nil, "Pass")
+            
+            self.messageModel!.remove(id: "1234", object: nil, callback: { (errRemove, removeResult) -> Void in
+                
+                XCTAssert(errRemove == nil, "Pass")
+            
+                self.messageModel!.get(id: "1234") { (errorGet, objGet) -> Void in
+                    XCTAssert(errorGet != nil, "Pass")
+                    expectation.fulfill()
+                }
+            })
+            
+            
+        })
+        
+        self.waitForExpectationsWithTimeout(10.0, handler: nil)
+        
+    }
+    
+    
     func test2Query() {
         // This is an example of a functional test case.
         

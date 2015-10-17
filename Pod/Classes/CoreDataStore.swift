@@ -186,6 +186,47 @@ public class CoreDataStore<T where T:ObjectCoder>:ModelProtocol{
     
     public func remove(id id: String?, object: ObjectCoder?, callback: ModelObjectCallback?) {
         
+       
+        let key = T.identifierKey()
+        
+        let fetchRequest = NSFetchRequest()
+        let description = NSEntityDescription.entityForName(entityName, inManagedObjectContext: self.context)
+        fetchRequest.entity = description
+        
+        fetchRequest.predicate = NSPredicate(format: "%K == %@", key ,id!)
+        
+        var results: [AnyObject]?
+        do {
+            results = try context.executeFetchRequest(fetchRequest)
+        } catch let error as NSError {
+            print(error)
+            results = nil
+        }
+        
+        results = results as? [NSManagedObject]
+        
+        let managedObject = results![0]
+
+        if(results!.count > 0){
+            
+           context.deleteObject(managedObject as! NSManagedObject)
+
+            var error: NSError?
+            do {
+                try context.save()
+            } catch let error1 as NSError {
+                error = error1
+            }
+          print(error)
+            self._deserializeObject(results![0], callback: { (err, desObj) -> Void in
+                callback?(error, error == nil ? desObj : nil)
+            })
+
+        }else {
+            callback?(NSError(domain: "Not found", code: 0, userInfo: nil), nil);
+        }
+        
+        
     }
 }
 
