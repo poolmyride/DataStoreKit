@@ -203,12 +203,13 @@ public class CoreDataStore<T where T:ObjectCoder>:ModelProtocol{
             results = nil
         }
         
-        results = results as? [NSManagedObject]
+        results = results as? [NSManagedObject] ?? []
         
-        let managedObject = results![0]
 
         if(results!.count > 0){
-            
+           
+        let managedObject = results![0]
+
            context.deleteObject(managedObject as! NSManagedObject)
 
             var error: NSError?
