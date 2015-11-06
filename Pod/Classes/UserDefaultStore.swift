@@ -16,7 +16,7 @@ public class UserDefaultStore<T where T:ObjectCoder>:ModelProtocol{
     public init(){
         
     }
-    public func get(id id:String?, callback: ModelObjectCallback? ){
+    public func get(id id:String?,params:[String:AnyObject]?, callback: ModelObjectCallback? ){
         let identifier = id ?? defaultKey
         
         let obj: NSDictionary?  = NSUserDefaults.standardUserDefaults().objectForKey(identifier) as? NSDictionary
@@ -43,6 +43,14 @@ public class UserDefaultStore<T where T:ObjectCoder>:ModelProtocol{
     }
    
     public func remove(id id: String?, object: ObjectCoder?, callback: ModelObjectCallback?) {
+        let identifier = id ?? defaultKey
+        
+        let obj: NSDictionary?  = NSUserDefaults.standardUserDefaults().objectForKey(identifier) as? NSDictionary
+        
+        NSUserDefaults.standardUserDefaults().removeObjectForKey(identifier)
+        let error:NSError? = obj == nil ? NSError(domain: "Not found", code: 0, userInfo: nil) : nil
+        let result:T? = obj == nil ? nil : T(dictionary: obj!)
+        callback?(error, result)
         
     }
     

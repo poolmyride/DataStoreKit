@@ -48,7 +48,7 @@ class CoreDataStoreTests: XCTestCase {
         self.messageModel!.add(obj, callback: { (error, obj) -> Void in
             XCTAssert(error == nil, "Pass")
             
-            self.messageModel!.get(id: "1234") { (error, obj) -> Void in
+            self.messageModel!.get(id: "1234",params: nil) { (error, obj) -> Void in
                 XCTAssert(error == nil, "Pass")
                 expectation.fulfill()
             }
@@ -79,7 +79,7 @@ class CoreDataStoreTests: XCTestCase {
                 
                 XCTAssert(errRemove == nil, "Pass")
             
-                self.messageModel!.get(id: "1234") { (errorGet, objGet) -> Void in
+                self.messageModel!.get(id: "1234",params: nil) { (errorGet, objGet) -> Void in
                     XCTAssert(errorGet != nil, "Pass")
                     expectation.fulfill()
                 }
@@ -251,7 +251,7 @@ class CoreDataStoreTests: XCTestCase {
                     XCTAssertNil(error, "Pass")
                     XCTAssert(message?.message == "hello world", "Pass")
                     
-                    self.messageModel!.get(id: "1235", callback: { (errorGet, resultGet) -> Void in
+                    self.messageModel!.get(id: "1235",params: nil, callback: { (errorGet, resultGet) -> Void in
                         let fetchedMessage = resultGet as? Message
                         XCTAssertNil(errorGet, "Pass")
 
@@ -284,7 +284,7 @@ class CoreDataStoreTests: XCTestCase {
         self.cacheModel!.add(obj, callback: { (error, obj) -> Void in
             XCTAssert(error == nil, "Pass")
             
-            self.cacheModel!.get(id: testID) { (error, obj) -> Void in
+            self.cacheModel!.get(id: testID,params: nil) { (error, obj) -> Void in
                 XCTAssert(error == nil, "Pass")
                 let cacheObj = obj as? CacheEntry
                 let str = NSString(data: cacheObj?.data ?? NSData(), encoding: NSUTF8StringEncoding)

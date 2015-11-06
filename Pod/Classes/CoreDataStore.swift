@@ -93,7 +93,7 @@ public class CoreDataStore<T where T:ObjectCoder>:ModelProtocol{
         
     }
     
-    public func get(id id:String?, callback: ModelObjectCallback? ){
+    public func get(id id:String?,params:[String:AnyObject]?, callback: ModelObjectCallback? ){
         let key = T.identifierKey()
         
         let fetchRequest = NSFetchRequest()

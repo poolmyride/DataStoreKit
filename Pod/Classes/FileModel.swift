@@ -32,7 +32,7 @@ public class FileModel<T where T:ObjectCoder,T:AnyObject>: ModelProtocol {
         
     }
     
-    public func get(id id:String?, callback: ModelObjectCallback? ){
+    public func get(id id:String?,params:[String:AnyObject]?, callback: ModelObjectCallback? ){
     
         callback?(nil,nil)
     }

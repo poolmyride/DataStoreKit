@@ -63,11 +63,11 @@ public class Restify<T where T:ObjectCoder>:ModelProtocol{
         
     }
     
-    public func get(id id:String?, callback: ModelObjectCallback? ){
+    public func get(id id:String?,params:[String:AnyObject]?, callback: ModelObjectCallback? ){
     
         let path  = base_url + "/" + id!
         
-        networkClient.GET(path, parameters: nil) { (error, jsonObject) -> Void in
+        networkClient.GET(path, parameters: params) { (error, jsonObject) -> Void in
             
             (error == nil) ? self._deserializeObject(jsonObject, callback: callback) : callback?(error,nil)
         }

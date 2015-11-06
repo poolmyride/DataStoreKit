@@ -13,6 +13,7 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		86E9852AF0528AF6078F040B /* Pods_DataStoreKit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 750DAFB5559CBE95671DB3E1 /* Pods_DataStoreKit_Example.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		D534D8571BECAFAF005E3C71 /* UserDefaultStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D534D8561BECAFAF005E3C71 /* UserDefaultStoreTests.swift */; };
 		D59FD6F71BA2D4C20074B6BB /* CacheEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59FD6EE1BA2D4C20074B6BB /* CacheEntry.swift */; };
 		D59FD6FA1BA2D4C20074B6BB /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59FD6F11BA2D4C20074B6BB /* Message.swift */; };
 		D59FD6FE1BA2D4C20074B6BB /* TestSample.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D59FD6F51BA2D4C20074B6BB /* TestSample.xcdatamodeld */; };
@@ -54,6 +55,7 @@
 		8E3CAAEF49289091DE550611 /* DataStoreKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = DataStoreKit.podspec; path = ../DataStoreKit.podspec; sourceTree = "<group>"; };
 		986A0EC1F0B7F6995F12770A /* Pods-DataStoreKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DataStoreKit_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DataStoreKit_Example/Pods-DataStoreKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		9969EC2F30F2776FF1530277 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		D534D8561BECAFAF005E3C71 /* UserDefaultStoreTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultStoreTests.swift; sourceTree = "<group>"; };
 		D59FD6EE1BA2D4C20074B6BB /* CacheEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheEntry.swift; sourceTree = "<group>"; };
 		D59FD6EF1BA2D4C20074B6BB /* CoreDataStoreTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStoreTests.swift; sourceTree = "<group>"; };
 		D59FD6F01BA2D4C20074B6BB /* DataStoreKitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStoreKitTests.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				D59FD6F31BA2D4C20074B6BB /* TestRestify.swift */,
 				D59FD6F51BA2D4C20074B6BB /* TestSample.xcdatamodeld */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
+				D534D8561BECAFAF005E3C71 /* UserDefaultStoreTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 				D59FD7001BA2D4F40074B6BB /* CoreDataStoreTests.swift in Sources */,
 				D59FD7021BA2D4F90074B6BB /* Message.swift in Sources */,
 				D59FD7011BA2D4F70074B6BB /* DataStoreKitTests.swift in Sources */,
+				D534D8571BECAFAF005E3C71 /* UserDefaultStoreTests.swift in Sources */,
 				D59FD6FF1BA2D4F00074B6BB /* CacheEntry.swift in Sources */,
 				D59FD7051BA2D5020074B6BB /* TestSample.xcdatamodeld in Sources */,
 			);
