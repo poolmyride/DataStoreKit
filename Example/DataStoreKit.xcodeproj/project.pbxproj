@@ -25,6 +25,11 @@
 		D59FD7051BA2D5020074B6BB /* TestSample.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D59FD6F51BA2D4C20074B6BB /* TestSample.xcdatamodeld */; };
 		D59FD7061BA2D6070074B6BB /* TestSample.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = D59FD6F51BA2D4C20074B6BB /* TestSample.xcdatamodeld */; };
 		D59FD7081BA2D6450074B6BB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D59FD7071BA2D6450074B6BB /* CoreData.framework */; };
+		D5B8C5B41BFDACA7000A48BB /* FileModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B8C5B31BFDACA7000A48BB /* FileModelTests.swift */; };
+		D5B8C5B81BFDAE17000A48BB /* animals.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5B8C5B71BFDAE17000A48BB /* animals.plist */; };
+		D5B8C5B91BFDAE1E000A48BB /* animals.json in Resources */ = {isa = PBXBuildFile; fileRef = D5B8C5B51BFDACC9000A48BB /* animals.json */; };
+		D5B8C5BB1BFDAF17000A48BB /* animals.json in Resources */ = {isa = PBXBuildFile; fileRef = D5B8C5B51BFDACC9000A48BB /* animals.json */; };
+		D5B8C5BC1BFDAF19000A48BB /* animals.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5B8C5B71BFDAE17000A48BB /* animals.plist */; };
 		DB8422CB2F934025E7939D3B /* Pods_DataStoreKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B6D79CF11E7EDDF00D37A7C /* Pods_DataStoreKit_Tests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -63,6 +68,9 @@
 		D59FD6F31BA2D4C20074B6BB /* TestRestify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestRestify.swift; sourceTree = "<group>"; };
 		D59FD6F61BA2D4C20074B6BB /* TestSample.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TestSample.xcdatamodel; sourceTree = "<group>"; };
 		D59FD7071BA2D6450074B6BB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		D5B8C5B31BFDACA7000A48BB /* FileModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileModelTests.swift; sourceTree = "<group>"; };
+		D5B8C5B51BFDACC9000A48BB /* animals.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = animals.json; sourceTree = "<group>"; };
+		D5B8C5B71BFDAE17000A48BB /* animals.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = animals.plist; sourceTree = "<group>"; };
 		F78718E402FE302F7AE325BD /* Pods-DataStoreKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DataStoreKit_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DataStoreKit_Tests/Pods-DataStoreKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		FD12141A2705AEE0A2155832 /* Pods-DataStoreKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DataStoreKit_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-DataStoreKit_Example/Pods-DataStoreKit_Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -153,6 +161,9 @@
 				D59FD6F51BA2D4C20074B6BB /* TestSample.xcdatamodeld */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 				D534D8561BECAFAF005E3C71 /* UserDefaultStoreTests.swift */,
+				D5B8C5B31BFDACA7000A48BB /* FileModelTests.swift */,
+				D5B8C5B51BFDACC9000A48BB /* animals.json */,
+				D5B8C5B71BFDAE17000A48BB /* animals.plist */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -274,6 +285,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
+				D5B8C5BC1BFDAF19000A48BB /* animals.plist in Resources */,
+				D5B8C5BB1BFDAF17000A48BB /* animals.json in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 			);
@@ -283,6 +296,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5B8C5B91BFDAE1E000A48BB /* animals.json in Resources */,
+				D5B8C5B81BFDAE17000A48BB /* animals.plist in Resources */,
 				D59FD7061BA2D6070074B6BB /* TestSample.xcdatamodeld in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -402,6 +417,7 @@
 				D59FD7041BA2D4FF0074B6BB /* TestRestify.swift in Sources */,
 				D59FD7001BA2D4F40074B6BB /* CoreDataStoreTests.swift in Sources */,
 				D59FD7021BA2D4F90074B6BB /* Message.swift in Sources */,
+				D5B8C5B41BFDACA7000A48BB /* FileModelTests.swift in Sources */,
 				D59FD7011BA2D4F70074B6BB /* DataStoreKitTests.swift in Sources */,
 				D534D8571BECAFAF005E3C71 /* UserDefaultStoreTests.swift in Sources */,
 				D59FD6FF1BA2D4F00074B6BB /* CacheEntry.swift in Sources */,
