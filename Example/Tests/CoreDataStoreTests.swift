@@ -75,7 +75,7 @@ class CoreDataStoreTests: XCTestCase {
         self.messageModel!.add(obj, callback: { (error, obj) -> Void in
             XCTAssert(error == nil, "Pass")
             
-            self.messageModel!.remove(id: "1234", object: nil, callback: { (errRemove, removeResult) -> Void in
+            self.messageModel!.remove(id: "1234", params: nil, callback: { (errRemove, removeResult) -> Void in
                 
                 XCTAssert(errRemove == nil, "Pass")
             

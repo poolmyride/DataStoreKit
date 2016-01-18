@@ -70,7 +70,7 @@ class UserDefaultStoreTests: XCTestCase {
             
             XCTAssertNil(err,"Pass")
             
-            self.model?.remove(id: self.testId, object: nil, callback: { (err, result) -> Void in
+            self.model?.remove(id: self.testId, params: nil, callback: { (err, result) -> Void in
                 
                 let anim = result as? Animal
                 XCTAssertEqual(anim?.id, anim?.id, "Pass")

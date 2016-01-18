@@ -14,9 +14,9 @@
 		7D4090F0F2AB5DA87C99397F73FA0ED4 /* Pods-DataStoreKit_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A45110F2860A2162149D0DCE4608DDD /* Pods-DataStoreKit_Tests-dummy.m */; };
 		9BB3D2B44AFA79F87A194863ED6FF512 /* DataStoreKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6884354CEA824B4526B2F2C7105578D2 /* DataStoreKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B5878A9208138DB77C2B287BADB437F1 /* Pods-DataStoreKit_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = ACC5E9C738D59A7A170906CDDA3E325A /* Pods-DataStoreKit_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D586E7EE1BB24E6D004BB004 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D586E7ED1BB24E6D004BB004 /* CoreDataStack.swift */; settings = {ASSET_TAGS = (); }; };
-		D586E7F31BB260DD004BB004 /* TestC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D586E7F21BB260DD004BB004 /* TestC.swift */; settings = {ASSET_TAGS = (); }; };
-		D586E7F61BB26196004BB004 /* InMemoryDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D586E7F51BB26196004BB004 /* InMemoryDataStack.swift */; settings = {ASSET_TAGS = (); }; };
+		D586E7EE1BB24E6D004BB004 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D586E7ED1BB24E6D004BB004 /* CoreDataStack.swift */; };
+		D586E7F31BB260DD004BB004 /* TestC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D586E7F21BB260DD004BB004 /* TestC.swift */; };
+		D586E7F61BB26196004BB004 /* InMemoryDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D586E7F51BB26196004BB004 /* InMemoryDataStack.swift */; };
 		D59FD6E31BA2D2FA0074B6BB /* CoreDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59FD6D81BA2D2FA0074B6BB /* CoreDataStore.swift */; };
 		D59FD6E41BA2D2FA0074B6BB /* DataStoreKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D59FD6D91BA2D2FA0074B6BB /* DataStoreKit.h */; };
 		D59FD6E51BA2D2FA0074B6BB /* FileDeserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59FD6DA1BA2D2FA0074B6BB /* FileDeserializer.swift */; };
@@ -398,7 +398,7 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0720;
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -528,6 +528,7 @@
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = Pods_DataStoreKit_Tests;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -601,6 +602,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -642,6 +644,7 @@
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = Pods_DataStoreKit_Example;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -672,6 +675,7 @@
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = Pods_DataStoreKit_Example;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -700,6 +704,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/DataStoreKit/DataStoreKit.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = DataStoreKit;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -740,6 +745,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/DataStoreKit/DataStoreKit.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = DataStoreKit;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -771,6 +777,7 @@
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = Pods_DataStoreKit_Tests;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;

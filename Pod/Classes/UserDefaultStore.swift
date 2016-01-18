@@ -42,7 +42,7 @@ public class UserDefaultStore<T where T:ObjectCoder>:ModelProtocol{
         //DO nothing
     }
    
-    public func remove(id id: String?, object: ObjectCoder?, callback: ModelObjectCallback?) {
+    public func remove(id id: String?, params:[String:AnyObject]?, callback: ModelObjectCallback?) {
         let identifier = id ?? defaultKey
         
         let obj: NSDictionary?  = NSUserDefaults.standardUserDefaults().objectForKey(identifier) as? NSDictionary

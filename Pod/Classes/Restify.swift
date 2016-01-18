@@ -97,10 +97,10 @@ public class Restify<T where T:ObjectCoder>:ModelProtocol{
         }
     }
     
-    public func remove(id id: String?, object: ObjectCoder?, callback: ModelObjectCallback?) {
+    public func remove(id id: String?, params:[String:AnyObject]?, callback: ModelObjectCallback?) {
         
         let path  = base_url + "/" + id!
-        let dic:NSMutableDictionary? =  (object != nil) ? NSMutableDictionary(dictionary: object!.toDictionary()) : nil
+        let dic:NSMutableDictionary? =  (params != nil) ? NSMutableDictionary(dictionary: params! ) : nil
         let access_token = NSUserDefaults.standardUserDefaults().objectForKey("app_access_token") as? String ?? ""
         dic?["access_token"] = access_token.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLHostAllowedCharacterSet())
         networkClient.DELETE(path, parameters: dic) { (error, object) -> Void in
