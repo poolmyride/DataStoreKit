@@ -65,7 +65,8 @@ public class Restify<T where T:ObjectCoder>:ModelProtocol{
     
     public func get(id id:String?,params:[String:AnyObject]?, callback: ModelObjectCallback? ){
     
-        let path  = base_url + "/" + id!
+        let resourceString = id != nil ? ("/" + id!) : ""
+        let path  = base_url + resourceString
         
         networkClient.GET(path, parameters: params) { (error, jsonObject) -> Void in
             
@@ -76,7 +77,8 @@ public class Restify<T where T:ObjectCoder>:ModelProtocol{
     }
 
     public func put(id id: String?, object: ObjectCoder, callback: ModelObjectCallback?) {
-        let path  = base_url + "/" + id!
+        let resourceString = id != nil ? ("/" + id!) : ""
+        let path  = base_url + resourceString
         let dic = NSMutableDictionary(dictionary: object.toDictionary())
         let access_token = NSUserDefaults.standardUserDefaults().objectForKey("app_access_token") as? String ?? ""
         dic["access_token"] = access_token.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLHostAllowedCharacterSet())
@@ -99,7 +101,8 @@ public class Restify<T where T:ObjectCoder>:ModelProtocol{
     
     public func remove(id id: String?, params:[String:AnyObject]?, callback: ModelObjectCallback?) {
         
-        let path  = base_url + "/" + id!
+        let resourceString = id != nil ? ("/" + id!) : ""
+        let path  = base_url + resourceString
         let dic:NSMutableDictionary? =  (params != nil) ? NSMutableDictionary(dictionary: params! ) : nil
         let access_token = NSUserDefaults.standardUserDefaults().objectForKey("app_access_token") as? String ?? ""
         dic?["access_token"] = access_token.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLHostAllowedCharacterSet())
