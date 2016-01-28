@@ -9,15 +9,15 @@
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-Create your model class as shown in example below
+Create your model class - Message.swift as shown in example below
 
 ```Swift
 import Foundation
 import DataStoreKit
 class Message:ObjectCoder {
     var id:String?
-    var from:String?
-    var to:String?
+    var from_user_key:String?
+    var to_user_key:String?
     var message:String?
     var created_ts:Double? //created timestamp in Double
     
@@ -46,6 +46,27 @@ class Message:ObjectCoder {
     }
 }
 ```
+# Create A Rest Model
+```Swift
+
+        let messsageUrl = "http://api.mysite.com/messages"
+        let model = Restify<Message>(path: messsageUrl, networkClient: MyNetworkClient()) // see note below to know about MyNetworkClient
+
+
+```
+> **MyNetworkClient** is a class implementing **NetworkInterface** (implementing **GET,PUT,POST,DELETE**) so that you can use any networking library of your choice
+
+# Create A CoreData Model
+> Make sure you have an xcdatamodel file named MyApp.xcdatamodeld in your project and has an entity "Message" defined with fields according to your Message.swift class(read above)
+
+```Swift
+
+      static let coreDataStack = CoreDataStack(dbName: "MyApp")
+      let model = CoreDataStore<Message>(entityName: "Message", managedContext: CoreDataFactory.coreDataStack.context)
+
+```
+### your xcdatamodel should look something like this
+![logo](http://i.imgur.com/qNSIcTK.png?1)
 
 ## Concept
 
@@ -56,16 +77,24 @@ DataStoreKit works on two high level protocols
 ModelProtocol protocol is implemented by all the DataStores i.e. the CoreDataStore, Restify, UserDefaultStore etc.This provides a consistent api to access your data.
 
 ```Swift
+
+
 public protocol ModelProtocol:class {
     
-    func query(#params:[String:AnyObject]?, options:[String:AnyObject]?, callback: ModelArrayCallback? )
+    func query(params params:[String:AnyObject]?, options:[String:AnyObject]?, callback: ModelArrayCallback? )
     func all(callback:ModelArrayCallback?)
-    func get(#id:String?, callback: ModelObjectCallback? )
-    func put(#id:String?,object:ObjectCoder, callback: ModelObjectCallback? )
+    func get(id id:String?,params:[String:AnyObject]?, callback: ModelObjectCallback? )
+    func put(id id:String?,object:ObjectCoder, callback: ModelObjectCallback? )
     func add(object:ObjectCoder, callback: ModelObjectCallback? )
+    func remove(id id:String?,params:[String:AnyObject]?, callback: ModelObjectCallback? )
 
 }
 ``` 
+
+```Swift
+public typealias ModelArrayCallback = (NSError?,NSArray?)->Void
+public typealias ModelObjectCallback = (NSError?,AnyObject?)->Void
+```
 
 
 
