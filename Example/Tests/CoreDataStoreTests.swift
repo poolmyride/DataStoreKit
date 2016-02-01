@@ -12,12 +12,13 @@ import DataStoreKit
 class CoreDataStoreTests: XCTestCase {
     
     var messageModel : CoreDataStore<Message>?
+    var animalModel : CoreDataStore<Animal>?
     var cacheModel : CoreDataStore<CacheEntry>?
     var coreDataStack :InMemoryDataStack?
     override func setUp() {
         super.setUp()
         self.coreDataStack = InMemoryDataStack(dbName: "TestSample")
-        
+        self.animalModel = CoreDataStore<Animal>(entityName: "Animal", managedContext: self.coreDataStack!.context)
     
         self.messageModel = CoreDataStore<Message>(entityName: "Message", managedContext: self.coreDataStack!.context)
         
@@ -28,6 +29,8 @@ class CoreDataStoreTests: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         self.coreDataStack?.cleanTable("Message")
+        self.coreDataStack?.cleanTable("Animal")
+
         super.tearDown()
     }
     
@@ -300,7 +303,7 @@ class CoreDataStoreTests: XCTestCase {
     }
     
     
-    func test6FindByIntValue() {
+    func test6FindByNumberValue() {
       
         let dic = ["id" : "1234",
             "from_attendee" : "26",
@@ -330,6 +333,59 @@ class CoreDataStoreTests: XCTestCase {
         
         
     }
+    
+    
+    func test7GetByNumberValue() {
+        
+        let dic = ["animal" : "dog",
+            "created" : 122233334
+            
+        ]
+        let expectation = self.expectationWithDescription("test query by int")
+        
+        let obj = Animal(dictionary: dic)
+        
+        self.animalModel!.add(obj, callback: { (error, obj) -> Void in
+            XCTAssert(error == nil, "Pass")
+            
+            self.animalModel?.get(id: "\(122233334)", params: [:], callback: { (err:NSError?, obj:AnyObject?) -> Void in
+                
+                XCTAssert(err != nil, "Passed")
+                expectation.fulfill()
+            })
+        })
+        
+        self.waitForExpectationsWithTimeout(5.0, handler: nil)
+        
+        
+    }
+    
+    func test8RemoveByNumberValue() {
+        
+        let dic = ["animal" : "dog",
+            "created" : 122233334
+            
+        ]
+        let expectation = self.expectationWithDescription("test query by int")
+        
+        let obj = Animal(dictionary: dic)
+        
+        self.animalModel!.add(obj, callback: { (error, obj) -> Void in
+            XCTAssert(error == nil, "Pass")
+            
+            self.animalModel?.remove(id: "\(122233334)", params: [:], callback: { (err:NSError?, result:AnyObject?) -> Void in
+                
+                XCTAssert(err != nil, "Passed")
+                expectation.fulfill()
+
+            })
+        })
+        
+        self.waitForExpectationsWithTimeout(5.0, handler: nil)
+        
+        
+    }
+
     
     
     //    func testPerformanceExample() {

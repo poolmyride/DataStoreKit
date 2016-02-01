@@ -1,0 +1,41 @@
+//
+//  Animal.swift
+//  ConfNGiOS
+//
+//  Created by Rohit Talwar on 28/07/15.
+//  Copyright (c) 2015 Rajat Talwar. All rights reserved.
+//
+
+import Foundation
+import CoreData
+import DataStoreKit
+
+class Animal:ObjectCoder {
+    
+    var created:Double?
+    var name:String?
+   
+    
+    static func identifierKey() -> String {
+        return "created"
+    }
+    
+    
+    required init(dictionary withDictionary:NSDictionary){
+        
+        self.name = withDictionary["name"] as? String
+        self.created = withDictionary["created"] as? Double
+
+    }
+    
+    func toDictionary() -> NSDictionary {
+        let dic = NSMutableDictionary()
+        self.name != nil ? dic["name"] = self.name! : ()
+        self.created != nil ? dic["created"] = self.created! : ()
+        return dic
+    }
+    
+    
+}
+
+

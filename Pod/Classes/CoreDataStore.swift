@@ -83,8 +83,7 @@ public class CoreDataStore<T where T:ObjectCoder>:ModelProtocol{
     }
     
     public func all(callback:ModelArrayCallback?){
- 
-        
+
     }
     
     public func get(id id:String?,params:[String:AnyObject]?, callback: ModelObjectCallback? ){
