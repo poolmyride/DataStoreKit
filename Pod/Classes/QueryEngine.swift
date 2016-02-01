@@ -19,9 +19,17 @@ class QueryEngine {
             
             let range = key.rangeOfCharacterFromSet(NSCharacterSet(charactersInString: "<>="))
             
-            if (range == nil && val is String){
-                let predicate =  NSPredicate(format: "%K == %@",key, (val as? String) ?? "")
-                predicates.append(predicate)
+            if (range == nil ){
+                var predicate:NSPredicate? = nil
+                if(val is String){
+                 predicate =  NSPredicate(format: "%K == %@",key, (val as? String) ?? "")
+                }
+                if(val is NSNumber ){
+                    predicate =  NSPredicate(format: "%K == %@",key, val as! NSNumber)
+                }
+                
+               
+                predicates.append(predicate!)
             }else {
                 
                 let queryOperator = key.substringFromIndex(range!.startIndex)

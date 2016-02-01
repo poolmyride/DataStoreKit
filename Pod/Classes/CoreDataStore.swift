@@ -83,13 +83,7 @@ public class CoreDataStore<T where T:ObjectCoder>:ModelProtocol{
     }
     
     public func all(callback:ModelArrayCallback?){
-//        var path  = base_url + ALL_PATH
-//        
-//        networkClient.GET(path, parameters: nil) { (error, jsonObject) -> Void in
-//            (error == nil) ? self._deserializeArray(jsonObject, callback: callback) : callback(error,nil)
-//        }
-        
-        
+ 
         
     }
     

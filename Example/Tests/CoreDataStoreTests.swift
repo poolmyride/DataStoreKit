@@ -299,6 +299,39 @@ class CoreDataStoreTests: XCTestCase {
         
     }
     
+    
+    func test6FindByIntValue() {
+      
+        let dic = ["id" : "1234",
+            "from_attendee" : "26",
+            "to_attendee" : "28",
+            "type": "chat",
+            "message": "hello",
+            "created_ts" : 1437118258
+        ]
+        let expectation = self.expectationWithDescription("test query")
+        
+        let obj = Message(dictionary: dic)
+        
+        self.messageModel!.add(obj, callback: { (error, obj) -> Void in
+            XCTAssert(error == nil, "Pass")
+           
+            self.messageModel!.query(params: ["created_ts":1437118258], options: [:], callback: { (err:NSError?, result:NSArray?) -> Void in
+                
+                XCTAssert(result?.count == 1, "Passed")
+                expectation.fulfill()
+                
+                
+            })
+            
+        })
+        
+        self.waitForExpectationsWithTimeout(5.0, handler: nil)
+        
+        
+    }
+    
+    
     //    func testPerformanceExample() {
     //        // This is an example of a performance test case.
     //        self.measureBlock() {
