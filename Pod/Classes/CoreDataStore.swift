@@ -35,11 +35,12 @@ public class CoreDataStore<T where T:ObjectCoder>:ModelProtocol{
         let manageObjectArray = objectArray as! Array<NSManagedObject>
         
         for manageObject in manageObjectArray{
-            let emptyObj = T(dictionary: [:])
-            let emptyObjDic = emptyObj.toDictionary()
-            let newObjDic = NSMutableDictionary(dictionary: emptyObjDic)
-            for (key,_) in emptyObjDic{
-                newObjDic[(key as! String)] = manageObject.valueForKey((key as! String))
+            let attrByNames = manageObject.entity.attributesByName
+            
+            let newObjDic = NSMutableDictionary()
+            for (key,_) in attrByNames{
+                let value = manageObject.valueForKey(key)
+                value != nil ? newObjDic[key] = value : ()
             }
             resultArray.append(T(dictionary: newObjDic))
         }
@@ -51,11 +52,12 @@ public class CoreDataStore<T where T:ObjectCoder>:ModelProtocol{
     private func _deserializeObject(object : AnyObject?,callback: ModelObjectCallback? ){
         
        let manageObject = object as! NSManagedObject
-        let emptyObj = T(dictionary: [:])
-        let emptyObjDic = emptyObj.toDictionary()
-        let newObjDic = NSMutableDictionary(dictionary: emptyObjDic)
-        for (key,_) in emptyObjDic{
-            newObjDic[(key as! String)] = manageObject.valueForKey((key as! String))
+        let attrByNames = manageObject.entity.attributesByName
+
+        let newObjDic = NSMutableDictionary()
+        for (key,_) in attrByNames{
+            let value = manageObject.valueForKey(key)
+            value != nil ? newObjDic[key] = value : ()
         }
         callback?(nil,T(dictionary: newObjDic))
         
@@ -139,7 +141,7 @@ public class CoreDataStore<T where T:ObjectCoder>:ModelProtocol{
         if(results!.count > 0){
             let managedObject = results![0]
             let dic:NSDictionary = object.toDictionary()
-            
+
             for (key,value) in dic {
                 managedObject.setValue(value, forKey: key as! String)
             }

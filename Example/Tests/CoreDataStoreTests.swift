@@ -15,11 +15,14 @@ class CoreDataStoreTests: XCTestCase {
     var animalModel : CoreDataStore<Animal>?
     var cacheModel : CoreDataStore<CacheEntry>?
     var coreDataStack :InMemoryDataStack?
+    var pendingNetwork:CoreDataStore<PendingNetworkTask>?
+
     override func setUp() {
         super.setUp()
         self.coreDataStack = InMemoryDataStack(dbName: "TestSample")
         self.animalModel = CoreDataStore<Animal>(entityName: "Animal", managedContext: self.coreDataStack!.context)
-    
+    self.pendingNetwork = CoreDataStore<PendingNetworkTask>(entityName: "PendingNetworkTask", managedContext: self.coreDataStack!.context)
+        
         self.messageModel = CoreDataStore<Message>(entityName: "Message", managedContext: self.coreDataStack!.context)
         
         self.cacheModel  = CoreDataStore<CacheEntry>(entityName: "CacheEntry", managedContext: coreDataStack!.context)
@@ -170,7 +173,12 @@ class CoreDataStoreTests: XCTestCase {
                 self.messageModel!.query(params: ["from_attendee":"26","to_attendee":"29"], options: [:], callback: { (error, array) -> Void in
                     XCTAssertNil(error, "Pass")
                     
+                    let arrayMessages = array as! [Message]
+                    
+                    XCTAssert(arrayMessages[0].from_attendee == "26", "Pass")
+                    XCTAssert(arrayMessages[0].to_attendee == "29", "Pass")
                     XCTAssert(array!.count == 1, "Pass")
+                    
                     expectation.fulfill()
                 })
                 
@@ -386,6 +394,39 @@ class CoreDataStoreTests: XCTestCase {
         
     }
 
+    func test9Example() {
+        // This is an example of a functional test case.
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        let expectation = self.expectationWithDescription("add")
+        
+        let pendingNetworkObj = PendingNetworkTask(dictionary: [:])
+        pendingNetworkObj.method = "POST"
+        pendingNetworkObj.created = 12345678
+        pendingNetworkObj.url = "url"
+        pendingNetworkObj.body = ["a":"b"]
+        self.pendingNetwork?.add(pendingNetworkObj, callback: { (err:NSError?, result:AnyObject?) -> Void in
+            
+            
+            self.pendingNetwork?.query(params: [:], options: [:], callback: { (queryErr:NSError?, queryResult:NSArray?) -> Void in
+
+                let allPendingTasks = queryResult as! [PendingNetworkTask]
+                let firstPendingTask:PendingNetworkTask = allPendingTasks[0]
+                XCTAssertNil(err)
+                XCTAssertNil(queryErr)
+                XCTAssert(firstPendingTask.method == "POST", "pass")
+                XCTAssert(firstPendingTask.url == "url", "pass")
+                XCTAssert((firstPendingTask.body?["a"] as? String) == "b", "pass")
+
+                expectation.fulfill()
+            })
+            
+        })
+
+        
+               
+        self.waitForExpectationsWithTimeout(5, handler: nil)
+    }
     
     
     //    func testPerformanceExample() {
