@@ -16,18 +16,18 @@ public class UserDefaultStore<T where T:ObjectCoder>:ModelProtocol{
     public init(){
         
     }
-    public func get(id id:String?,params:[String:AnyObject]?, callback: ModelObjectCallback? ){
-        let identifier = id ?? defaultKey
+    public func get(id id:CVarArgType?,params:[String:AnyObject]?, callback: ModelObjectCallback? ){
+        let identifier = id as? String ?? defaultKey
         
         let obj: NSDictionary?  = NSUserDefaults.standardUserDefaults().objectForKey(identifier) as? NSDictionary
         
         obj != nil ? callback?(nil,T(dictionary: obj!)) : callback?(NSError(domain: "Not found", code: 0, userInfo: nil),nil)
     }
     
-    public func put(id id:String?,object:ObjectCoder, callback: ModelObjectCallback? ){
+    public func put(id id:CVarArgType?,object:ObjectCoder, callback: ModelObjectCallback? ){
         
         let dic = object.toDictionary()
-        NSUserDefaults.standardUserDefaults().setObject(dic, forKey: (id ?? defaultKey))
+        NSUserDefaults.standardUserDefaults().setObject(dic, forKey: (id as? String ?? defaultKey))
         callback?(nil,object)
 
     }
@@ -42,8 +42,8 @@ public class UserDefaultStore<T where T:ObjectCoder>:ModelProtocol{
         //DO nothing
     }
    
-    public func remove(id id: String?, params:[String:AnyObject]?, callback: ModelObjectCallback?) {
-        let identifier = id ?? defaultKey
+    public func remove(id id: CVarArgType?, params:[String:AnyObject]?, callback: ModelObjectCallback?) {
+        let identifier = id as? String ?? defaultKey
         
         let obj: NSDictionary?  = NSUserDefaults.standardUserDefaults().objectForKey(identifier) as? NSDictionary
         

@@ -32,12 +32,12 @@ public class FileModel<T where T:ObjectCoder,T:AnyObject>: ModelProtocol {
         
     }
     
-    public func get(id id:String?,params:[String:AnyObject]?, callback: ModelObjectCallback? ){
+    public func get(id id:CVarArgType?,params:[String:AnyObject]?, callback: ModelObjectCallback? ){
     
         callback?(nil,nil)
     }
     
-    public func put(id id: String?, object: ObjectCoder, callback: ModelObjectCallback?) {
+    public func put(id id: CVarArgType?, object: ObjectCoder, callback: ModelObjectCallback?) {
         
     }
     
@@ -45,7 +45,7 @@ public class FileModel<T where T:ObjectCoder,T:AnyObject>: ModelProtocol {
         
     }
     
-    public func remove(id id: String?, params:[String:AnyObject]?, callback: ModelObjectCallback?) {
+    public func remove(id id: CVarArgType?, params:[String:AnyObject]?, callback: ModelObjectCallback?) {
         
     }
 

@@ -88,13 +88,12 @@ public class CoreDataStore<T where T:ObjectCoder>:ModelProtocol{
 
     }
     
-    public func get(id id:String?,params:[String:AnyObject]?, callback: ModelObjectCallback? ){
+    public func get(id id:CVarArgType?,params:[String:AnyObject]?, callback: ModelObjectCallback? ){
         let key = T.identifierKey()
         
         let fetchRequest = NSFetchRequest()
         let description = NSEntityDescription.entityForName(entityName, inManagedObjectContext: self.context)
         fetchRequest.entity = description
-        
         fetchRequest.predicate = NSPredicate(format: "%K == %@", key ,id!)
         
         var error:NSError?
@@ -116,9 +115,9 @@ public class CoreDataStore<T where T:ObjectCoder>:ModelProtocol{
         
     }
     
-    public func put(id id: String?, object: ObjectCoder, callback: ModelObjectCallback?) {
+    public func put(id id: CVarArgType?, object: ObjectCoder, callback: ModelObjectCallback?) {
         
-        
+
         let key = T.identifierKey()
         
         let fetchRequest = NSFetchRequest()
@@ -179,7 +178,7 @@ public class CoreDataStore<T where T:ObjectCoder>:ModelProtocol{
         
     }
     
-    public func remove(id id: String?, params:[String:AnyObject]?, callback: ModelObjectCallback?) {
+    public func remove(id id: CVarArgType?, params:[String:AnyObject]?, callback: ModelObjectCallback?) {
         
        
         let key = T.identifierKey()

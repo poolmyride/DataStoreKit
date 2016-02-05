@@ -63,9 +63,9 @@ public class Restify<T where T:ObjectCoder>:ModelProtocol{
         
     }
     
-    public func get(id id:String?,params:[String:AnyObject]?, callback: ModelObjectCallback? ){
+    public func get(id id:CVarArgType?,params:[String:AnyObject]?, callback: ModelObjectCallback? ){
     
-        let resourceString = id != nil ? ("/" + id!) : ""
+        let resourceString = id != nil ? ("/" + (id as! String)) : ""
         let path  = base_url + resourceString
         
         networkClient.GET(path, parameters: params) { (error, jsonObject) -> Void in
@@ -76,8 +76,8 @@ public class Restify<T where T:ObjectCoder>:ModelProtocol{
 
     }
 
-    public func put(id id: String?, object: ObjectCoder, callback: ModelObjectCallback?) {
-        let resourceString = id != nil ? ("/" + id!) : ""
+    public func put(id id: CVarArgType?, object: ObjectCoder, callback: ModelObjectCallback?) {
+        let resourceString = id != nil ? ("/" + (id as! String)) : ""
         let path  = base_url + resourceString
         let dic = NSMutableDictionary(dictionary: object.toDictionary())
         let access_token = NSUserDefaults.standardUserDefaults().objectForKey("app_access_token") as? String ?? ""
@@ -99,9 +99,9 @@ public class Restify<T where T:ObjectCoder>:ModelProtocol{
         }
     }
     
-    public func remove(id id: String?, params:[String:AnyObject]?, callback: ModelObjectCallback?) {
+    public func remove(id id: CVarArgType?, params:[String:AnyObject]?, callback: ModelObjectCallback?) {
         
-        let resourceString = id != nil ? ("/" + id!) : ""
+        let resourceString = id != nil ? ("/" + (id as! String)) : ""
         let path  = base_url + resourceString
         let dic:NSMutableDictionary? =  (params != nil) ? NSMutableDictionary(dictionary: params! ) : nil
         networkClient.DELETE(path, parameters: dic) { (error, object) -> Void in

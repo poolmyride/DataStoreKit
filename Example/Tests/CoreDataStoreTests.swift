@@ -355,10 +355,13 @@ class CoreDataStoreTests: XCTestCase {
         
         self.animalModel!.add(obj, callback: { (error, obj) -> Void in
             XCTAssert(error == nil, "Pass")
-            
-            self.animalModel?.get(id: "\(122233334)", params: [:], callback: { (err:NSError?, obj:AnyObject?) -> Void in
+            let num = NSNumber(double: 122233334)
+            self.animalModel?.get(id: num, params: [:], callback: { (err:NSError?, obj:AnyObject?) -> Void in
                 
-                XCTAssert(err != nil, "Passed")
+                let anim = obj as? Animal
+                XCTAssert(err == nil, "Passed")
+                XCTAssert(anim?.created == 122233334, "Passed")
+                
                 expectation.fulfill()
             })
         })
@@ -380,10 +383,13 @@ class CoreDataStoreTests: XCTestCase {
         
         self.animalModel!.add(obj, callback: { (error, obj) -> Void in
             XCTAssert(error == nil, "Pass")
-            
-            self.animalModel?.remove(id: "\(122233334)", params: [:], callback: { (err:NSError?, result:AnyObject?) -> Void in
+            let num = NSNumber(double: 122233334)
+            self.animalModel?.remove(id: num, params: [:], callback: { (err:NSError?, result:AnyObject?) -> Void in
                 
-                XCTAssert(err != nil, "Passed")
+                let anim = result as? Animal
+                
+                XCTAssert(err == nil, "Passed")
+
                 expectation.fulfill()
 
             })
@@ -428,6 +434,38 @@ class CoreDataStoreTests: XCTestCase {
         self.waitForExpectationsWithTimeout(5, handler: nil)
     }
     
+    
+    func test10Example() {
+        // This is an example of a functional test case.
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        let expectation = self.expectationWithDescription("put")
+        
+        let pendingNetworkObj = PendingNetworkTask(dictionary: [:])
+        pendingNetworkObj.method = "POST"
+        pendingNetworkObj.created = 12345678
+        pendingNetworkObj.url = "url"
+        pendingNetworkObj.body = ["a":"b"]
+        self.pendingNetwork?.add(pendingNetworkObj, callback: { (err:NSError?, result:AnyObject?) -> Void in
+            
+            self.pendingNetwork?.get(id: "12345678", params: [:], callback: { (errGet:NSError?, result:AnyObject?) -> Void in
+                
+                let pendingTask = result as? PendingNetworkTask
+//                XCTAssertNil(errGet)
+//                XCTAssert(pendingTask?.created == 12345678, "pass")
+                expectation.fulfill()
+
+                
+            })
+            
+            
+            
+        })
+        
+        
+        
+        self.waitForExpectationsWithTimeout(5, handler: nil)
+    }
     
     //    func testPerformanceExample() {
     //        // This is an example of a performance test case.
