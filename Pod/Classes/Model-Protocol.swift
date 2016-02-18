@@ -7,7 +7,7 @@
 //
 
 import Foundation
-public typealias ModelArrayCallback = (NSError?,NSArray?)->Void
+public typealias ModelArrayCallback = (NSError?,AnyObject?)->Void
 public typealias ModelObjectCallback = (NSError?,AnyObject?)->Void
 
 public protocol ModelProtocol:class {

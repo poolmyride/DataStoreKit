@@ -327,9 +327,9 @@ class CoreDataStoreTests: XCTestCase {
         self.messageModel!.add(obj, callback: { (error, obj) -> Void in
             XCTAssert(error == nil, "Pass")
            
-            self.messageModel!.query(params: ["created_ts":1437118258], options: [:], callback: { (err:NSError?, result:NSArray?) -> Void in
-                
-                XCTAssert(result?.count == 1, "Passed")
+            self.messageModel!.query(params: ["created_ts":1437118258], options: [:], callback: { (err:NSError?, result:AnyObject?) -> Void in
+                let results = result as? NSArray
+                XCTAssert(results?.count == 1, "Passed")
                 expectation.fulfill()
                 
                 
@@ -386,7 +386,6 @@ class CoreDataStoreTests: XCTestCase {
             let num = NSNumber(double: 122233334)
             self.animalModel?.remove(id: num, params: [:], callback: { (err:NSError?, result:AnyObject?) -> Void in
                 
-                let anim = result as? Animal
                 
                 XCTAssert(err == nil, "Passed")
 
@@ -414,7 +413,7 @@ class CoreDataStoreTests: XCTestCase {
         self.pendingNetwork?.add(pendingNetworkObj, callback: { (err:NSError?, result:AnyObject?) -> Void in
             
             
-            self.pendingNetwork?.query(params: [:], options: [:], callback: { (queryErr:NSError?, queryResult:NSArray?) -> Void in
+            self.pendingNetwork?.query(params: [:], options: [:], callback: { (queryErr:NSError?, queryResult:AnyObject?) -> Void in
 
                 let allPendingTasks = queryResult as! [PendingNetworkTask]
                 let firstPendingTask:PendingNetworkTask = allPendingTasks[0]
@@ -448,11 +447,11 @@ class CoreDataStoreTests: XCTestCase {
         pendingNetworkObj.body = ["a":"b"]
         self.pendingNetwork?.add(pendingNetworkObj, callback: { (err:NSError?, result:AnyObject?) -> Void in
             
-            self.pendingNetwork?.get(id: "12345678", params: [:], callback: { (errGet:NSError?, result:AnyObject?) -> Void in
+            self.pendingNetwork?.get(id: NSNumber(double: 12345678), params: [:], callback: { (errGet:NSError?, result:AnyObject?) -> Void in
                 
                 let pendingTask = result as? PendingNetworkTask
-//                XCTAssertNil(errGet)
-//                XCTAssert(pendingTask?.created == 12345678, "pass")
+                XCTAssertNil(errGet)
+                XCTAssert(pendingTask?.created == 12345678, "pass")
                 expectation.fulfill()
 
                 

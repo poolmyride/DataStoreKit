@@ -46,7 +46,7 @@ public class Restify<T where T:ObjectCoder>:ModelProtocol{
         
         networkClient.GET(path, parameters: params) { (error, jsonObject) -> Void in
             
-            (error == nil) ? self._deserializeArray(jsonObject as? NSArray, callback: callback) : callback?(error,nil)
+            (error == nil) ? self._deserializeArray(jsonObject as? NSArray, callback: callback) : callback?(error,jsonObject)
         }
         
         
@@ -56,7 +56,7 @@ public class Restify<T where T:ObjectCoder>:ModelProtocol{
         let path  = base_url + ALL_PATH
         
         networkClient.GET(path, parameters: nil) { (error, jsonObject) -> Void in
-            (error == nil) ? self._deserializeArray(jsonObject, callback: callback) : callback?(error,nil)
+            (error == nil) ? self._deserializeArray(jsonObject, callback: callback) : callback?(error,jsonObject)
         }
         
        
@@ -70,7 +70,7 @@ public class Restify<T where T:ObjectCoder>:ModelProtocol{
         
         networkClient.GET(path, parameters: params) { (error, jsonObject) -> Void in
             
-            (error == nil) ? self._deserializeObject(jsonObject, callback: callback) : callback?(error,nil)
+            (error == nil) ? self._deserializeObject(jsonObject, callback: callback) : callback?(error,jsonObject)
         }
         
 
