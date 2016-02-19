@@ -62,7 +62,7 @@ class Message:ObjectCoder {
 ```Swift
 
       static let coreDataStack = CoreDataStack(dbName: "MyApp")
-      let model = CoreDataStore<Message>(entityName: "Message", managedContext: CoreDataFactory.coreDataStack.context)
+      let model = CoreDataStore<Message>(entityName: "Message", managedContext: coreDataStack.context)
 
 ```
 ### your xcdatamodel should look something like this
