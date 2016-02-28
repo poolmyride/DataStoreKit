@@ -1,6 +1,6 @@
 //
 //  UserDefaultStore.swift
-//  ConfNGiOS
+//   
 //
 //  Created by Rohit Talwar on 04/08/15.
 //  Copyright (c) 2015 Rajat Talwar. All rights reserved.

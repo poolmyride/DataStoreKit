@@ -1,6 +1,6 @@
 //
 //  NetWork-Protocol.swift
-//  ConfNGiOS
+//   
 //
 //  Created by Rohit Talwar on 19/06/15.
 //  Copyright (c) 2015 Rajat Talwar. All rights reserved.

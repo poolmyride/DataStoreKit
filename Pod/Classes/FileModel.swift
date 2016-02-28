@@ -1,6 +1,6 @@
 //
 //  Conference.swift
-//  ConfNGiOS
+//   
 //
 //  Created by Rohit Talwar on 09/06/15.
 //  Copyright (c) 2015 Rajat Talwar. All rights reserved.

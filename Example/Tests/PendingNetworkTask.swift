@@ -1,6 +1,6 @@
 //
 //  PendingNetworkTask.swift
-//  ConfNGiOS
+//   
 //
 //  Created by Rohit Talwar on 29/01/16.
 //  Copyright © 2016 Rajat Talwar. All rights reserved.

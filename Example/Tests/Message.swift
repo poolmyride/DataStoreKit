@@ -1,6 +1,6 @@
 //
 //  Message.swift
-//  ConfNGiOS
+//   
 //
 //  Created by Rohit Talwar on 28/07/15.
 //  Copyright (c) 2015 Rajat Talwar. All rights reserved.
