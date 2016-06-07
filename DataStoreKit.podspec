@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "DataStoreKit"
-  s.version          = "1.2.3"
+  s.version          = "1.2.4"
   s.summary          = "Consistent interface for accessing data across different ios storage components"
 
 # This description is used to generate tags and improve search results.
@@ -31,9 +31,9 @@ DESC
   s.requires_arc = true
 
   s.source_files = 'Pod/Classes/**/*'
-  s.resource_bundles = {
-    'DataStoreKit' => ['Pod/Assets/*.png']
-  }
+#s.resource_bundles = {
+#    'DataStoreKit' => ['Pod/Assets/*.png']
+#  }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
    s.frameworks = 'UIKit', 'CoreData'
