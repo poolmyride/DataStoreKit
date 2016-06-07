@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "DataStoreKit"
-  s.version          = "1.2.2"
+  s.version          = "1.2.3"
   s.summary          = "Consistent interface for accessing data across different ios storage components"
 
 # This description is used to generate tags and improve search results.
