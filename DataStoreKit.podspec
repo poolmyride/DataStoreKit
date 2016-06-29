@@ -44,6 +44,7 @@ EOS
   s.watchos.deployment_target = '2.0'
 
   #s.platform     = :ios, '8.0'
+  #s.platform     = :watchos, '2.0'
   s.requires_arc = true
 
   s.source_files = 'Pod/Classes/**/*.swift'
