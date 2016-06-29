@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "DataStoreKit"
-  s.version          = "1.2.6"
+  s.version          = "1.2.7"
   s.summary          = "Consistent interface for accessing data across different ios storage components"
 
 # This description is used to generate tags and improve search results.
@@ -27,13 +27,27 @@ DESC
   s.source           = { :git => "https://github.com/poolmyride/DataStoreKit.git", :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/rtalwar26'
 
+pch_AF = <<-EOS
+#ifndef TARGET_OS_IOS
+    #define TARGET_OS_IOS TARGET_OS_IPHONE
+#endif
+#ifndef TARGET_OS_WATCH
+    #define TARGET_OS_WATCH 0
+#endif
+
+EOS
+
+  s.prefix_header_contents = pch_AF
+
+
   s.ios.deployment_target = '8.0'
   s.watchos.deployment_target = '2.0'
 
   #s.platform     = :ios, '8.0'
   s.requires_arc = true
 
-  s.source_files = 'Pod/Classes/**/*'
+  s.source_files = 'Pod/Classes/**/*.swift'
+
 #s.resource_bundles = {
 #    'DataStoreKit' => ['Pod/Assets/*.png']
 #  }
