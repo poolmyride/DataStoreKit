@@ -106,7 +106,7 @@ public class CoreDataStore<T where T:ObjectCoder>:ModelProtocol{
         }
         results = results as? [NSManagedObject]
         
-        if(results!.count > 0){
+        if(results?.count > 0){
             error == nil ? self._deserializeObject(results![0], callback: callback) : callback?(error,nil)
         }else{
             callback?(NSError(domain: "Not Found", code: 0, userInfo: nil),nil)
@@ -137,7 +137,7 @@ public class CoreDataStore<T where T:ObjectCoder>:ModelProtocol{
         results = results as? [NSManagedObject]
 
 
-        if(results!.count > 0){
+        if(results?.count > 0){
             let managedObject = results![0]
             let dic:NSDictionary = object.toDictionary()
 
@@ -200,7 +200,7 @@ public class CoreDataStore<T where T:ObjectCoder>:ModelProtocol{
         results = results as? [NSManagedObject] ?? []
         
 
-        if(results!.count > 0){
+        if(results?.count > 0){
            
         let managedObject = results![0]
 
