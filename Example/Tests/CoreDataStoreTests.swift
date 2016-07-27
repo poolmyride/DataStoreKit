@@ -20,12 +20,16 @@ class CoreDataStoreTests: XCTestCase {
     override func setUp() {
         super.setUp()
         self.coreDataStack = InMemoryDataStack(dbName: "TestSample")
-        self.animalModel = CoreDataStore<Animal>(entityName: "Animal", managedContext: self.coreDataStack!.context)
-    self.pendingNetwork = CoreDataStore<PendingNetworkTask>(entityName: "PendingNetworkTask", managedContext: self.coreDataStack!.context)
+        guard let ct = try? self.coreDataStack!.context() else {
+            return ;
+        }
         
-        self.messageModel = CoreDataStore<Message>(entityName: "Message", managedContext: self.coreDataStack!.context)
+        self.animalModel = CoreDataStore<Animal>(entityName: "Animal", managedContext: ct)
+    self.pendingNetwork = CoreDataStore<PendingNetworkTask>(entityName: "PendingNetworkTask", managedContext: ct)
         
-        self.cacheModel  = CoreDataStore<CacheEntry>(entityName: "CacheEntry", managedContext: coreDataStack!.context)
+        self.messageModel = CoreDataStore<Message>(entityName: "Message", managedContext: ct)
+        
+        self.cacheModel  = CoreDataStore<CacheEntry>(entityName: "CacheEntry", managedContext: ct)
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     

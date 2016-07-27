@@ -13,18 +13,25 @@ public class CoreDataStack{
     
     var _persistentStoreCoordinator: NSPersistentStoreCoordinator?
     var dbName:String = ""
+    private var _context:NSManagedObjectContext?
+    
     public init(dbName:String){
         self.dbName = dbName
     }
     
-    public lazy var context:NSManagedObjectContext = {
-        var context = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.MainQueueConcurrencyType)
+    public func context() throws -> NSManagedObjectContext {
         
-        context.persistentStoreCoordinator = self.persistentStoreCoordinator()
-        return context
-        }()
+        guard let refContext = _context else{
+            _context = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.MainQueueConcurrencyType)
+            
+            _context!.persistentStoreCoordinator = try self.persistentStoreCoordinator()
+            return _context!
+        }
+        return refContext
+        
+    }
     
-     func persistentStoreCoordinator() -> NSPersistentStoreCoordinator? {
+     func persistentStoreCoordinator() throws -> NSPersistentStoreCoordinator? {
         if (_persistentStoreCoordinator != nil){
             return _persistentStoreCoordinator
         }
@@ -34,19 +41,24 @@ public class CoreDataStack{
         let options = [NSInferMappingModelAutomaticallyOption: true, NSMigratePersistentStoresAutomaticallyOption: true]
         
         _persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: self.model)
-        var ps: NSPersistentStore?
-        do {
-            ps = try _persistentStoreCoordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration:nil, URL: url, options: options)
-        } catch _ as NSError {
-
-            ps = nil
-        } catch {
-            fatalError()
-        }
+        try _persistentStoreCoordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration:nil, URL: url, options: options)
         
-        if (ps == nil) {
-            abort()
-        }
+//        var ps: NSPersistentStore?
+//        let myErr:NSError?
+//        do {
+//            ps = try _persistentStoreCoordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration:nil, URL: url, options: options)
+//        } catch let err as NSError {
+//            myErr = err;
+//            NSLog("%@",err.description)
+//            ps = nil
+//        } catch {
+////            fatalError()
+//        }
+//        
+//        if (ps == nil) {
+//            throw myErr!
+////            abort()
+//        }
         
         return _persistentStoreCoordinator
         }
@@ -68,9 +80,17 @@ public class CoreDataStack{
     
     public func saveContext(){
         var error:NSError? = nil
-        if context.hasChanges{
+        
+        let contextRef = try? context()
+        
+        guard let ct = contextRef else {
+            print("Context not initialized")
+            return ;
+        }
+        
+        if ct.hasChanges{
             do {
-                try context.save()
+                try ct.save()
             } catch let error1 as NSError {
                 error = error1
                 print("Could not save:\(error),\(error?.userInfo)")
@@ -79,19 +99,23 @@ public class CoreDataStack{
     }
     
     public func cleanTable(entityName:String){
+        guard let ct = try? context() else{
+            NSLog("Context Not Initialized")
+            return
+        }
         let fetchRequest = NSFetchRequest()
-        let description = NSEntityDescription.entityForName(entityName, inManagedObjectContext: self.context)
+        let description = NSEntityDescription.entityForName(entityName, inManagedObjectContext: ct)
         fetchRequest.entity = description
         var results: [AnyObject]?
         do {
-            results = try self.context.executeFetchRequest(fetchRequest)
+            results = try ct.executeFetchRequest(fetchRequest)
         } catch _ as NSError {
             
             results = nil
         }
         
         for manageObject in results! {
-            self.context.deleteObject(manageObject as! NSManagedObject)
+            ct.deleteObject(manageObject as! NSManagedObject)
         }
         
     }
