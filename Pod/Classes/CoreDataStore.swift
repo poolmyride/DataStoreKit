@@ -12,12 +12,12 @@ import CoreData
 
 public class CoreDataStore<T where T:ObjectCoder>:ModelProtocol{
     
-    let entityName:String;
+    private let _entityName:String;
     let ALL_PATH = "/all"
     var context:NSManagedObjectContext
     
     public init(entityName:String,managedContext:NSManagedObjectContext){
-        self.entityName = entityName
+        self._entityName = entityName
         self.context = managedContext
         
         
@@ -56,8 +56,10 @@ public class CoreDataStore<T where T:ObjectCoder>:ModelProtocol{
 
         let newObjDic = NSMutableDictionary()
         for (key,_) in attrByNames{
-            let value = manageObject.valueForKey(key)
-            value != nil ? newObjDic[key] = value : ()
+            guard let value = manageObject.valueForKey(key) else {
+                continue;
+            }
+            newObjDic[key] = value
         }
         callback?(nil,T(dictionary: newObjDic))
         
@@ -68,7 +70,7 @@ public class CoreDataStore<T where T:ObjectCoder>:ModelProtocol{
 
         let fetchRequest = QueryEngine.fetchRequestFromQuery(params, options: options)
 
-        let description = NSEntityDescription.entityForName(entityName, inManagedObjectContext: self.context)
+        let description = NSEntityDescription.entityForName(self._entityName, inManagedObjectContext: self.context)
         fetchRequest.entity = description
         
         var error:NSError?
@@ -92,7 +94,7 @@ public class CoreDataStore<T where T:ObjectCoder>:ModelProtocol{
         let key = T.identifierKey()
         
         let fetchRequest = NSFetchRequest()
-        let description = NSEntityDescription.entityForName(entityName, inManagedObjectContext: self.context)
+        let description = NSEntityDescription.entityForName(self._entityName, inManagedObjectContext: self.context)
         fetchRequest.entity = description
         fetchRequest.predicate = NSPredicate(format: "%K == %@", key ,id!)
         
@@ -121,7 +123,7 @@ public class CoreDataStore<T where T:ObjectCoder>:ModelProtocol{
         let key = T.identifierKey()
         
         let fetchRequest = NSFetchRequest()
-        let description = NSEntityDescription.entityForName(entityName, inManagedObjectContext: self.context)
+        let description = NSEntityDescription.entityForName(self._entityName, inManagedObjectContext: self.context)
         fetchRequest.entity = description
         
         fetchRequest.predicate = NSPredicate(format: "%K == %@", key ,id!)
@@ -158,7 +160,7 @@ public class CoreDataStore<T where T:ObjectCoder>:ModelProtocol{
     }
     
     public func add(object: ObjectCoder, callback: ModelObjectCallback?) {
-        let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: context)
+        let entity = NSEntityDescription.entityForName(self._entityName, inManagedObjectContext: context)
         let newObj = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: context)
         
         let dictionary = object.toDictionary()
@@ -184,7 +186,7 @@ public class CoreDataStore<T where T:ObjectCoder>:ModelProtocol{
         let key = T.identifierKey()
         
         let fetchRequest = NSFetchRequest()
-        let description = NSEntityDescription.entityForName(entityName, inManagedObjectContext: self.context)
+        let description = NSEntityDescription.entityForName(self._entityName, inManagedObjectContext: self.context)
         fetchRequest.entity = description
         
         fetchRequest.predicate = NSPredicate(format: "%K == %@", key ,id!)
