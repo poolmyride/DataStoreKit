@@ -56,10 +56,8 @@ public class CoreDataStore<T where T:ObjectCoder>:ModelProtocol{
 
         let newObjDic = NSMutableDictionary()
         for (key,_) in attrByNames{
-            guard let value = manageObject.valueForKey(key) else {
-                continue;
-            }
-            newObjDic[key] = value
+            let value = manageObject.valueForKey(key)
+            value != nil ? newObjDic[key] = value : ()
         }
         callback?(nil,T(dictionary: newObjDic))
         
