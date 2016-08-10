@@ -80,7 +80,7 @@ public class CoreDataStore<T where T:ObjectCoder>:ModelProtocol{
             results = nil
         }
 
-        error == nil ? self._deserializeArray(results as! [NSManagedObject], callback: callback) : callback?(error,nil)
+        error == nil && results != nil ? self._deserializeArray(results as! [NSManagedObject], callback: callback) : callback?(error,nil)
 
     }
     
