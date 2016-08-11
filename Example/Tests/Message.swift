@@ -28,7 +28,7 @@ class Message:ObjectCoder {
 
      required init(dictionary withDictionary:NSDictionary){
         
-        let df = NSDateFormatter()
+        let df = DateFormatter()
         df.dateFormat = "yyyy-MM-ddHH:mm:ss"
         self.id = withDictionary["id"] as? String
         self.from_attendee = withDictionary["from_attendee"] as? String

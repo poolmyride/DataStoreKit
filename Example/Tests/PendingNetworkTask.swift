@@ -15,7 +15,7 @@ class PendingNetworkTask:ObjectCoder {
     var body:NSDictionary?
     var method:String?
     var url:String?
-    var created:NSTimeInterval?
+    var created:TimeInterval?
     required init(dictionary withDictionary: NSDictionary) {
     
         self.body = withDictionary["body"] as? NSDictionary

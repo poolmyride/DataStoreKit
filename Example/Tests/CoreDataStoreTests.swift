@@ -51,7 +51,7 @@ class CoreDataStoreTests: XCTestCase {
             "message": "hello",
             "created_ts" : 1437108258
         ]
-        let expectation = self.expectationWithDescription("test save")
+        let expectation = self.expectation(description: "test save")
         
         let obj = Message(dictionary: dic)
         
@@ -65,7 +65,7 @@ class CoreDataStoreTests: XCTestCase {
             
         })
         
-        self.waitForExpectationsWithTimeout(5.0, handler: nil)
+        self.waitForExpectations(timeout: 5.0, handler: nil)
         
     }
     
@@ -78,7 +78,7 @@ class CoreDataStoreTests: XCTestCase {
             "message": "hello",
             "created_ts" : 1437108258
         ]
-        let expectation = self.expectationWithDescription("test save")
+        let expectation = self.expectation(description: "test save")
         
         let obj = Message(dictionary: dic)
         
@@ -98,7 +98,7 @@ class CoreDataStoreTests: XCTestCase {
             
         })
         
-        self.waitForExpectationsWithTimeout(10.0, handler: nil)
+        self.waitForExpectations(timeout: 10.0, handler: nil)
         
     }
     
@@ -121,7 +121,7 @@ class CoreDataStoreTests: XCTestCase {
             "message": "hello",
             "created_ts" : 1437108458
         ]
-        let expectation = self.expectationWithDescription("test query")
+        let expectation = self.expectation(description: "test query")
         
         let obj = Message(dictionary: dic)
         let obj2 = Message(dictionary: dic2)
@@ -142,7 +142,7 @@ class CoreDataStoreTests: XCTestCase {
             
         })
         
-        self.waitForExpectationsWithTimeout(5.0, handler: nil)
+        self.waitForExpectations(timeout: 5.0, handler: nil)
         
     }
     
@@ -164,7 +164,7 @@ class CoreDataStoreTests: XCTestCase {
             "message": "hello",
             "created_ts" : 1437108458
         ]
-        let expectation = self.expectationWithDescription("test query")
+        let expectation = self.expectation(description: "test query")
         
         let obj = Message(dictionary: dic)
         let obj2 = Message(dictionary: dic2)
@@ -190,7 +190,7 @@ class CoreDataStoreTests: XCTestCase {
             
         })
         
-        self.waitForExpectationsWithTimeout(5.0, handler: nil)
+        self.waitForExpectations(timeout: 5.0, handler: nil)
         
     }
     
@@ -213,7 +213,7 @@ class CoreDataStoreTests: XCTestCase {
             "message": "hello",
             "created_ts" : 1437108658
         ]
-        let expectation = self.expectationWithDescription("test query")
+        let expectation = self.expectation(description: "test query")
         
         let obj = Message(dictionary: dic)
         let obj2 = Message(dictionary: dic2)
@@ -234,7 +234,7 @@ class CoreDataStoreTests: XCTestCase {
             
         })
         
-        self.waitForExpectationsWithTimeout(5.0, handler: nil)
+        self.waitForExpectations(timeout: 5.0, handler: nil)
         
     }
     
@@ -250,7 +250,7 @@ class CoreDataStoreTests: XCTestCase {
         ]
         
         
-        let expectation = self.expectationWithDescription("test query")
+        let expectation = self.expectation(description: "test query")
         
         let obj = Message(dictionary: dic)
         
@@ -278,7 +278,7 @@ class CoreDataStoreTests: XCTestCase {
             
             })
             
-            self.waitForExpectationsWithTimeout(5.0, handler: nil)
+            self.waitForExpectations(timeout: 5.0, handler: nil)
         
     }
     
@@ -286,13 +286,13 @@ class CoreDataStoreTests: XCTestCase {
         // This is an example of a functional test case.
         let testID = "v1/proposals/123"
         let testString:NSString = "testString"
-        let testData = testString.dataUsingEncoding(NSUTF8StringEncoding)
+        let testData = testString.data(using: String.Encoding.utf8.rawValue)
         // This is an example of a functional test case.
         let dic:NSDictionary = [
             "id" : testID,
             "data" : testData!
         ]
-        let expectation = self.expectationWithDescription("test save")
+        let expectation = self.expectation(description: "test save")
         
         let obj = CacheEntry(dictionary: dic)
         
@@ -302,14 +302,14 @@ class CoreDataStoreTests: XCTestCase {
             self.cacheModel!.get(id: testID,params: nil) { (error, obj) -> Void in
                 XCTAssert(error == nil, "Pass")
                 let cacheObj = obj as? CacheEntry
-                let str = NSString(data: cacheObj?.data ?? NSData(), encoding: NSUTF8StringEncoding)
+                let str = NSString(data: (cacheObj?.data ?? Data()) as Data, encoding: String.Encoding.utf8.rawValue)
                 XCTAssert(str == testString, "Pass")
                 expectation.fulfill()
             }
             
         })
         
-        self.waitForExpectationsWithTimeout(5.0, handler: nil)
+        self.waitForExpectations(timeout: 5.0, handler: nil)
         
         
     }
@@ -324,7 +324,7 @@ class CoreDataStoreTests: XCTestCase {
             "message": "hello",
             "created_ts" : 1437118258
         ]
-        let expectation = self.expectationWithDescription("test query")
+        let expectation = self.expectation(description: "test query")
         
         let obj = Message(dictionary: dic)
         
@@ -341,7 +341,7 @@ class CoreDataStoreTests: XCTestCase {
             
         })
         
-        self.waitForExpectationsWithTimeout(5.0, handler: nil)
+        self.waitForExpectations(timeout: 5.0, handler: nil)
         
         
     }
@@ -353,13 +353,13 @@ class CoreDataStoreTests: XCTestCase {
             "created" : 122233334
             
         ]
-        let expectation = self.expectationWithDescription("test query by int")
+        let expectation = self.expectation(description: "test query by int")
         
         let obj = Animal(dictionary: dic)
         
         self.animalModel!.add(obj, callback: { (error, obj) -> Void in
             XCTAssert(error == nil, "Pass")
-            let num = NSNumber(double: 122233334)
+            let num = NSNumber(value: 122233334)
             self.animalModel?.get(id: num, params: [:], callback: { (err:NSError?, obj:AnyObject?) -> Void in
                 
                 let anim = obj as? Animal
@@ -370,7 +370,7 @@ class CoreDataStoreTests: XCTestCase {
             })
         })
         
-        self.waitForExpectationsWithTimeout(5.0, handler: nil)
+        self.waitForExpectations(timeout: 5.0, handler: nil)
         
         
     }
@@ -381,13 +381,13 @@ class CoreDataStoreTests: XCTestCase {
             "created" : 122233334
             
         ]
-        let expectation = self.expectationWithDescription("test query by int")
+        let expectation = self.expectation(description: "test query by int")
         
         let obj = Animal(dictionary: dic)
         
         self.animalModel!.add(obj, callback: { (error, obj) -> Void in
             XCTAssert(error == nil, "Pass")
-            let num = NSNumber(double: 122233334)
+            let num = NSNumber(value: 122233334)
             self.animalModel?.remove(id: num, params: [:], callback: { (err:NSError?, result:AnyObject?) -> Void in
                 
                 
@@ -398,7 +398,7 @@ class CoreDataStoreTests: XCTestCase {
             })
         })
         
-        self.waitForExpectationsWithTimeout(5.0, handler: nil)
+        self.waitForExpectations(timeout: 5.0, handler: nil)
         
         
     }
@@ -407,7 +407,7 @@ class CoreDataStoreTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         
-        let expectation = self.expectationWithDescription("add")
+        let expectation = self.expectation(description: "add")
         
         let pendingNetworkObj = PendingNetworkTask(dictionary: [:])
         pendingNetworkObj.method = "POST"
@@ -434,7 +434,7 @@ class CoreDataStoreTests: XCTestCase {
 
         
                
-        self.waitForExpectationsWithTimeout(5, handler: nil)
+        self.waitForExpectations(timeout: 5, handler: nil)
     }
     
     
@@ -442,7 +442,7 @@ class CoreDataStoreTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         
-        let expectation = self.expectationWithDescription("put")
+        let expectation = self.expectation(description: "put")
         
         let pendingNetworkObj = PendingNetworkTask(dictionary: [:])
         pendingNetworkObj.method = "POST"
@@ -451,7 +451,7 @@ class CoreDataStoreTests: XCTestCase {
         pendingNetworkObj.body = ["a":"b"]
         self.pendingNetwork?.add(pendingNetworkObj, callback: { (err:NSError?, result:AnyObject?) -> Void in
             
-            self.pendingNetwork?.get(id: NSNumber(double: 12345678), params: [:], callback: { (errGet:NSError?, result:AnyObject?) -> Void in
+            self.pendingNetwork?.get(id: NSNumber(value: 12345678), params: [:], callback: { (errGet:NSError?, result:AnyObject?) -> Void in
                 
                 let pendingTask = result as? PendingNetworkTask
                 XCTAssertNil(errGet)
@@ -467,7 +467,7 @@ class CoreDataStoreTests: XCTestCase {
         
         
         
-        self.waitForExpectationsWithTimeout(5, handler: nil)
+        self.waitForExpectations(timeout: 5, handler: nil)
     }
     
     //    func testPerformanceExample() {

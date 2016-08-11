@@ -21,9 +21,9 @@ public class InMemoryDataStack: CoreDataStack {
         NSPersistentStoreCoordinator(managedObjectModel:
             super.model)
 
-        try psc!.addPersistentStoreWithType(
-                                NSInMemoryStoreType, configuration: nil,
-                                URL: nil, options: nil)
+        try psc!.addPersistentStore(
+                                ofType: NSInMemoryStoreType, configurationName: nil,
+                                at: nil, options: nil)
         
 //        var ps: NSPersistentStore?
 //        do {

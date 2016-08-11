@@ -22,7 +22,7 @@ public class CoreDataStack{
     public func context() throws -> NSManagedObjectContext {
         
         guard let refContext = _context else{
-            _context = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.MainQueueConcurrencyType)
+            _context = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.mainQueueConcurrencyType)
             
             _context!.persistentStoreCoordinator = try self.persistentStoreCoordinator()
             return _context!
@@ -37,11 +37,11 @@ public class CoreDataStack{
         }
         NSLog("Providing SQLite persistent store coordinator")
         
-        let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent(self.dbName+".sqlite")
+        let url = self.applicationDocumentsDirectory.appendingPathComponent(self.dbName+".sqlite")
         let options = [NSInferMappingModelAutomaticallyOption: true, NSMigratePersistentStoresAutomaticallyOption: true]
         
         _persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: self.model)
-        try _persistentStoreCoordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration:nil, URL: url, options: options)
+        try _persistentStoreCoordinator!.addPersistentStore(ofType: NSSQLiteStoreType, configurationName:nil, at: url, options: options)
         
 //        var ps: NSPersistentStore?
 //        let myErr:NSError?
@@ -64,16 +64,16 @@ public class CoreDataStack{
         }
     
     public lazy var model:NSManagedObjectModel = {
-        let bndle = NSBundle.mainBundle()
-        let modelURL = NSBundle.mainBundle().URLForResource(self.dbName, withExtension: "momd")!
-       return  NSManagedObjectModel(contentsOfURL: modelURL)!
+        let bndle = Bundle.main
+        let modelURL = Bundle.main.url(forResource: self.dbName, withExtension: "momd")!
+       return  NSManagedObjectModel(contentsOf: modelURL)!
         
         }()
     
     static let sharedInstance:CoreDataStack = CoreDataStack(dbName: "NoDBNameProvided")
 
-    var applicationDocumentsDirectory: NSURL = {
-        let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+    var applicationDocumentsDirectory: URL = {
+        let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return urls[urls.count-1] 
         }()
 
@@ -98,24 +98,24 @@ public class CoreDataStack{
         }
     }
     
-    public func cleanTable(entityName:String){
+    public func cleanTable(_ entityName:String){
         guard let ct = try? context() else{
             NSLog("Context Not Initialized")
             return
         }
-        let fetchRequest = NSFetchRequest()
-        let description = NSEntityDescription.entityForName(entityName, inManagedObjectContext: ct)
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
+        let description = NSEntityDescription.entity(forEntityName: entityName, in: ct)
         fetchRequest.entity = description
         var results: [AnyObject]?
         do {
-            results = try ct.executeFetchRequest(fetchRequest)
+            results = try ct.fetch(fetchRequest)
         } catch _ as NSError {
             
             results = nil
         }
         
         for manageObject in results! {
-            ct.deleteObject(manageObject as! NSManagedObject)
+            ct.delete(manageObject as! NSManagedObject)
         }
         
     }

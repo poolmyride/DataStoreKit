@@ -35,24 +35,26 @@ class TestRestify: XCTestCase {
     }
     class MockNetwork:NetworkInterface{
         
-        func POST(URLString: String!, parameters: AnyObject!,callback: ((NSError?, AnyObject?) -> Void)!){
+        func POST(urlString: String!, parameters: AnyObject!,callback: ((NSError?, AnyObject?) -> Void)!){
         
         }
-        func PUT(URLString: String!, parameters: AnyObject!, callback: ((NSError?, AnyObject?) -> Void)!) {
+        func PUT(urlString: String!, parameters: AnyObject!, callback: ((NSError?, AnyObject?) -> Void)!) {
             
         }
-        func GET(URLString: String!, parameters: AnyObject!, callback: ((NSError?, AnyObject?) -> Void)!){
+        func GET(urlString: String!, parameters: AnyObject!, callback: ((NSError?, AnyObject?) -> Void)!){
             
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            DispatchQueue.main.async {
                 
-                let pass = URLString.rangeOfString("pass", options: NSStringCompareOptions.CaseInsensitiveSearch)
+                let pass  = urlString.contains("pass")
                 
-                    (pass != nil) ? callback(nil,["name":"rajat","age":5]) : callback(NSError(domain: "Network Error", code: 404, userInfo: nil) ,nil)
-            })
+                pass ? callback(nil,["name":"rajat","age":5]) : callback(NSError(domain: "Network Error", code: 404, userInfo: nil) ,nil)
+            }
+            
+        
           
         }
         
-        func DELETE(URLString: String!, parameters: AnyObject?, callback: ((NSError?, AnyObject?) -> Void)!) {
+        func DELETE(urlString: String!, parameters: AnyObject?, callback: ((NSError?, AnyObject?) -> Void)!) {
             
         }
         func setHTTPHeaders(headers: [String : String]) {
@@ -76,7 +78,7 @@ class TestRestify: XCTestCase {
     func testNetworkCallSuccess() {
         // This is an example of a functional test case.
         restClient = Restify<MyObject>(path: "pass", networkClient: MockNetwork())
-        let expectation = self.expectationWithDescription("Test Restify")
+        let expectation = self.expectation(description: "Test Restify")
         restClient.get(id: "12",params: nil) { (error, result) -> Void in
             
             XCTAssertTrue(result != nil, "Successfully Deserialized object on successful network call")
@@ -84,14 +86,14 @@ class TestRestify: XCTestCase {
             expectation.fulfill()
         }
         
-        self.waitForExpectationsWithTimeout(1.0, handler: nil)
+        self.waitForExpectations(timeout: 1.0, handler: nil)
         
     }
     
     func testNetworkCallFailure() {
         // This is an example of a functional test case.
         restClient = Restify<MyObject>(path: "fail", networkClient: MockNetwork())
-        let expectation = self.expectationWithDescription("Test Restify")
+        let expectation = self.expectation(description: "Test Restify")
         restClient.get(id: "12",params: nil) { (error, result) -> Void in
             
             XCTAssertTrue(result == nil, "Result must be nil")
@@ -99,7 +101,7 @@ class TestRestify: XCTestCase {
             expectation.fulfill()
         }
         
-        self.waitForExpectationsWithTimeout(1.0, handler: nil)
+        self.waitForExpectations(timeout: 1.0, handler: nil)
         
     }
 

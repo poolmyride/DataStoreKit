@@ -10,14 +10,14 @@ import Foundation
 import CoreData
 class QueryEngine {
     
-    static func fetchRequestFromQuery(params:[String:AnyObject]? = [:], options:[String:AnyObject]? = [:]) ->NSFetchRequest{
+    static func fetchRequestFromQuery(_ params:[String:AnyObject]? = [:], options:[String:AnyObject]? = [:]) ->NSFetchRequest<NSFetchRequestResult>{
         
-        let fetchRequest = NSFetchRequest()
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
         
         var predicates = [NSPredicate]()
         for (key,val) in params! {
             
-            let range = key.rangeOfCharacterFromSet(NSCharacterSet(charactersInString: "<>="))
+            let range = key.rangeOfCharacter(from: CharacterSet(charactersIn: "<>="))
             
             if (range == nil ){
                 var predicate:NSPredicate? = nil
@@ -32,8 +32,8 @@ class QueryEngine {
                 predicates.append(predicate!)
             }else {
                 
-                let queryOperator = key.substringFromIndex(range!.startIndex)
-                let keyName = key.substringToIndex(range!.startIndex).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+                let queryOperator = key.substring(from: range!.lowerBound)
+                let keyName = key.substring(to: range!.lowerBound).trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
                 if (val is String){
                     let queryFormat = "%K \(queryOperator) %@"
                     predicates.append(NSPredicate(format: queryFormat,keyName, val as! String))
@@ -76,7 +76,7 @@ class QueryEngine {
         }
         
         
-        let compound = NSCompoundPredicate(type: NSCompoundPredicateType.AndPredicateType, subpredicates: predicates)
+        let compound = NSCompoundPredicate(type: NSCompoundPredicate.LogicalType.and, subpredicates: predicates)
         fetchRequest.predicate = compound
         return fetchRequest
 

@@ -17,12 +17,12 @@ public class FileModel<T where T:ObjectCoder,T:AnyObject>: ModelProtocol {
     }
     
     
-    public func all(callback:ModelArrayCallback?){
+    public func all(_ callback:ModelArrayCallback?){
         self.query(callback: callback)
     }
     
     
-    public  func query(params params:[String:AnyObject]? = nil, options:[String:AnyObject]? = nil, callback: ModelArrayCallback? ){
+    public  func query(params:[String:AnyObject]? = nil, options:[String:AnyObject]? = nil, callback: ModelArrayCallback? ){
         
         let fd = FileDeserializer<T>()
         fd.getObjectArrayFrom(fielName: self.fileName!) { (error, conferences) -> Void in
@@ -32,20 +32,20 @@ public class FileModel<T where T:ObjectCoder,T:AnyObject>: ModelProtocol {
         
     }
     
-    public func get(id id:CVarArgType?,params:[String:AnyObject]?, callback: ModelObjectCallback? ){
+    public func get(id:CVarArg?,params:[String:AnyObject]?, callback: ModelObjectCallback? ){
     
         callback?(nil,nil)
     }
     
-    public func put(id id: CVarArgType?, object: ObjectCoder, callback: ModelObjectCallback?) {
+    public func put(id: CVarArg?, object: ObjectCoder, callback: ModelObjectCallback?) {
         
     }
     
-    public func add(object: ObjectCoder, callback: ModelObjectCallback?) {
+    public func add(_ object: ObjectCoder, callback: ModelObjectCallback?) {
         
     }
     
-    public func remove(id id: CVarArgType?, params:[String:AnyObject]?, callback: ModelObjectCallback?) {
+    public func remove(id: CVarArg?, params:[String:AnyObject]?, callback: ModelObjectCallback?) {
         
     }
 
