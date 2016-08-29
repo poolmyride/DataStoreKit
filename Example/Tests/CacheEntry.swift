@@ -8,22 +8,22 @@
 import Foundation
 import DataStoreKit
 
-public class CacheEntry: ObjectCoder {
+open class CacheEntry: ObjectCoder {
     
     var id:String?
-    var data:NSData?
+    var data:Data?
     
     
-    public static func identifierKey() -> String {
+    open static func identifierKey() -> String {
         return "id"
     }
     required public init(dictionary withDictionary:NSDictionary){
         self.id = withDictionary["id"] as? String
-        self.data = withDictionary["data"] as? NSData
+        self.data = withDictionary["data"] as? Data
     }
-    public func toDictionary() -> NSDictionary{
+    open func toDictionary() -> NSDictionary{
         let dic:NSDictionary = [
-            "data": self.data ?? NSData(),
+            "data": self.data ?? Data(),
             "id": self.id ?? ""
         ];
         return dic;

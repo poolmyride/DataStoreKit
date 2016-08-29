@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-public class InMemoryDataStack: CoreDataStack {
+open class InMemoryDataStack: CoreDataStack {
 
     
       override func persistentStoreCoordinator() -> NSPersistentStoreCoordinator? {
@@ -23,9 +23,9 @@ public class InMemoryDataStack: CoreDataStack {
         
         var ps: NSPersistentStore?
         do {
-            ps = try psc!.addPersistentStoreWithType(
-                        NSInMemoryStoreType, configuration: nil,
-                        URL: nil, options: nil)
+            ps = try psc!.addPersistentStore(
+                        ofType: NSInMemoryStoreType, configurationName: nil,
+                        at: nil, options: nil)
         } catch _ as NSError {
             ps = nil
         } catch {

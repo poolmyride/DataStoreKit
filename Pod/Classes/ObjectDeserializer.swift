@@ -8,15 +8,15 @@
 
 import Foundation
 
-public class ObjectDeserializer<T where T:ObjectCoder> {
+open class ObjectDeserializer<T> where T:ObjectCoder {
 
     public init(){
         
     }
     public typealias DeserializeArrayCallback = (NSError?,NSArray?)->Void
 
-    public typealias DeserializeObjectCallback = (NSError?,AnyObject?)->Void
-    public func deSerializeArray(withItems:NSArray?)->NSArray{
+    public typealias DeserializeObjectCallback = (NSError?,Any?)->Void
+    open func deSerializeArray(_ withItems:NSArray?)->NSArray{
         
         let items = (withItems != nil) ? (withItems!) : []
         
@@ -24,10 +24,10 @@ public class ObjectDeserializer<T where T:ObjectCoder> {
         
         for object in items {
             if object is NSDictionary{
-                deserializedArray.addObject(self.deSerializeObject(object as? NSDictionary))
+                deserializedArray.add(self.deSerializeObject(object as? NSDictionary))
             }
             else if object is NSArray{
-                deserializedArray.addObject(self.deSerializeArray(object as? NSArray))
+                deserializedArray.add(self.deSerializeArray(object as? NSArray))
             }
         }
         
@@ -35,19 +35,18 @@ public class ObjectDeserializer<T where T:ObjectCoder> {
         
     }
     
-    public func deSerializeObject(object:NSDictionary?)->T{
+    open func deSerializeObject(_ object:NSDictionary?)->T{
     
-        let dic = (object != nil) ? (object!) : []
-        return T(dictionary: (dic as? NSDictionary) ?? [:])
+        let dic = (object != nil) ? (object!) : [:]
+        return T(dictionary: dic)
     }
     
     
-    public func deSerializeArrayAsync(withItems:NSArray?,callback: DeserializeArrayCallback?){
-        
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), { () -> Void in
+    open func deSerializeArrayAsync(_ withItems:NSArray?,callback: DeserializeArrayCallback?){
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.high).async(execute: { () -> Void in
             let deserilizedArray = self.deSerializeArray(withItems);
             
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            DispatchQueue.main.async(execute: { () -> Void in
                 
                 callback?(nil,deserilizedArray)
                 
@@ -56,14 +55,14 @@ public class ObjectDeserializer<T where T:ObjectCoder> {
         
     }
     
-    public func deSerializeObjectAsync(object:NSDictionary?,callback:DeserializeObjectCallback?){
+    open func deSerializeObjectAsync(_ object:NSDictionary?,callback:DeserializeObjectCallback?){
     
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), { () -> Void in
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.high).async(execute: { () -> Void in
             
             
             let deserializedObject = self.deSerializeObject(object)
             
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            DispatchQueue.main.async(execute: { () -> Void in
                 
                 callback?(nil,deserializedObject)
                 

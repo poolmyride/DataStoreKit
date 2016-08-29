@@ -39,7 +39,7 @@ class FileModelTests: XCTestCase {
     func testJsonQuery() {
         
         let model = FileModel<Animal>(path: "animals.json")
-        let expectation = self.expectationWithDescription("testJsonQuery")
+        let expectation = self.expectation(description: "testJsonQuery")
         model.query { (err, results) -> Void in
             
             let animals  = results as? [Animal]
@@ -51,7 +51,7 @@ class FileModelTests: XCTestCase {
             
         }
         
-        self.waitForExpectationsWithTimeout(5, handler: nil)
+        self.waitForExpectations(timeout: 5, handler: nil)
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
@@ -59,7 +59,7 @@ class FileModelTests: XCTestCase {
     func testPlistQuery() {
         
         let model = FileModel<Animal>(path: "animals.plist")
-        let expectation = self.expectationWithDescription("testPlistQuery")
+        let expectation = self.expectation(description: "testPlistQuery")
         model.query { (err, results) -> Void in
             
             let animals  = results as? [Animal]
@@ -71,7 +71,7 @@ class FileModelTests: XCTestCase {
             
         }
         
-        self.waitForExpectationsWithTimeout(5, handler: nil)
+        self.waitForExpectations(timeout: 5, handler: nil)
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }

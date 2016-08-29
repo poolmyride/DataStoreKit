@@ -10,45 +10,44 @@
 
 import Foundation
 
-public class FileDeserializer<T where T:AnyObject,T:ObjectCoder> {
+open class FileDeserializer<T> where T:AnyObject,T:ObjectCoder {
     
     
-    private func isPList(fileName:String) -> Bool{
+    fileprivate func isPList(_ fileName:String) -> Bool{
         return fileName.hasSuffix("plist")
     }
     
-    private func getJsonArray(fileName:String) -> NSArray? {
+    fileprivate func getJsonArray(_ fileName:String) -> NSArray? {
         
-        let url = NSBundle.mainBundle().URLForResource(fileName, withExtension: "");
+        let url = Bundle.main.url(forResource: fileName, withExtension: "");
 
         var jsonarray:NSArray? = nil
         do {
-            try jsonarray = NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: []) as? NSArray
+            try jsonarray = JSONSerialization.jsonObject(with: Data(contentsOf: url!), options: []) as? NSArray
         } catch _ as NSError {
             
         }
         return jsonarray
     }
     
-    private func getPlistArray(fileName:String) -> NSArray? {
+    fileprivate func getPlistArray(_ fileName:String) -> NSArray? {
         
-        let url = NSBundle.mainBundle().URLForResource(fileName, withExtension: "");
+        let url = Bundle.main.url(forResource: fileName, withExtension: "");
         
-        let array:NSArray? = (url != nil) ? NSArray(contentsOfURL: url!)  : nil
+        let array:NSArray? = (url != nil) ? NSArray(contentsOf: url!)  : nil
 
         return array
     }
     
-    public  func getObjectArrayFrom(fielName fileName:String,callback: (NSError?,NSArray?)->Void) {
-
+    open  func getObjectArrayFrom(fielName fileName:String,callback: @escaping (NSError?,NSArray?)->Void) {
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), { () -> Void in
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.high).async(execute: { () -> Void in
             
             let array = (self.isPList(fileName) ? self.getPlistArray(fileName) : self.getJsonArray(fileName)) ?? []
             let objectDeserializer = ObjectDeserializer<T>();
             let results:NSArray =  objectDeserializer.deSerializeArray(array)
             
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            DispatchQueue.main.async(execute: { () -> Void in
                 callback(nil,results)
                 
             });

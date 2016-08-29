@@ -10,30 +10,30 @@ import Foundation
 import CoreData
 class QueryEngine {
     
-    static func fetchRequestFromQuery(params:[String:AnyObject]? = [:], options:[String:AnyObject]? = [:]) ->NSFetchRequest{
+    static func fetchRequestFromQuery(_ params:[String:Any]? = [:], options:[String:Any]? = [:]) ->NSFetchRequest<NSFetchRequestResult>{
         
-        let fetchRequest = NSFetchRequest()
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
         
         var predicates = [NSPredicate]()
         for (key,val) in params! {
             
-            let range = key.rangeOfCharacterFromSet(NSCharacterSet(charactersInString: "<>="))
+            let range = key.rangeOfCharacter(from: CharacterSet(charactersIn: "<>="))
             
             if (range == nil ){
                 var predicate:NSPredicate? = nil
                 if(val is String){
-                 predicate =  NSPredicate(format: "%K == %@",key, (val as? String) ?? "")
+                    predicate =  NSPredicate(format: "%K == %@",key, (val as? String) ?? "")
                 }
                 if(val is NSNumber ){
                     predicate =  NSPredicate(format: "%K == %@",key, val as! NSNumber)
                 }
                 
-               
+                
                 predicates.append(predicate!)
             }else {
                 
-                let queryOperator = key.substringFromIndex(range!.startIndex)
-                let keyName = key.substringToIndex(range!.startIndex).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+                let queryOperator = key.substring(from: range!.lowerBound)
+                let keyName = key.substring(to: range!.lowerBound).trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
                 if (val is String){
                     let queryFormat = "%K \(queryOperator) %@"
                     predicates.append(NSPredicate(format: queryFormat,keyName, val as! String))
@@ -48,20 +48,20 @@ class QueryEngine {
             
         }
         
-        if let limit: AnyObject = options!["limit"] {
+        if let limit: Any = options!["limit"] {
             fetchRequest.fetchLimit = (limit as? Int) ?? 50
         }
         
         /*sort:{
-        "key1":{
-        "ascending":true
-        },
-        "key2":{
-        "ascending":false
-        }
-        }
-        */
-        if let sort: AnyObject = options!["sort"] {
+         "key1":{
+         "ascending":true
+         },
+         "key2":{
+         "ascending":false
+         }
+         }
+         */
+        if let sort: Any = options!["sort"] {
             
             let sortDic = sort as! NSDictionary
             var sortDescriptors  = [NSSortDescriptor]()
@@ -76,9 +76,9 @@ class QueryEngine {
         }
         
         
-        let compound = NSCompoundPredicate(type: NSCompoundPredicateType.AndPredicateType, subpredicates: predicates)
+        let compound = NSCompoundPredicate(type: NSCompoundPredicate.LogicalType.and, subpredicates: predicates)
         fetchRequest.predicate = compound
         return fetchRequest
-
+        
     }
 }

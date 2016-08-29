@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 
-public class CoreDataStore<T where T:ObjectCoder>:ModelProtocol{
+open class CoreDataStore<T>:ModelProtocol where T:ObjectCoder{
     
     let entityName:String;
     let ALL_PATH = "/all"
@@ -29,7 +29,7 @@ public class CoreDataStore<T where T:ObjectCoder>:ModelProtocol{
         
         }()
     
-    private func _deserializeArray(objectArray : AnyObject?,callback: ModelArrayCallback? ){
+    fileprivate func _deserializeArray(_ objectArray : Any?,callback: ModelArrayCallback? ){
         
         var resultArray:[T] = [T]()
         let manageObjectArray = objectArray as! Array<NSManagedObject>
@@ -39,67 +39,67 @@ public class CoreDataStore<T where T:ObjectCoder>:ModelProtocol{
             
             let newObjDic = NSMutableDictionary()
             for (key,_) in attrByNames{
-                let value = manageObject.valueForKey(key)
+                let value = manageObject.value(forKey: key)
                 value != nil ? newObjDic[key] = value : ()
             }
             resultArray.append(T(dictionary: newObjDic))
         }
         
-        callback?(nil,resultArray)
+        callback?(nil,resultArray as Any?)
         
     }
     
-    private func _deserializeObject(object : AnyObject?,callback: ModelObjectCallback? ){
+    fileprivate func _deserializeObject(_ object : Any?,callback: ModelObjectCallback? ){
         
        let manageObject = object as! NSManagedObject
         let attrByNames = manageObject.entity.attributesByName
 
         let newObjDic = NSMutableDictionary()
         for (key,_) in attrByNames{
-            let value = manageObject.valueForKey(key)
+            let value = manageObject.value(forKey: key)
             value != nil ? newObjDic[key] = value : ()
         }
         callback?(nil,T(dictionary: newObjDic))
         
     }
     
-    public func query(params params:[String:AnyObject]? = [:], options:[String:AnyObject]? = [:], callback: ModelArrayCallback? ){
+    open func query(params:[String:Any]? = [:], options:[String:Any]? = [:], callback: ModelArrayCallback? ){
         
 
         let fetchRequest = QueryEngine.fetchRequestFromQuery(params, options: options)
 
-        let description = NSEntityDescription.entityForName(entityName, inManagedObjectContext: self.context)
+        let description = NSEntityDescription.entity(forEntityName: entityName, in: self.context)
         fetchRequest.entity = description
         
         var error:NSError?
-        var results: [AnyObject]?
+        var results: [Any]?
         do {
-            results = try context.executeFetchRequest(fetchRequest)
+            results = try context.fetch(fetchRequest)
         } catch let error1 as NSError {
             error = error1
             results = nil
         }
 
-        error == nil ? self._deserializeArray(results as! [NSManagedObject], callback: callback) : callback?(error,nil)
+        error == nil ? self._deserializeArray(results as! [NSManagedObject] as Any?, callback: callback) : callback?(error,nil)
 
     }
     
-    public func all(callback:ModelArrayCallback?){
+    open func all(_ callback:ModelArrayCallback?){
 
     }
     
-    public func get(id id:CVarArgType?,params:[String:AnyObject]?, callback: ModelObjectCallback? ){
+    open func get(id:CVarArg?,params:[String:Any]?, callback: ModelObjectCallback? ){
         let key = T.identifierKey()
         
-        let fetchRequest = NSFetchRequest()
-        let description = NSEntityDescription.entityForName(entityName, inManagedObjectContext: self.context)
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
+        let description = NSEntityDescription.entity(forEntityName: entityName, in: self.context)
         fetchRequest.entity = description
         fetchRequest.predicate = NSPredicate(format: "%K == %@", key ,id!)
         
         var error:NSError?
-        var results: [AnyObject]?
+        var results: [Any]?
         do {
-            results = try context.executeFetchRequest(fetchRequest)
+            results = try context.fetch(fetchRequest)
         } catch let error1 as NSError {
             error = error1
             results = nil
@@ -115,20 +115,20 @@ public class CoreDataStore<T where T:ObjectCoder>:ModelProtocol{
         
     }
     
-    public func put(id id: CVarArgType?, object: ObjectCoder, callback: ModelObjectCallback?) {
+    open func put(id: CVarArg?, object: ObjectCoder, callback: ModelObjectCallback?) {
         
 
         let key = T.identifierKey()
         
-        let fetchRequest = NSFetchRequest()
-        let description = NSEntityDescription.entityForName(entityName, inManagedObjectContext: self.context)
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
+        let description = NSEntityDescription.entity(forEntityName: entityName, in: self.context)
         fetchRequest.entity = description
         
         fetchRequest.predicate = NSPredicate(format: "%K == %@", key ,id!)
         
         var results: [AnyObject]?
         do {
-            results = try context.executeFetchRequest(fetchRequest)
+            results = try context.fetch(fetchRequest)
         } catch let error as NSError {
             print(error)
             results = nil
@@ -139,10 +139,10 @@ public class CoreDataStore<T where T:ObjectCoder>:ModelProtocol{
 
         if(results!.count > 0){
             let managedObject = results![0]
-            let dic:NSDictionary = object.toDictionary()
+            let dic:[String:Any] = object.toDictionary() as! [String : Any]
 
             for (key,value) in dic {
-                managedObject.setValue(value, forKey: key as! String)
+                managedObject.setValue(value, forKey: key)
             }
             
             var saveError: NSError?
@@ -157,16 +157,17 @@ public class CoreDataStore<T where T:ObjectCoder>:ModelProtocol{
         }
     }
     
-    public func add(object: ObjectCoder, callback: ModelObjectCallback?) {
-        let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: context)
-        let newObj = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: context)
+    open func add(_ object: ObjectCoder, callback: ModelObjectCallback?) {
+        let entity = NSEntityDescription.entity(forEntityName: entityName, in: context)
+        let newObj = NSManagedObject(entity: entity!, insertInto: context)
         
         let dictionary = object.toDictionary()
-        
-        for (key,val) in dictionary {
-            let keyString = (key as! String)
-            newObj.setValue(val,forKey:keyString)
-        }
+         //newObj.setValue(dictionary["created"]!, forKey:"created")
+        newObj.setPrimitiveValue(dictionary["created"]!, forKey: "created")
+        //for (key,val) in dictionary {
+          //  let keyString = (key)
+            //newObj.setValue(val, forKey:keyString as! String)
+        //}
         
         var error: NSError?
         do {
@@ -178,20 +179,20 @@ public class CoreDataStore<T where T:ObjectCoder>:ModelProtocol{
         
     }
     
-    public func remove(id id: CVarArgType?, params:[String:AnyObject]?, callback: ModelObjectCallback?) {
+    open func remove(id: CVarArg?, params:[String:Any]?, callback: ModelObjectCallback?) {
         
-       
         let key = T.identifierKey()
+
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
         
-        let fetchRequest = NSFetchRequest()
-        let description = NSEntityDescription.entityForName(entityName, inManagedObjectContext: self.context)
+        let description = NSEntityDescription.entity(forEntityName: entityName, in: self.context)
         fetchRequest.entity = description
         
         fetchRequest.predicate = NSPredicate(format: "%K == %@", key ,id!)
         
-        var results: [AnyObject]?
+        var results: [Any]?
         do {
-            results = try context.executeFetchRequest(fetchRequest)
+            results = try context.fetch(fetchRequest)
         } catch let error as NSError {
             print(error)
             results = nil
@@ -204,7 +205,7 @@ public class CoreDataStore<T where T:ObjectCoder>:ModelProtocol{
            
         let managedObject = results![0]
 
-           context.deleteObject(managedObject as! NSManagedObject)
+           context.delete(managedObject as! NSManagedObject)
 
             var error: NSError?
             do {
@@ -220,7 +221,6 @@ public class CoreDataStore<T where T:ObjectCoder>:ModelProtocol{
         }else {
             callback?(NSError(domain: "Not found", code: 0, userInfo: nil), nil);
         }
-        
         
     }
 }

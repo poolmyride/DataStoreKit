@@ -9,7 +9,7 @@
 import Foundation
 
 
-public class Restify<T where T:ObjectCoder>:ModelProtocol{
+open class Restify<T>:ModelProtocol where T:ObjectCoder{
     
     let base_url:String;
     let ALL_PATH = "/all"
@@ -29,19 +29,19 @@ public class Restify<T where T:ObjectCoder>:ModelProtocol{
         
     }()
     
-    private func _deserializeArray(objectArray : AnyObject?,callback: ModelArrayCallback? ){
+    fileprivate func _deserializeArray(_ objectArray : Any?,callback: ModelArrayCallback? ){
         
         self.deserializer.deSerializeArrayAsync(objectArray as? NSArray, callback: callback)
    
     }
     
-    private func _deserializeObject(object : AnyObject?,callback: ModelObjectCallback? ){
+    fileprivate func _deserializeObject(_ object : Any?,callback: ModelObjectCallback? ){
         
         self.deserializer.deSerializeObjectAsync(object as? NSDictionary, callback: callback)
      
     }
     
-     public func query(params params:[String:AnyObject]? = nil, options:[String:AnyObject]? = nil, callback: ModelArrayCallback? ){
+     open func query(params:[String:Any]? = nil, options:[String:Any]? = nil, callback: ModelArrayCallback? ){
         let path  = base_url
         
         networkClient.GET(path, parameters: params) { (error, jsonObject) -> Void in
@@ -52,7 +52,7 @@ public class Restify<T where T:ObjectCoder>:ModelProtocol{
         
     }
     
-    public func all(callback:ModelArrayCallback?){
+    open func all(_ callback:ModelArrayCallback?){
         let path  = base_url + ALL_PATH
         
         networkClient.GET(path, parameters: nil) { (error, jsonObject) -> Void in
@@ -63,7 +63,7 @@ public class Restify<T where T:ObjectCoder>:ModelProtocol{
         
     }
     
-    public func get(id id:CVarArgType?,params:[String:AnyObject]?, callback: ModelObjectCallback? ){
+    open func get(id:CVarArg?,params:[String:Any]?, callback: ModelObjectCallback? ){
     
         let resourceString = id != nil ? ("/" + (id as! String)) : ""
         let path  = base_url + resourceString
@@ -76,7 +76,7 @@ public class Restify<T where T:ObjectCoder>:ModelProtocol{
 
     }
 
-    public func put(id id: CVarArgType?, object: ObjectCoder, callback: ModelObjectCallback?) {
+    open func put(id: CVarArg?, object: ObjectCoder, callback: ModelObjectCallback?) {
         let resourceString = id != nil ? ("/" + (id as! String)) : ""
         let path  = base_url + resourceString
         let dic = object.toDictionary()
@@ -87,7 +87,7 @@ public class Restify<T where T:ObjectCoder>:ModelProtocol{
         }
     }
     
-    public func add(object: ObjectCoder, callback: ModelObjectCallback?) {
+    open func add(_ object: ObjectCoder, callback: ModelObjectCallback?) {
         let path = base_url
         let dic = object.toDictionary()
     
@@ -97,7 +97,7 @@ public class Restify<T where T:ObjectCoder>:ModelProtocol{
         }
     }
     
-    public func remove(id id: CVarArgType?, params:[String:AnyObject]?, callback: ModelObjectCallback?) {
+    open func remove(id: CVarArg?, params:[String:Any]?, callback: ModelObjectCallback?) {
         
         let resourceString = id != nil ? ("/" + (id as! String)) : ""
         let path  = base_url + resourceString
