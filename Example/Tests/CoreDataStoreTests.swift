@@ -361,17 +361,14 @@ class CoreDataStoreTests: XCTestCase {
         self.animalModel!.add(obj, callback: { (error, obj) -> Void in
             print(obj)
             XCTAssert(error == nil, "Pass")
-            expectation.fulfill()
-            /*
             let num = NSNumber(value: 122233334)
             self.animalModel?.get(id: num, params: [:], callback: { (err:NSError?, obj:Any?) -> Void in
                 print(obj)
                 let anim = obj as? Animal
                 XCTAssert(err == nil, "Passed")
                 XCTAssert(anim?.created == 122233334, "Passed")
-                
                 expectation.fulfill()
-            }) */
+            })
         })
         
         self.waitForExpectations(timeout: 5.0, handler: nil)
@@ -394,7 +391,7 @@ class CoreDataStoreTests: XCTestCase {
             let num = NSNumber(value: 122233334)
             self.animalModel?.remove(id: num, params: [:], callback: { (err:NSError?, result:Any?) -> Void in
                 
-                
+                 
                 XCTAssert(err == nil, "Passed")
 
                 expectation.fulfill()

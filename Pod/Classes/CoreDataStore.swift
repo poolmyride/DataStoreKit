@@ -162,13 +162,13 @@ open class CoreDataStore<T>:ModelProtocol where T:ObjectCoder{
         let newObj = NSManagedObject(entity: entity!, insertInto: context)
         
         let dictionary = object.toDictionary()
-         //newObj.setValue(dictionary["created"]!, forKey:"created")
-        newObj.setPrimitiveValue(dictionary["created"]!, forKey: "created")
-        //for (key,val) in dictionary {
-          //  let keyString = (key)
-            //newObj.setValue(val, forKey:keyString as! String)
-        //}
         
+        for (key,val) in dictionary {
+            let keyString = (key)
+            let value = val as? NSObject
+            newObj.setValue(value, forKey:keyString as! String)
+        }
+ 
         var error: NSError?
         do {
             try context.save()
