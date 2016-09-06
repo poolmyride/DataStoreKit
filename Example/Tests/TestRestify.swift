@@ -22,10 +22,10 @@ class TestRestify: XCTestCase {
             self.name = (withDictionary["name"] as? String) ?? ""
             self.age = (withDictionary["age"] as? NSNumber ) ?? 0
         }
-        func toDictionary() -> NSDictionary{
+        func toDictionary() -> [String:Any]{
             return  [
             "name":self.name ?? "",
-            "age":self.age ?? 0]
+            "age":self.age ]
         }
         
         static func identifierKey() -> String {

@@ -81,8 +81,8 @@ class Message:ObjectCoder {
         
     }
     
-    func toDictionary() -> NSDictionary {
-        let dic:NSDictionary = [
+    func toDictionary() -> [String:Any] {
+        let dic:[String:Any] = [
             "id" : (self.id ?? "") as String,
             "from_attendee" : (self.from_attendee ?? "") as String,
             "to_attendee" : (self.to_attendee ?? "") as String,
