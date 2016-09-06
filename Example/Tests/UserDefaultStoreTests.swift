@@ -20,7 +20,7 @@ class UserDefaultStoreTests: XCTestCase {
             self.name = withDictionary["id"] as? String ?? ""
         }
         
-        func toDictionary() -> [String:Any] {
+        func toDictionary() -> NSDictionary {
             return ["id":self.id ?? "","name":self.name ?? ""]
         }
         

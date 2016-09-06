@@ -26,9 +26,9 @@ class PendingNetworkTask:ObjectCoder {
         
     }
     
-    func toDictionary() -> [String:Any] {
+    func toDictionary() -> NSDictionary {
         
-        var dic = [String:Any]()
+        let dic = NSMutableDictionary()
 //        dic["method"]  = self.method ?? ""
 //        dic["url"]  = self.url ?? ""
 //        dic["created"]  = self.created ?? NSDate().timeIntervalSince1970

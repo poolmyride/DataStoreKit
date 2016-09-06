@@ -27,8 +27,8 @@ class Animal: ObjectCoder {
 
     }
     
-    func toDictionary() -> [String:Any] {
-        var dic = [String:Any]()
+    func toDictionary() -> NSDictionary {
+        let dic = NSMutableDictionary()
         self.name != nil ? dic["name"] = self.name! : ()
         self.created != nil ? dic["created"] = self.created! : ()
         return dic

@@ -17,7 +17,7 @@ class FileModelTests: XCTestCase {
             self.name = withDictionary["name"] as? String
             self.type = withDictionary["type"] as? String
         }
-        func toDictionary() -> [String:Any] {
+        func toDictionary() -> NSDictionary {
             return [:]
         }
         

@@ -21,8 +21,8 @@ open class CacheEntry: ObjectCoder {
         self.id = withDictionary["id"] as? String
         self.data = withDictionary["data"] as? Data
     }
-    open func toDictionary() -> [String:Any]{
-        let dic:[String:Any] = [
+    open func toDictionary() -> NSDictionary{
+        let dic:NSDictionary = [
             "data": self.data ?? Data(),
             "id": self.id ?? ""
         ];
