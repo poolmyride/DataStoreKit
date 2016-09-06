@@ -25,7 +25,6 @@ open class UserDefaultStore<T>:ModelProtocol where T:ObjectCoder{
     }
     
     open func put(id:CVarArg?,object:ObjectCoder, callback: ModelObjectCallback? ){
-        
         let dic = object.toDictionary()
         UserDefaults.standard.set(dic, forKey: (id as? String ?? defaultKey))
         callback?(nil,object)
