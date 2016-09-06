@@ -12,7 +12,7 @@ import Foundation
 public protocol ObjectCoder:class{
 
     init(dictionary withDictionary:NSDictionary)
-    func toDictionary() -> [AnyHashable:Any]
+    func toDictionary() -> [String:Any]
     
     
      static func identifierKey() -> String
