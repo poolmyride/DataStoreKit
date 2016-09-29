@@ -24,7 +24,7 @@ DESC
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.author           = { "Rajat Talwar" => "cuterajat26@gmail.com" }
-  s.source           = { :git => "https://github.com/irtaneja/DataStoreKit.git", :tag => s.version.to_s }
+  s.source           = { :git => "https://github.com/poolmyride/DataStoreKit.git", :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/rtalwar26'
 
 pch_AF = <<-EOS
