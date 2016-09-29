@@ -386,7 +386,6 @@ class CoreDataStoreTests: XCTestCase {
             XCTAssert(error == nil, "Pass")
             let num = NSNumber(value: 122233334)
             self.animalModel?.get(id: num, params: [:], callback: { (err:NSError?, obj:Any?) -> Void in
-                print(obj)
                 let anim = obj as? Animal
                 XCTAssert(err == nil, "Passed")
                 XCTAssert(anim?.created == 122233334, "Passed")

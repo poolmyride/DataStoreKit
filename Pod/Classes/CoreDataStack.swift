@@ -42,24 +42,6 @@ open class CoreDataStack{
         
         _persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: self.model)
         try _persistentStoreCoordinator!.addPersistentStore(ofType: NSSQLiteStoreType, configurationName:nil, at: url, options: options)
-        
-        //        var ps: NSPersistentStore?
-        //        let myErr:NSError?
-        //        do {
-        //            ps = try _persistentStoreCoordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration:nil, URL: url, options: options)
-        //        } catch let err as NSError {
-        //            myErr = err;
-        //            NSLog("%@",err.description)
-        //            ps = nil
-        //        } catch {
-        ////            fatalError()
-        //        }
-        //
-        //        if (ps == nil) {
-        //            throw myErr!
-        ////            abort()
-        //        }
-        
         return _persistentStoreCoordinator
     }
     
