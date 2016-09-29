@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 import DataStoreKit
 
-class Animal:ObjectCoder {
+class Animal: ObjectCoder {
     
     var created:Double?
     var name:String?
@@ -22,7 +22,6 @@ class Animal:ObjectCoder {
     
     
     required init(dictionary withDictionary:NSDictionary){
-        
         self.name = withDictionary["name"] as? String
         self.created = withDictionary["created"] as? Double
 

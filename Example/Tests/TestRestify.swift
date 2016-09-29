@@ -25,7 +25,7 @@ class TestRestify: XCTestCase {
         func toDictionary() -> NSDictionary{
             return  [
             "name":self.name ?? "",
-            "age":self.age ?? 0]
+            "age":self.age ]
         }
         
         static func identifierKey() -> String {
@@ -35,29 +35,23 @@ class TestRestify: XCTestCase {
     }
     class MockNetwork:NetworkInterface{
         
-        func POST(urlString: String!, parameters: AnyObject!,callback: ((NSError?, AnyObject?) -> Void)!){
+        func POST(_ URLString: String!, parameters: Any!,callback: ((NSError?, Any?) -> Void)!){
         
         }
-        func PUT(urlString: String!, parameters: AnyObject!, callback: ((NSError?, AnyObject?) -> Void)!) {
+        func PUT(_ URLString: String!, parameters: Any!, callback: ((NSError?, Any?) -> Void)!) {
             
         }
-        func GET(urlString: String!, parameters: AnyObject!, callback: ((NSError?, AnyObject?) -> Void)!){
-            
+        func GET(_ URLString: String!, parameters: Any!, callback: ((NSError?, Any?) -> Void)!){
             DispatchQueue.main.async {
-                
-                let pass  = urlString.contains("pass")
-                
-                pass ? callback(nil,["name":"rajat","age":5]) : callback(NSError(domain: "Network Error", code: 404, userInfo: nil) ,nil)
-            }
-            
-        
-          
+                let pass = URLString.range(of: "pass", options: NSString.CompareOptions.caseInsensitive)
+                (pass != nil) ? callback(nil,["name":"rajat","age":5]) : callback(NSError(domain: "Network Error", code: 404, userInfo: nil) ,nil)
+            }          
         }
         
-        func DELETE(urlString: String!, parameters: AnyObject?, callback: ((NSError?, AnyObject?) -> Void)!) {
+        func DELETE(_ URLString: String!, parameters: Any?, callback: ((NSError?, Any?) -> Void)!) {
             
         }
-        func setHTTPHeaders(headers: [String : String]) {
+        func setHTTPHeaders(_ headers: [String : String]) {
             
         }
     }

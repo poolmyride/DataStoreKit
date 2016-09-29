@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 class QueryEngine {
     
-    static func fetchRequestFromQuery(_ params:[String:AnyObject]? = [:], options:[String:AnyObject]? = [:]) ->NSFetchRequest<NSFetchRequestResult>{
+    static func fetchRequestFromQuery(_ params:[String:Any]? = [:], options:[String:Any]? = [:]) ->NSFetchRequest<NSFetchRequestResult>{
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
         
@@ -22,13 +22,13 @@ class QueryEngine {
             if (range == nil ){
                 var predicate:NSPredicate? = nil
                 if(val is String){
-                 predicate =  NSPredicate(format: "%K == %@",key, (val as? String) ?? "")
+                    predicate =  NSPredicate(format: "%K == %@",key, (val as? String) ?? "")
                 }
                 if(val is NSNumber ){
                     predicate =  NSPredicate(format: "%K == %@",key, val as! NSNumber)
                 }
                 
-               
+                
                 predicates.append(predicate!)
             }else {
                 
@@ -48,20 +48,20 @@ class QueryEngine {
             
         }
         
-        if let limit: AnyObject = options!["limit"] {
+        if let limit: Any = options!["limit"] {
             fetchRequest.fetchLimit = (limit as? Int) ?? 50
         }
         
         /*sort:{
-        "key1":{
-        "ascending":true
-        },
-        "key2":{
-        "ascending":false
-        }
-        }
-        */
-        if let sort: AnyObject = options!["sort"] {
+         "key1":{
+         "ascending":true
+         },
+         "key2":{
+         "ascending":false
+         }
+         }
+         */
+        if let sort: Any = options!["sort"] {
             
             let sortDic = sort as! NSDictionary
             var sortDescriptors  = [NSSortDescriptor]()
@@ -79,6 +79,6 @@ class QueryEngine {
         let compound = NSCompoundPredicate(type: NSCompoundPredicate.LogicalType.and, subpredicates: predicates)
         fetchRequest.predicate = compound
         return fetchRequest
-
+        
     }
 }

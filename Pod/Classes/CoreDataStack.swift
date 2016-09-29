@@ -1,6 +1,6 @@
 //
 //  CoreDataStack.swift
-//   
+//
 //
 //  Created by Rohit Talwar on 08/08/15.
 //  Copyright (c) 2015 Rajat Talwar. All rights reserved.
@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-public class CoreDataStack{
+open class CoreDataStack{
     
     var _persistentStoreCoordinator: NSPersistentStoreCoordinator?
     var dbName:String = ""
@@ -20,6 +20,7 @@ public class CoreDataStack{
     }
     
     public func context() throws -> NSManagedObjectContext {
+
         
         guard let refContext = _context else{
             _context = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.mainQueueConcurrencyType)
@@ -31,7 +32,8 @@ public class CoreDataStack{
         
     }
     
-     func persistentStoreCoordinator() throws -> NSPersistentStoreCoordinator? {
+    func persistentStoreCoordinator() throws -> NSPersistentStoreCoordinator? {
+
         if (_persistentStoreCoordinator != nil){
             return _persistentStoreCoordinator
         }
@@ -42,41 +44,24 @@ public class CoreDataStack{
         
         _persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: self.model)
         try _persistentStoreCoordinator!.addPersistentStore(ofType: NSSQLiteStoreType, configurationName:nil, at: url, options: options)
-        
-//        var ps: NSPersistentStore?
-//        let myErr:NSError?
-//        do {
-//            ps = try _persistentStoreCoordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration:nil, URL: url, options: options)
-//        } catch let err as NSError {
-//            myErr = err;
-//            NSLog("%@",err.description)
-//            ps = nil
-//        } catch {
-////            fatalError()
-//        }
-//        
-//        if (ps == nil) {
-//            throw myErr!
-////            abort()
-//        }
-        
         return _persistentStoreCoordinator
-        }
+    }
     
     public lazy var model:NSManagedObjectModel = {
         let bndle = Bundle.main
         let modelURL = Bundle.main.url(forResource: self.dbName, withExtension: "momd")!
-       return  NSManagedObjectModel(contentsOf: modelURL)!
+
+        return  NSManagedObjectModel(contentsOf: modelURL)!
         
-        }()
+    }()
     
     static let sharedInstance:CoreDataStack = CoreDataStack(dbName: "NoDBNameProvided")
-
+    
     var applicationDocumentsDirectory: URL = {
         let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return urls[urls.count-1] 
-        }()
-
+        return urls[urls.count-1]
+    }()
+    
     
     public func saveContext(){
         var error:NSError? = nil
@@ -93,7 +78,7 @@ public class CoreDataStack{
                 try ct.save()
             } catch let error1 as NSError {
                 error = error1
-                print("Could not save:\(error),\(error?.userInfo)")
+                print("Could not save:\(error),\(error?.localizedDescription)")
             }
         }
     }
@@ -106,7 +91,7 @@ public class CoreDataStack{
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
         let description = NSEntityDescription.entity(forEntityName: entityName, in: ct)
         fetchRequest.entity = description
-        var results: [AnyObject]?
+        var results: [Any]?
         do {
             results = try ct.fetch(fetchRequest)
         } catch _ as NSError {

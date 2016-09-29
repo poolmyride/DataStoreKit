@@ -10,11 +10,11 @@ import Foundation
 
 public protocol NetworkInterface{
     
-    func setHTTPHeaders(headers:[String:String])
-    func GET(urlString: String!, parameters: AnyObject!, callback: ((NSError?, AnyObject?) -> Void)!)
-    func POST(urlString: String!, parameters: AnyObject!,callback: ((NSError?, AnyObject?) -> Void)!)
-    func PUT(urlString: String!, parameters: AnyObject!,callback: ((NSError?, AnyObject?) -> Void)!)
+    func setHTTPHeaders(_ headers:[String:String])
+    func GET(_ URLString: String!, parameters: Any!, callback: ((NSError?, Any?) -> Void)!)
+    func POST(_ URLString: String!, parameters: Any!,callback: ((NSError?, Any?) -> Void)!)
+    func PUT(_ URLString: String!, parameters: Any!,callback: ((NSError?, Any?) -> Void)!)
     
-    func DELETE(urlString: String!, parameters: AnyObject?,callback: ((NSError?, AnyObject?) -> Void)!)
+    func DELETE(_ URLString: String!, parameters: Any?,callback: ((NSError?, Any?) -> Void)!)
 
 }
