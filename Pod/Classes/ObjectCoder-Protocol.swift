@@ -14,6 +14,7 @@ public protocol ObjectCoder:class{
     init(dictionary withDictionary:NSDictionary)
     func toDictionary() -> NSDictionary
     
+    
      static func identifierKey() -> String
     
 }

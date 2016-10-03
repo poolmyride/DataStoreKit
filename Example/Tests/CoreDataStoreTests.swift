@@ -23,12 +23,11 @@ class CoreDataStoreTests: XCTestCase {
         guard let ct = try? self.coreDataStack!.context() else {
             return ;
         }
-        
+        self.coreDataStack = InMemoryDataStack(dbName: "TestSample")
         self.animalModel = CoreDataStore<Animal>(entityName: "Animal", managedContext: ct)
-    self.pendingNetwork = CoreDataStore<PendingNetworkTask>(entityName: "PendingNetworkTask", managedContext: ct)
+        self.pendingNetwork = CoreDataStore<PendingNetworkTask>(entityName: "PendingNetworkTask", managedContext: ct)
         
         self.messageModel = CoreDataStore<Message>(entityName: "Message", managedContext: ct)
-        
         self.cacheModel  = CoreDataStore<CacheEntry>(entityName: "CacheEntry", managedContext: ct)
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -50,10 +49,33 @@ class CoreDataStoreTests: XCTestCase {
             "type": "chat",
             "message": "hello",
             "created_ts" : 1437108258
-        ]
+        ] as [String : Any]
         let expectation = self.expectation(description: "test save")
         
-        let obj = Message(dictionary: dic)
+        let obj = Message(dictionary: dic as NSDictionary)
+        
+        self.messageModel!.add(obj, callback: { (error, obj) -> Void in
+            XCTAssert(error == nil, "Pass")
+            
+            self.messageModel!.get(id: "1234",params: nil) { (error, obj) -> Void in
+                XCTAssert(error == nil, "Pass")
+                expectation.fulfill()
+            }
+            
+        })
+        
+        self.waitForExpectations(timeout: 5.0, handler: nil)
+        
+    }
+    
+    func testSaveFewFields() {
+        // This is an example of a functional test case.
+        let dic = ["id" : "1234",
+                   "created_ts" : 1437108258
+            ] as [String : Any]
+        let expectation = self.expectation(description: "test save")
+        
+        let obj = Message(dictionary: dic as NSDictionary)
         
         self.messageModel!.add(obj, callback: { (error, obj) -> Void in
             XCTAssert(error == nil, "Pass")
@@ -77,10 +99,11 @@ class CoreDataStoreTests: XCTestCase {
             "type": "chat",
             "message": "hello",
             "created_ts" : 1437108258
-        ]
+        ] as [String : Any]
+
         let expectation = self.expectation(description: "test save")
         
-        let obj = Message(dictionary: dic)
+        let obj = Message(dictionary: dic as NSDictionary)
         
         self.messageModel!.add(obj, callback: { (error, obj) -> Void in
             XCTAssert(error == nil, "Pass")
@@ -112,7 +135,7 @@ class CoreDataStoreTests: XCTestCase {
             "type": "chat",
             "message": "hello",
             "created_ts" : 1437108358
-        ]
+        ] as [String : Any]
         
         let dic2 = ["id" : "1236",
             "from_attendee" : "26",
@@ -120,11 +143,12 @@ class CoreDataStoreTests: XCTestCase {
             "type": "chat",
             "message": "hello",
             "created_ts" : 1437108458
-        ]
+        ] as [String : Any]
+
         let expectation = self.expectation(description: "test query")
         
-        let obj = Message(dictionary: dic)
-        let obj2 = Message(dictionary: dic2)
+        let obj = Message(dictionary: dic as NSDictionary)
+        let obj2 = Message(dictionary: dic2 as NSDictionary)
         self.messageModel!.add(obj, callback: { (error, obj) -> Void in
             XCTAssert(error == nil, "Pass")
             
@@ -133,8 +157,8 @@ class CoreDataStoreTests: XCTestCase {
                 
                 self.messageModel!.query(params: ["from_attendee":"26"], options: [:], callback: { (error, array) -> Void in
                     XCTAssertNil(error, "Pass")
-                    
-                    XCTAssert(array!.count == 2, "Pass")
+                    let arrayList = array as? [Message] ?? [Message]()
+                    XCTAssert(arrayList.count == 2, "Pass")
                     expectation.fulfill()
                 })
                 
@@ -155,7 +179,7 @@ class CoreDataStoreTests: XCTestCase {
             "type": "chat",
             "message": "hello",
             "created_ts" : 1437108358
-        ]
+        ] as [String : Any]
         
         let dic2 = ["id" : "1236",
             "from_attendee" : "26",
@@ -163,11 +187,12 @@ class CoreDataStoreTests: XCTestCase {
             "type": "chat",
             "message": "hello",
             "created_ts" : 1437108458
-        ]
+
+        ] as [String : Any]
         let expectation = self.expectation(description: "test query")
         
-        let obj = Message(dictionary: dic)
-        let obj2 = Message(dictionary: dic2)
+        let obj = Message(dictionary: dic as NSDictionary)
+        let obj2 = Message(dictionary: dic2 as NSDictionary)
         self.messageModel!.add(obj, callback: { (error, obj) -> Void in
             XCTAssert(error == nil, "Pass")
             
@@ -181,7 +206,7 @@ class CoreDataStoreTests: XCTestCase {
                     
                     XCTAssert(arrayMessages[0].from_attendee == "26", "Pass")
                     XCTAssert(arrayMessages[0].to_attendee == "29", "Pass")
-                    XCTAssert(array!.count == 1, "Pass")
+                    XCTAssert(arrayMessages.count == 1, "Pass")
                     
                     expectation.fulfill()
                 })
@@ -204,7 +229,7 @@ class CoreDataStoreTests: XCTestCase {
             "type": "chat",
             "message": "hello",
             "created_ts" : 1437108558
-        ]
+        ] as [String : Any]
         
         let dic2 = ["id" : "1236",
             "from_attendee" : "26",
@@ -212,11 +237,12 @@ class CoreDataStoreTests: XCTestCase {
             "type": "chat",
             "message": "hello",
             "created_ts" : 1437108658
-        ]
+        ] as [String : Any]
+
         let expectation = self.expectation(description: "test query")
         
-        let obj = Message(dictionary: dic)
-        let obj2 = Message(dictionary: dic2)
+        let obj = Message(dictionary: dic as NSDictionary)
+        let obj2 = Message(dictionary: dic2 as NSDictionary)
         self.messageModel!.add(obj, callback: { (error, obj) -> Void in
             XCTAssert(error == nil, "Pass")
             
@@ -225,7 +251,8 @@ class CoreDataStoreTests: XCTestCase {
                 
                 self.messageModel!.query(params: ["created_ts >=":1437108600], options: [:], callback: { (error, array) -> Void in
                     XCTAssertNil(error, "Pass")
-                    XCTAssert(array!.count == 1, "Pass")
+                    let messageList = array as? [Message]
+                    XCTAssert(messageList?.count == 1, "Pass")
                     
                     expectation.fulfill()
                 })
@@ -247,12 +274,12 @@ class CoreDataStoreTests: XCTestCase {
             "type": "chat",
             "message": "hello",
             "created_ts" : 1437108558
-        ]
+        ] as [String : Any]
         
         
         let expectation = self.expectation(description: "test query")
         
-        let obj = Message(dictionary: dic)
+        let obj = Message(dictionary: dic as NSDictionary)
         
         self.messageModel!.add(obj, callback: { (error, result) -> Void in
             
@@ -302,7 +329,8 @@ class CoreDataStoreTests: XCTestCase {
             self.cacheModel!.get(id: testID,params: nil) { (error, obj) -> Void in
                 XCTAssert(error == nil, "Pass")
                 let cacheObj = obj as? CacheEntry
-                let str = NSString(data: (cacheObj?.data ?? Data()) as Data, encoding: String.Encoding.utf8.rawValue)
+
+                let str = NSString(data: cacheObj?.data ?? Data(), encoding: String.Encoding.utf8.rawValue)
                 XCTAssert(str == testString, "Pass")
                 expectation.fulfill()
             }
@@ -323,15 +351,16 @@ class CoreDataStoreTests: XCTestCase {
             "type": "chat",
             "message": "hello",
             "created_ts" : 1437118258
-        ]
+
+        ] as [String : Any]
         let expectation = self.expectation(description: "test query")
         
-        let obj = Message(dictionary: dic)
+        let obj = Message(dictionary: dic as NSDictionary)
         
         self.messageModel!.add(obj, callback: { (error, obj) -> Void in
             XCTAssert(error == nil, "Pass")
            
-            self.messageModel!.query(params: ["created_ts":1437118258], options: [:], callback: { (err:NSError?, result:AnyObject?) -> Void in
+            self.messageModel!.query(params: ["created_ts":1437118258], options: [:], callback: { (err:NSError?, result:Any?) -> Void in
                 let results = result as? NSArray
                 XCTAssert(results?.count == 1, "Passed")
                 expectation.fulfill()
@@ -350,22 +379,20 @@ class CoreDataStoreTests: XCTestCase {
     func test7GetByNumberValue() {
         
         let dic = ["animal" : "dog",
-            "created" : 122233334
-            
-        ]
+            "created" : NSNumber(value: 122233334)
+        ] as [String : Any]
         let expectation = self.expectation(description: "test query by int")
         
-        let obj = Animal(dictionary: dic)
+        let obj = Animal(dictionary: dic as NSDictionary)
         
         self.animalModel!.add(obj, callback: { (error, obj) -> Void in
+            print(obj)
             XCTAssert(error == nil, "Pass")
             let num = NSNumber(value: 122233334)
-            self.animalModel?.get(id: num, params: [:], callback: { (err:NSError?, obj:AnyObject?) -> Void in
-                
+            self.animalModel?.get(id: num, params: [:], callback: { (err:NSError?, obj:Any?) -> Void in
                 let anim = obj as? Animal
                 XCTAssert(err == nil, "Passed")
                 XCTAssert(anim?.created == 122233334, "Passed")
-                
                 expectation.fulfill()
             })
         })
@@ -380,17 +407,17 @@ class CoreDataStoreTests: XCTestCase {
         let dic = ["animal" : "dog",
             "created" : 122233334
             
-        ]
+        ] as [String : Any]
+
         let expectation = self.expectation(description: "test query by int")
         
-        let obj = Animal(dictionary: dic)
+        let obj = Animal(dictionary: dic as NSDictionary)
         
         self.animalModel!.add(obj, callback: { (error, obj) -> Void in
             XCTAssert(error == nil, "Pass")
             let num = NSNumber(value: 122233334)
-            self.animalModel?.remove(id: num, params: [:], callback: { (err:NSError?, result:AnyObject?) -> Void in
-                
-                
+            self.animalModel?.remove(id: num, params: [:], callback: { (err:NSError?, result:Any?) -> Void in
+                 
                 XCTAssert(err == nil, "Passed")
 
                 expectation.fulfill()
@@ -414,10 +441,10 @@ class CoreDataStoreTests: XCTestCase {
         pendingNetworkObj.created = 12345678
         pendingNetworkObj.url = "url"
         pendingNetworkObj.body = ["a":"b"]
-        self.pendingNetwork?.add(pendingNetworkObj, callback: { (err:NSError?, result:AnyObject?) -> Void in
+        self.pendingNetwork?.add(pendingNetworkObj, callback: { (err:NSError?, result:Any?) -> Void in
             
             
-            self.pendingNetwork?.query(params: [:], options: [:], callback: { (queryErr:NSError?, queryResult:AnyObject?) -> Void in
+            self.pendingNetwork?.query(params: [:], options: [:], callback: { (queryErr:NSError?, queryResult:Any?) -> Void in
 
                 let allPendingTasks = queryResult as! [PendingNetworkTask]
                 let firstPendingTask:PendingNetworkTask = allPendingTasks[0]
@@ -449,9 +476,8 @@ class CoreDataStoreTests: XCTestCase {
         pendingNetworkObj.created = 12345678
         pendingNetworkObj.url = "url"
         pendingNetworkObj.body = ["a":"b"]
-        self.pendingNetwork?.add(pendingNetworkObj, callback: { (err:NSError?, result:AnyObject?) -> Void in
-            
-            self.pendingNetwork?.get(id: NSNumber(value: 12345678), params: [:], callback: { (errGet:NSError?, result:AnyObject?) -> Void in
+        self.pendingNetwork?.add(pendingNetworkObj, callback: { (err:NSError?, result:Any?) -> Void in
+            self.pendingNetwork?.get(id: NSNumber(value: 12345678), params: [:], callback: { (errGet:NSError?, result:Any?) -> Void in
                 
                 let pendingTask = result as? PendingNetworkTask
                 XCTAssertNil(errGet)

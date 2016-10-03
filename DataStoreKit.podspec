@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "DataStoreKit"
-  s.version          = "3.0.1"
+  s.version          = "1.2.7"
   s.summary          = "Consistent interface for accessing data across different ios storage components"
 
 # This description is used to generate tags and improve search results.
@@ -44,6 +44,7 @@ EOS
   s.watchos.deployment_target = '2.0'
 
   #s.platform     = :ios, '8.0'
+  #s.platform     = :watchos, '2.0'
   s.requires_arc = true
 
   s.source_files = 'Pod/Classes/**/*.swift'

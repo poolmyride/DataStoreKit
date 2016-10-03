@@ -10,14 +10,14 @@
 
 import Foundation
 
-public class FileDeserializer<T where T:AnyObject,T:ObjectCoder> {
+open class FileDeserializer<T> where T:AnyObject,T:ObjectCoder {
     
     
-    private func isPList(_ fileName:String) -> Bool{
+    fileprivate func isPList(_ fileName:String) -> Bool{
         return fileName.hasSuffix("plist")
     }
     
-    private func getJsonArray(_ fileName:String) -> NSArray? {
+    fileprivate func getJsonArray(_ fileName:String) -> NSArray? {
         
         let url = Bundle.main.url(forResource: fileName, withExtension: "");
 
@@ -30,7 +30,7 @@ public class FileDeserializer<T where T:AnyObject,T:ObjectCoder> {
         return jsonarray
     }
     
-    private func getPlistArray(_ fileName:String) -> NSArray? {
+    fileprivate func getPlistArray(_ fileName:String) -> NSArray? {
         
         let url = Bundle.main.url(forResource: fileName, withExtension: "");
         
@@ -39,8 +39,7 @@ public class FileDeserializer<T where T:AnyObject,T:ObjectCoder> {
         return array
     }
     
-    public  func getObjectArrayFrom(fielName fileName:String,callback: (NSError?,NSArray?)->Void) {
-
+    open  func getObjectArrayFrom(fielName fileName:String,callback: @escaping (NSError?,NSArray?)->Void) {
         
         DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.high).async(execute: { () -> Void in
             
