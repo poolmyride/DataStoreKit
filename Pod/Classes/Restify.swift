@@ -36,7 +36,7 @@ open class Restify<T>:ModelProtocol where T:ObjectCoder{
     
     fileprivate func _deserializeObject(_ object : Any?,callback: ModelObjectCallback? ){
         
-        self.deserializer.deSerializeObjectAsync(object as? NSDictionary, callback: callback)
+        self.deserializer.deSerializeObjectAsync(object as? [String:Any], callback: callback)
      
     }
     
@@ -100,7 +100,7 @@ open class Restify<T>:ModelProtocol where T:ObjectCoder{
         
         let resourceString = id != nil ? ("/" + (id as! String)) : ""
         let path  = base_url + resourceString
-        let dic:NSMutableDictionary? =  (params != nil) ? NSMutableDictionary(dictionary: params! ) : nil
+        let dic:[String:Any]? =  (params != nil) ? params : nil
         networkClient.DELETE(path, parameters: dic) { (error, object) -> Void in
             
             callback?(error,object)

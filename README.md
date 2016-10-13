@@ -25,7 +25,7 @@ class Message:ObjectCoder {
         return "id"
     }
     
-    required init(dictionary withDictionary:NSDictionary){
+    required init(dictionary withDictionary:[String:Any]){
         self.id = withDictionary["id"] as? String
         self.from = withDictionary["from"] as? String
         self.to = withDictionary["to"] as? String
@@ -34,7 +34,7 @@ class Message:ObjectCoder {
         self.created_ts = created_ts_str
     }
     
-    func toDictionary() -> NSDictionary {
+    func toDictionary() -> [String:Any] {
         var dic = [
             "id" : self.id ?? "",
             "from" : self.from ?? "",
@@ -100,14 +100,14 @@ public typealias ModelObjectCallback = (NSError?,AnyObject?)->Void
 
 #### ObjectCoder
 
-This  protocol enforces a consistent api to convert your Swift objects to and from NSDictionary representations.The NSDictionary representations are used for network transfer or storage on disk(CoreData)
+This  protocol enforces a consistent api to convert your Swift objects to and from [String:Any] representations.The [String:Any] representations are used for network transfer or storage on disk(CoreData)
 
 ```Swift
 
 public protocol ObjectCoder:class{
 
-    init(dictionary withDictionary:NSDictionary)
-    func toDictionary() -> NSDictionary
+    init(dictionary withDictionary:[String:Any])
+    func toDictionary() -> [String:Any]
     static func identifierKey() -> String
     
 }

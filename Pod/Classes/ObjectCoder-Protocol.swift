@@ -11,8 +11,8 @@ import Foundation
 
 public protocol ObjectCoder:class{
 
-    init(dictionary withDictionary:NSDictionary)
-    func toDictionary() -> NSDictionary
+    init(dictionary withDictionary:[String:Any])
+    func toDictionary() -> [String:Any]
     
     
      static func identifierKey() -> String

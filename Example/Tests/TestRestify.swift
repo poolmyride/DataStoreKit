@@ -18,11 +18,11 @@ class TestRestify: XCTestCase {
         var name:String?
         var age:NSNumber?
         
-        required init(dictionary withDictionary:NSDictionary){
+        required init(dictionary withDictionary:[String:Any]){
             self.name = (withDictionary["name"] as? String) ?? ""
             self.age = (withDictionary["age"] as? NSNumber ) ?? 0
         }
-        func toDictionary() -> NSDictionary{
+        func toDictionary() -> [String:Any]{
             return  [
             "name":self.name ?? "",
             "age":self.age ]

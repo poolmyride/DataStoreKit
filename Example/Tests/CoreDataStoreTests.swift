@@ -52,7 +52,7 @@ class CoreDataStoreTests: XCTestCase {
         ] as [String : Any]
         let expectation = self.expectation(description: "test save")
         
-        let obj = Message(dictionary: dic as NSDictionary)
+        let obj = Message(dictionary: dic as [String:Any])
         
         self.messageModel!.add(obj, callback: { (error, obj) -> Void in
             XCTAssert(error == nil, "Pass")
@@ -75,7 +75,7 @@ class CoreDataStoreTests: XCTestCase {
             ] as [String : Any]
         let expectation = self.expectation(description: "test save")
         
-        let obj = Message(dictionary: dic as NSDictionary)
+        let obj = Message(dictionary: dic as [String:Any])
         
         self.messageModel!.add(obj, callback: { (error, obj) -> Void in
             XCTAssert(error == nil, "Pass")
@@ -103,7 +103,7 @@ class CoreDataStoreTests: XCTestCase {
 
         let expectation = self.expectation(description: "test save")
         
-        let obj = Message(dictionary: dic as NSDictionary)
+        let obj = Message(dictionary: dic as [String:Any])
         
         self.messageModel!.add(obj, callback: { (error, obj) -> Void in
             XCTAssert(error == nil, "Pass")
@@ -147,8 +147,8 @@ class CoreDataStoreTests: XCTestCase {
 
         let expectation = self.expectation(description: "test query")
         
-        let obj = Message(dictionary: dic as NSDictionary)
-        let obj2 = Message(dictionary: dic2 as NSDictionary)
+        let obj = Message(dictionary: dic as [String:Any])
+        let obj2 = Message(dictionary: dic2 as [String:Any])
         self.messageModel!.add(obj, callback: { (error, obj) -> Void in
             XCTAssert(error == nil, "Pass")
             
@@ -191,8 +191,8 @@ class CoreDataStoreTests: XCTestCase {
         ] as [String : Any]
         let expectation = self.expectation(description: "test query")
         
-        let obj = Message(dictionary: dic as NSDictionary)
-        let obj2 = Message(dictionary: dic2 as NSDictionary)
+        let obj = Message(dictionary: dic as [String:Any])
+        let obj2 = Message(dictionary: dic2 as [String:Any])
         self.messageModel!.add(obj, callback: { (error, obj) -> Void in
             XCTAssert(error == nil, "Pass")
             
@@ -241,8 +241,8 @@ class CoreDataStoreTests: XCTestCase {
 
         let expectation = self.expectation(description: "test query")
         
-        let obj = Message(dictionary: dic as NSDictionary)
-        let obj2 = Message(dictionary: dic2 as NSDictionary)
+        let obj = Message(dictionary: dic as [String:Any])
+        let obj2 = Message(dictionary: dic2 as [String:Any])
         self.messageModel!.add(obj, callback: { (error, obj) -> Void in
             XCTAssert(error == nil, "Pass")
             
@@ -279,7 +279,7 @@ class CoreDataStoreTests: XCTestCase {
         
         let expectation = self.expectation(description: "test query")
         
-        let obj = Message(dictionary: dic as NSDictionary)
+        let obj = Message(dictionary: dic as [String:Any])
         
         self.messageModel!.add(obj, callback: { (error, result) -> Void in
             
@@ -315,7 +315,7 @@ class CoreDataStoreTests: XCTestCase {
         let testString:NSString = "testString"
         let testData = testString.data(using: String.Encoding.utf8.rawValue)
         // This is an example of a functional test case.
-        let dic:NSDictionary = [
+        let dic:[String:Any] = [
             "id" : testID,
             "data" : testData!
         ]
@@ -355,7 +355,7 @@ class CoreDataStoreTests: XCTestCase {
         ] as [String : Any]
         let expectation = self.expectation(description: "test query")
         
-        let obj = Message(dictionary: dic as NSDictionary)
+        let obj = Message(dictionary: dic as [String:Any])
         
         self.messageModel!.add(obj, callback: { (error, obj) -> Void in
             XCTAssert(error == nil, "Pass")
@@ -383,7 +383,7 @@ class CoreDataStoreTests: XCTestCase {
         ] as [String : Any]
         let expectation = self.expectation(description: "test query by int")
         
-        let obj = Animal(dictionary: dic as NSDictionary)
+        let obj = Animal(dictionary: dic as [String:Any])
         
         self.animalModel!.add(obj, callback: { (error, obj) -> Void in
             print(obj)
@@ -411,7 +411,7 @@ class CoreDataStoreTests: XCTestCase {
 
         let expectation = self.expectation(description: "test query by int")
         
-        let obj = Animal(dictionary: dic as NSDictionary)
+        let obj = Animal(dictionary: dic as [String:Any])
         
         self.animalModel!.add(obj, callback: { (error, obj) -> Void in
             XCTAssert(error == nil, "Pass")

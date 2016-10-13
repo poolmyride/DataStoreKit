@@ -64,7 +64,7 @@ class Message:ObjectCoder {
     }
     
 
-     required init(dictionary withDictionary:NSDictionary){
+     required init(dictionary withDictionary:[String:Any]){
         
         let df = DateFormatter()
         df.dateFormat = "yyyy-MM-ddHH:mm:ss"
@@ -81,9 +81,9 @@ class Message:ObjectCoder {
         
     }
     
-    func toDictionary() -> NSDictionary {
+    func toDictionary() -> [String:Any] {
         
-        var dic:[AnyHashable:Any] = [AnyHashable:Any]()
+        var dic:[String:Any] = [String:Any]()
         self.id != nil ? dic["id"] = self.id! : ()
         self.from_attendee != nil ? dic["from_attendee"] = self.from_attendee! : ()
         self.to_attendee != nil ? dic["to_attendee"] = self.to_attendee : ()
@@ -91,7 +91,7 @@ class Message:ObjectCoder {
         self.message != nil ? dic["message"] = self.message! : ()
         self.created_ts != nil ? dic["created_ts"] = self.created_ts! : ()
         
-        return NSDictionary(dictionary: dic)
+        return dic
     }
     
     

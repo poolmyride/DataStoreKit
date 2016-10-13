@@ -19,7 +19,7 @@ open class UserDefaultStore<T>:ModelProtocol where T:ObjectCoder{
     open func get(id:CVarArg?,params:[String:Any]?, callback: ModelObjectCallback? ){
         let identifier = id as? String ?? defaultKey
         
-        let obj: NSDictionary?  = UserDefaults.standard.object(forKey: identifier) as? NSDictionary
+        let obj: [String:Any]?  = UserDefaults.standard.object(forKey: identifier) as? [String:Any]
         
         obj != nil ? callback?(nil,T(dictionary: obj!)) : callback?(NSError(domain: "Not found", code: 0, userInfo: nil),nil)
     }
@@ -45,7 +45,7 @@ open class UserDefaultStore<T>:ModelProtocol where T:ObjectCoder{
     open func remove(id: CVarArg?, params:[String:Any]?, callback: ModelObjectCallback?) {
         let identifier = id as? String ?? defaultKey
         
-        let obj: NSDictionary?  = UserDefaults.standard.object(forKey: identifier) as? NSDictionary
+        let obj: [String:Any]?  = UserDefaults.standard.object(forKey: identifier) as? [String:Any]
         
         UserDefaults.standard.removeObject(forKey: identifier)
         let error:NSError? = obj == nil ? NSError(domain: "Not found", code: 0, userInfo: nil) : nil

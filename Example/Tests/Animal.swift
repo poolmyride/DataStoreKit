@@ -21,14 +21,14 @@ class Animal: ObjectCoder {
     }
     
     
-    required init(dictionary withDictionary:NSDictionary){
+    required init(dictionary withDictionary:[String:Any]){
         self.name = withDictionary["name"] as? String
         self.created = withDictionary["created"] as? Double
 
     }
     
-    func toDictionary() -> NSDictionary {
-        let dic = NSMutableDictionary()
+    func toDictionary() -> [String:Any] {
+        var dic = [String:Any]()
         self.name != nil ? dic["name"] = self.name! : ()
         self.created != nil ? dic["created"] = self.created! : ()
         return dic

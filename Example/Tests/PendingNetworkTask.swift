@@ -12,13 +12,13 @@ import DataStoreKit
 
 class PendingNetworkTask:ObjectCoder {
 
-    var body:NSDictionary?
+    var body:[String:Any]?
     var method:String?
     var url:String?
     var created:TimeInterval?
-    required init(dictionary withDictionary: NSDictionary) {
+    required init(dictionary withDictionary: [String:Any]) {
     
-        self.body = withDictionary["body"] as? NSDictionary
+        self.body = withDictionary["body"] as? [String:Any]
         self.method = withDictionary["method"] as? String
         self.url = withDictionary["url"] as? String
         self.created = withDictionary["created"] as? Double
@@ -26,9 +26,9 @@ class PendingNetworkTask:ObjectCoder {
         
     }
     
-    func toDictionary() -> NSDictionary {
+    func toDictionary() -> [String:Any] {
         
-        let dic = NSMutableDictionary()
+        var dic = [String:Any]()
 //        dic["method"]  = self.method ?? ""
 //        dic["url"]  = self.url ?? ""
 //        dic["created"]  = self.created ?? NSDate().timeIntervalSince1970
