@@ -15,12 +15,12 @@ class UserDefaultStoreTests: XCTestCase {
         var id:String?
         var name:String?
         
-        required init(dictionary withDictionary: NSDictionary) {
+        required init(dictionary withDictionary: [String:Any]) {
             self.id = withDictionary["id"] as? String ?? ""
             self.name = withDictionary["id"] as? String ?? ""
         }
         
-        func toDictionary() -> NSDictionary {
+        func toDictionary() -> [String:Any] {
             return ["id":self.id ?? "","name":self.name ?? ""]
         }
         

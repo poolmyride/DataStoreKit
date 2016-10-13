@@ -37,7 +37,7 @@ open class CoreDataStore<T>:ModelProtocol where T:ObjectCoder{
         for manageObject in manageObjectArray{
             let attrByNames = manageObject.entity.attributesByName
             
-            let newObjDic = NSMutableDictionary()
+            var newObjDic = [String:Any]()
             for (key,_) in attrByNames{
                 let value = manageObject.value(forKey: key)
                 value != nil ? newObjDic[key] = value : ()
@@ -54,7 +54,7 @@ open class CoreDataStore<T>:ModelProtocol where T:ObjectCoder{
        let manageObject = object as! NSManagedObject
         let attrByNames = manageObject.entity.attributesByName
 
-        let newObjDic = NSMutableDictionary()
+        var newObjDic = [String:Any]()
         for (key,_) in attrByNames{
             let value = manageObject.value(forKey: key)
             value != nil ? newObjDic[key] = value : ()
@@ -165,7 +165,7 @@ open class CoreDataStore<T>:ModelProtocol where T:ObjectCoder{
         for (key,val) in dictionary {
             let keyString = (key)
             let value = val as? NSObject
-            newObj.setValue(value, forKey:keyString as! String)
+            newObj.setValue(value, forKey:keyString )
         }
  
         var error: NSError?

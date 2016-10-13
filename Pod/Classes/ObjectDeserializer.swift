@@ -23,8 +23,8 @@ open class ObjectDeserializer<T> where T:ObjectCoder {
         let deserializedArray = NSMutableArray(capacity: items.count)
         
         for object in items {
-            if object is NSDictionary{
-                deserializedArray.add(self.deSerializeObject(object as? NSDictionary))
+            if object is [String:Any]{
+                deserializedArray.add(self.deSerializeObject(object as? [String:Any]))
             }
             else if object is NSArray{
                 deserializedArray.add(self.deSerializeArray(object as? NSArray))
@@ -35,7 +35,7 @@ open class ObjectDeserializer<T> where T:ObjectCoder {
         
     }
     
-    open func deSerializeObject(_ object:NSDictionary?)->T{
+    open func deSerializeObject(_ object:[String:Any]?)->T{
     
         let dic = (object != nil) ? (object!) : [:]
         return T(dictionary: dic)
@@ -54,7 +54,7 @@ open class ObjectDeserializer<T> where T:ObjectCoder {
         
     }
     
-    open func deSerializeObjectAsync(_ object:NSDictionary?,callback:DeserializeObjectCallback?){
+    open func deSerializeObjectAsync(_ object:[String:Any]?,callback:DeserializeObjectCallback?){
     
         DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.high).async(execute: { () -> Void in
             

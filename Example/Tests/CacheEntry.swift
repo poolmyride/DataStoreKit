@@ -17,12 +17,12 @@ open class CacheEntry: ObjectCoder {
     open static func identifierKey() -> String {
         return "id"
     }
-    required public init(dictionary withDictionary:NSDictionary){
+    required public init(dictionary withDictionary:[String:Any]){
         self.id = withDictionary["id"] as? String
         self.data = withDictionary["data"] as? Data
     }
-    open func toDictionary() -> NSDictionary{
-        let dic:NSDictionary = [
+    open func toDictionary() -> [String:Any]{
+        let dic:[String:Any] = [
             "data": self.data ?? Data(),
             "id": self.id ?? ""
         ];
