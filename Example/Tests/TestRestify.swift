@@ -35,20 +35,20 @@ class TestRestify: XCTestCase {
     }
     class MockNetwork:NetworkInterface{
         
-        func POST(_ URLString: String!, parameters: Any!,callback: ((NSError?, Any?) -> Void)!){
+        func POST(_ URLString: String!, parameters: [String:Any]!,callback: ((NSError?, Any?) -> Void)!){
         
         }
-        func PUT(_ URLString: String!, parameters: Any!, callback: ((NSError?, Any?) -> Void)!) {
+        func PUT(_ URLString: String!, parameters: [String:Any]!, callback: ((NSError?, Any?) -> Void)!) {
             
         }
-        func GET(_ URLString: String!, parameters: Any!, callback: ((NSError?, Any?) -> Void)!){
+        func GET(_ URLString: String!, parameters: [String:Any]!, callback: ((NSError?, Any?) -> Void)!){
             DispatchQueue.main.async {
                 let pass = URLString.range(of: "pass", options: NSString.CompareOptions.caseInsensitive)
                 (pass != nil) ? callback(nil,["name":"rajat","age":5]) : callback(NSError(domain: "Network Error", code: 404, userInfo: nil) ,nil)
             }          
         }
         
-        func DELETE(_ URLString: String!, parameters: Any?, callback: ((NSError?, Any?) -> Void)!) {
+        func DELETE(_ URLString: String!, parameters: [String:Any]?, callback: ((NSError?, Any?) -> Void)!) {
             
         }
         func setHTTPHeaders(_ headers: [String : String]) {
