@@ -72,7 +72,7 @@ class Message:ObjectCoder {
         self.from_attendee = withDictionary["from_attendee"] as? String
         self.to_attendee = withDictionary["to_attendee"] as? String
         self.message = withDictionary["message"] as? String
-        let created_ts_str = withDictionary["created_ts"] as? Double
+        let created_ts_str = (withDictionary["created_ts"] as? NSNumber)?.doubleValue
         self.created_ts = created_ts_str
         self.type = (withDictionary["type"] as? String) ?? "chat"
         let timeStamp = (created_ts_str) ?? Date().timeIntervalSince1970

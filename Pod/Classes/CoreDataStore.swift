@@ -165,7 +165,7 @@ open class CoreDataStore<T>:ModelProtocol where T:ObjectCoder{
         for (key,val) in dictionary {
             let keyString = (key)
             let value = val as? NSObject
-            newObj.setValue(value, forKey:keyString as! String)
+            newObj.setValue(value, forKey:keyString )
         }
  
         var error: NSError?

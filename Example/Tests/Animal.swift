@@ -23,7 +23,7 @@ class Animal: ObjectCoder {
     
     required init(dictionary withDictionary:[String:Any]){
         self.name = withDictionary["name"] as? String
-        self.created = withDictionary["created"] as? Double
+        self.created = (withDictionary["created"] as? NSNumber)?.doubleValue
 
     }
     
