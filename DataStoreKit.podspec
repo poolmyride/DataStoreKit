@@ -7,53 +7,20 @@
 #
 
 Pod::Spec.new do |s|
-  s.name             = "DataStoreKit"
-  s.version          = "3.0.5"
-  s.summary          = "Consistent interface for accessing data across different ios storage components"
+s.name = 'DataStoreKit'
+s.version = '3.0.5'
+s.license = 'MIT'
+s.summary = 'Consistent interface for accessing data across different ios storage and networking layers'
+s.homepage = 'https://github.com/poolmyride/DataStoreKit'
 
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!  
-  s.description      = <<-DESC
-    DataStoreKit is a light-weight collection of classes providing the tools for modelling and interacting with data collections and objects. It is designed to work with a variety of data storage mediums(CoreData,Network,File,NSUserDefaults), and provide a consistent interface for accessing data across different storage components
-DESC
+s.authors = { 'Pool My Ride' => 'cuterajat26@gmail.com' }
+s.source           = { :git => "https://github.com/poolmyride/DataStoreKit.git", :tag => s.version.to_s }
 
-  s.homepage         = "https://github.com/poolmyride/DataStoreKit"
-  # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
-  s.license          = 'MIT'
-  s.author           = { "Rajat Talwar" => "cuterajat26@gmail.com" }
-  s.source           = { :git => "https://github.com/poolmyride/DataStoreKit.git", :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/rtalwar26'
+s.ios.deployment_target = '8.0'
+s.osx.deployment_target = '10.10'
+s.tvos.deployment_target = '9.0'
+s.watchos.deployment_target = '2.0'
 
-pch_AF = <<-EOS
-#ifndef TARGET_OS_IOS
-    #define TARGET_OS_IOS TARGET_OS_IPHONE
-#endif
-#ifndef TARGET_OS_WATCH
-    #define TARGET_OS_WATCH 0
-#endif
+s.source_files = 'Pod/Classes/**/*.swift'
 
-EOS
-
-  s.prefix_header_contents = pch_AF
-
-
-  s.ios.deployment_target = '8.0'
-  s.watchos.deployment_target = '2.0'
-
-  #s.platform     = :ios, '8.0'
-  #s.platform     = :watchos, '2.0'
-  s.requires_arc = true
-
-  s.source_files = 'Pod/Classes/**/*.swift'
-
-#s.resource_bundles = {
-#    'DataStoreKit' => ['Pod/Assets/*.png']
-#  }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-   s.frameworks = 'UIKit', 'CoreData'
-  # s.dependency 'AFNetworking', '~> 2.3'
 end
