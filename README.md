@@ -188,7 +188,7 @@ DataStoreKit also supports complex queries to be made on local storage. Here is 
             // Do with results 
         })
 ```
-This query will result in an array of messages which has created_ts greater than equal to 1437108600. This complex queries can also take less than equal to ** <= **, less than ** < ** and greater than ** > **.
+This query will result in an array of messages which has created_ts greater than equal to 1437108600. This complex queries can also take less than equal to <=, less than < and greater than  >.
 
 ## Author
 
