@@ -36,7 +36,7 @@ DataStoreKit works on two high level protocols
 
 #### ModelProtocol
 
-This protocol enforces a Storage class to have all the basic functions to be implemented. Such as QUERY, GET, PUT, REMOVE, ADD (means POST), ALL
+This protocol enforces a Storage class to have all the basic functions to be implemented. Such as QUERY, GET, PUT, REMOVE, ADD (means POST)
 
 ```Swift
 
@@ -44,7 +44,6 @@ This protocol enforces a Storage class to have all the basic functions to be imp
 public protocol ModelProtocol:class {
     
     func query(params params:[String:AnyObject]?, options:[String:AnyObject]?, callback: ModelArrayCallback? )
-    func all(callback:ModelArrayCallback?)
     func get(id id:String?,params:[String:AnyObject]?, callback: ModelObjectCallback? )
     func put(id id:String?,object:ObjectCoder, callback: ModelObjectCallback? )
     func add(object:ObjectCoder, callback: ModelObjectCallback? )
@@ -92,6 +91,7 @@ class Message:ObjectCoder {
     var to_user_key:String?
     var message:String?
     var created_ts:Double? //created timestamp in Double
+    var type:String?
     
     static func identifierKey() -> String {
         return "id"
@@ -102,6 +102,7 @@ class Message:ObjectCoder {
         self.from_user_key = withDictionary["from_user_key"] as? String
         self.to_user_key = withDictionary["to_user_key"] as? String
         self.message = withDictionary["message"] as? String
+        self.tyoe = withDictionary["type"] as? String
         var created_ts_str = withDictionary["created_ts"] as? Double
         self.created_ts = created_ts_str
     }
@@ -112,6 +113,7 @@ class Message:ObjectCoder {
             "from_user_key" : self.from_user_key ?? "",
             "to_user_key" : self.to_user_key ?? "" ,
             "message": self.message ?? "" ,
+            "type": self.type ?? "",
             "created_ts" : self.created_ts ?? NSDate().timeIntervalSince1970
         ]
         return dic
@@ -177,6 +179,16 @@ Now, you are ready to make calls to your local storage and fetch data. You can n
             // Do with results 
        })
 ```
+
+DataStoreKit also supports complex queries to be made on local storage. Here is an example of such query:-
+
+```Swift
+        let patamsDic: [String:Any]? = ["created_ts >=": 1437108600]
+        messageModel.query(params: paramsDic, options: [:], callback: { (error:NSError?, results:Any?) in	
+            // Do with results 
+        })
+```
+This query will result in an array of messages which has created_ts greater than equal to 1437108600. This complex queries can also take less than equal to ** <= **, less than ** < ** and greater than ** > **.
 
 ## Author
 
