@@ -5,76 +5,38 @@
 [![License](https://img.shields.io/cocoapods/l/DataStoreKit.svg?style=flat)](http://cocoapods.org/pods/DataStoreKit)
 [![Platform](https://img.shields.io/cocoapods/p/DataStoreKit.svg?style=flat)](http://cocoapods.org/pods/DataStoreKit)
 
-## Usage
+This is a simple dependency to convert all the data obtained over network calls, be it on server or on local storage to Objects of Classes.
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+## Requirements
+iOS 8.0 and above
 
-Create your model class - Message.swift as shown in example below
+## Installation
 
-```Swift
-import Foundation
-import DataStoreKit
-class Message:ObjectCoder {
-    var id:String?
-    var from_user_key:String?
-    var to_user_key:String?
-    var message:String?
-    var created_ts:Double? //created timestamp in Double
-    
-    static func identifierKey() -> String {
-        return "id"
-    }
-    
-    required init(dictionary withDictionary:[String:Any]){
-        self.id = withDictionary["id"] as? String
-        self.from = withDictionary["from"] as? String
-        self.to = withDictionary["to"] as? String
-        self.message = withDictionary["message"] as? String
-        var created_ts_str = withDictionary["created_ts"] as? Double
-        self.created_ts = created_ts_str
-    }
-    
-    func toDictionary() -> [String:Any] {
-        var dic = [
-            "id" : self.id ?? "",
-            "from" : self.from ?? "",
-            "to" : self.to ?? "" ,
-            "message": self.message ?? "" ,
-            "created_ts" : self.created_ts ?? NSDate().timeIntervalSince1970
-        ]
-        return dic
-    }
-}
+DataStoreKit is available through [CocoaPods](http://cocoapods.org). To install
+it, specify it in your Podfile:
+
+```ruby
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.0'
+
+target 'TargetName' do
+pod 'DataStoreKit'
+end
 ```
-# Create A Rest Model
-```Swift
 
-        let messsageUrl = "http://api.mysite.com/messages"
-        let model = Restify<Message>(path: messsageUrl, networkClient: MyNetworkClient()) // see note below to know about MyNetworkClient
+Then, run the following command:
 
-
+```ruby
+$ pod install
 ```
-> **MyNetworkClient** is a class implementing **NetworkInterface** (implementing **GET,PUT,POST,DELETE**) so that you can use any networking library of your choice
 
-# Create A CoreData Model
-> Make sure you have an xcdatamodel file named MyApp.xcdatamodeld in your project and has an entity "Message" defined with fields according to your Message.swift class(read above)
+## Concept And Architecture
 
-```Swift
-
-      static let coreDataStack = CoreDataStack(dbName: "MyApp")
-      let model = CoreDataStore<Message>(entityName: "Message", managedContext: coreDataStack.context)
-
-```
-### your xcdatamodel should look something like this
-![logo](http://i.imgur.com/qNSIcTK.png?1)
-
-## Concept
-
-DataStoreKit works on two high level protocols 
+DataStoreKit works on two high level protocols
 
 #### ModelProtocol
 
-ModelProtocol protocol is implemented by all the DataStores i.e. the CoreDataStore, Restify, UserDefaultStore etc.This provides a consistent api to access your data.
+This protocol enforces a Storage class to have all the basic functions to be implemented. Such as QUERY, GET, PUT, REMOVE, ADD (means POST)
 
 ```Swift
 
@@ -82,7 +44,6 @@ ModelProtocol protocol is implemented by all the DataStores i.e. the CoreDataSto
 public protocol ModelProtocol:class {
     
     func query(params params:[String:AnyObject]?, options:[String:AnyObject]?, callback: ModelArrayCallback? )
-    func all(callback:ModelArrayCallback?)
     func get(id id:String?,params:[String:AnyObject]?, callback: ModelObjectCallback? )
     func put(id id:String?,object:ObjectCoder, callback: ModelObjectCallback? )
     func add(object:ObjectCoder, callback: ModelObjectCallback? )
@@ -96,6 +57,8 @@ public typealias ModelArrayCallback = (NSError?,NSArray?)->Void
 public typealias ModelObjectCallback = (NSError?,AnyObject?)->Void
 ```
 
+In above Protocol, **params:[String:AnyObject]** are QUERY Parametes in the url specified after ? 
+For Eg:- https://www.example.com/messages?from_user_key=1234567890&to_user_key=0987654321
 
 
 #### ObjectCoder
@@ -113,17 +76,119 @@ public protocol ObjectCoder:class{
 }
 ``` 
 
-## Requirements
-ios 8.0 and above
+DataStoreKit helps with two types of Network calls
 
-## Installation
+#### REST API Calls 
 
-DataStoreKit is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+To make server calls, first you require a Class implementing ObjectCorder protocol. For example look at the following Message Class
 
-```ruby
-pod "DataStoreKit"
+```Swift
+import Foundation
+import DataStoreKit
+class Message:ObjectCoder {
+    var id:String?
+    var from_user_key:String?
+    var to_user_key:String?
+    var message:String?
+    var created_ts:Double? //created timestamp in Double
+    var type:String?
+    
+    static func identifierKey() -> String {
+        return "id"
+    }
+    
+    required init(dictionary withDictionary:[String:Any]){
+        self.id = withDictionary["id"] as? String
+        self.from_user_key = withDictionary["from_user_key"] as? String
+        self.to_user_key = withDictionary["to_user_key"] as? String
+        self.message = withDictionary["message"] as? String
+        self.tyoe = withDictionary["type"] as? String
+        var created_ts_str = withDictionary["created_ts"] as? Double
+        self.created_ts = created_ts_str
+    }
+    
+    func toDictionary() -> [String:Any] {
+        var dic = [
+            "id" : self.id ?? "",
+            "from_user_key" : self.from_user_key ?? "",
+            "to_user_key" : self.to_user_key ?? "" ,
+            "message": self.message ?? "" ,
+            "type": self.type ?? "",
+            "created_ts" : self.created_ts ?? NSDate().timeIntervalSince1970
+        ]
+        return dic
+    }
+}
 ```
+
+Here, identifierKey() function is used when we need to store data in local storage and identify it uniquely. In the above case, **id** is the unique identifier.
+
+Now you need is a Restify Model that can perform network calls on Message class.
+
+```Swift
+        	let messsageUrl = "http://api.mysite.com/messages"
+        	let model = Restify<Message>(path: messsageUrl, networkClient: MyNetworkClient()) // 	see note below to know about MyNetworkClient
+}
+```
+> **MyNetworkClient** is a class implementing **ModelProtocol** (implementing **GET,PUT,POST,DELETE**) so that you can use any networking library of your choice
+
+Now, you are ready to make calls to your server and fetch data. You can now perform following requests to your server:- 
+
+```Swift
+	   let paramsDic: [String:Any]? = [“from_user_key”: “1234567890”, “to_user_key”:”0987654321”]
+	   model.query(params: paramsDic, options: nil, callback: { (error:NSError?, results:Any?) in
+         // Do with results     
+       })
+```
+
+
+The result of above network call will be array of objects of Message class that contains messages with **from_user_key as 1234567890** and **to_user_key as 0987654321**
+
+Above code is for QUERYING Data between two users. Similarly you can use GET, PUT, ADD, REMOVE. 
+
+#### Local Storage Calls 
+
+With DataStoreKit, you can store the Message class objects in local storage and you can make all REST calls on local storage also.
+
+> Make sure you have an xcdatamodel file named MyApp.xcdatamodeld in your project and has an entity "Message" defined with fields according to your Message.swift class(read above)
+
+### Your xcdatamodel should look something like this
+![logo](http://i.imgur.com/qNSIcTK.png?1)
+
+Now, As we made model for Network calls, we can also create a model for calls on local storage.
+
+```Swift
+    
+        let messageModel: CoreDataStore?
+        do {
+            let context = try CoreDataFactory.coreDataStack.context()
+            return CoreDataStore<Message>(entityName: "Test", managedContext: context)
+            
+        } catch let error as NSError {
+            let memoryContext = try! CoreDataFactory.inMemoryDataStack.context()
+            messageModel = CoreDataStore<Message>(entityName: "Test", managedContext: memoryContext)
+        }
+   
+```
+
+Now, you are ready to make calls to your local storage and fetch data. You can now perform following requests to your local storage:- 
+
+```Swift
+	   let paramsDic: [String:Any]? = [“from_user_key”: “1234567890”, “to_user_key”:”0987654321”]
+	   messageModel.query(params: paramsDic, options: [:], callback: { (error:NSError?, results:Any?) in	
+            // Do with results 
+       })
+```
+
+DataStoreKit also supports complex queries to be made on local storage. Here is an example of such query:-
+
+```Swift
+        let patamsDic: [String:Any]? = ["created_ts >=": 1437108600]
+        messageModel.query(params: paramsDic, options: [:], callback: { (error:NSError?, results:Any?) in	
+            // Do with results 
+        })
+```
+This query will result in an array of messages which has created_ts greater than equal to 1437108600. This complex queries can also take less than equal to <=, less than < and greater than  >.
 
 ## Author
 
