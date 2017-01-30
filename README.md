@@ -8,7 +8,7 @@
 This is a simple dependency to convert all the data obtained over network calls, be it on server or on local storage to Objects of Classes.
 
 ## Requirements
-iOS 10.0 and above
+iOS 8.0 and above
 
 ## Installation
 
@@ -58,6 +58,10 @@ public typealias ModelArrayCallback = (NSError?,NSArray?)->Void
 public typealias ModelObjectCallback = (NSError?,AnyObject?)->Void
 ```
 
+In above Protocol, **params:[String:AnyObject]** are QUERY Parametes in the url specified after ? 
+For Eg:- https://www.example.com/messages?from_user_key=1234567890&to_user_key=0987654321
+
+
 #### ObjectCoder
 
 This  protocol enforces a consistent api to convert your Swift objects to and from [String:Any] representations.The [String:Any] representations are used for network transfer or storage on disk(CoreData)
@@ -75,7 +79,7 @@ public protocol ObjectCoder:class{
 
 DataStoreKit helps with two types of Network calls
 
-#### Server API Calls 
+#### REST API Calls 
 
 To make server calls, first you require a Class implementing ObjectCorder protocol. For example look at the following Message Class
 
@@ -95,8 +99,8 @@ class Message:ObjectCoder {
     
     required init(dictionary withDictionary:[String:Any]){
         self.id = withDictionary["id"] as? String
-        self.from = withDictionary["from"] as? String
-        self.to = withDictionary["to"] as? String
+        self.from_user_key = withDictionary["from_user_key"] as? String
+        self.to_user_key = withDictionary["to_user_key"] as? String
         self.message = withDictionary["message"] as? String
         var created_ts_str = withDictionary["created_ts"] as? Double
         self.created_ts = created_ts_str
@@ -105,8 +109,8 @@ class Message:ObjectCoder {
     func toDictionary() -> [String:Any] {
         var dic = [
             "id" : self.id ?? "",
-            "from" : self.from ?? "",
-            "to" : self.to ?? "" ,
+            "from_user_key" : self.from_user_key ?? "",
+            "to_user_key" : self.to_user_key ?? "" ,
             "message": self.message ?? "" ,
             "created_ts" : self.created_ts ?? NSDate().timeIntervalSince1970
         ]
@@ -115,15 +119,13 @@ class Message:ObjectCoder {
 }
 ```
 
-Now you need is a Restify Model that can perform network calls on Message class. You can implement this in a Factory class so that you can easily make network calls on Message from anywhere in your project easily. 
+Here, identifierKey() function is used when we need to store data in local storage and identify it uniquely. In the above case, **id** is the unique identifier.
+
+Now you need is a Restify Model that can perform network calls on Message class.
 
 ```Swift
-        class ModelFactory {
-
-       	class func message() -> Restify<Message> {
         	let messsageUrl = "http://api.mysite.com/messages"
         	let model = Restify<Message>(path: messsageUrl, networkClient: MyNetworkClient()) // 	see note below to know about MyNetworkClient
-        	}
 }
 ```
 > **MyNetworkClient** is a class implementing **ModelProtocol** (implementing **GET,PUT,POST,DELETE**) so that you can use any networking library of your choice
@@ -131,14 +133,14 @@ Now you need is a Restify Model that can perform network calls on Message class.
 Now, you are ready to make calls to your server and fetch data. You can now perform following requests to your server:- 
 
 ```Swift
-	   let paramsDic: [String:Any]? = [“from”: “1234567890”, “to”:”0987654321”]
-	   ModelFactory.messages().query(params: paramsDic, options: nil, callback: { (error:NSError?, results:Any?) in
+	   let paramsDic: [String:Any]? = [“from_user_key”: “1234567890”, “to_user_key”:”0987654321”]
+	   model.query(params: paramsDic, options: nil, callback: { (error:NSError?, results:Any?) in
          // Do with results     
        })
 ```
 
 
-The result of above network call will be array of objects of Message class that contains messages with **from as 1234567890** and **to as 0987654321**
+The result of above network call will be array of objects of Message class that contains messages with **from_user_key as 1234567890** and **to_user_key as 0987654321**
 
 Above code is for QUERYING Data between two users. Similarly you can use GET, PUT, ADD, REMOVE. 
 
@@ -151,38 +153,27 @@ With DataStoreKit, you can store the Message class objects in local storage and 
 ### Your xcdatamodel should look something like this
 ![logo](http://i.imgur.com/qNSIcTK.png?1)
 
-Now, As we made ModelFactory for Network calls, we can also create a Factory for calls on local storage.
+Now, As we made model for Network calls, we can also create a model for calls on local storage.
 
 ```Swift
-
-import Foundation
-import DataStoreKit
-
-class CoreDataFactory:NSObject {
     
-    class func model<T:ObjectCoder>(withName name:String,_: T.Type) -> ModelProtocol{
+        let messageModel: CoreDataStore?
         do {
             let context = try CoreDataFactory.coreDataStack.context()
-            return CoreDataStore<T>(entityName: name, managedContext: context)
+            return CoreDataStore<Message>(entityName: "Test", managedContext: context)
             
         } catch let error as NSError {
             let memoryContext = try! CoreDataFactory.inMemoryDataStack.context()
-            return CoreDataStore<T>(entityName: name, managedContext: memoryContext)
+            messageModel = CoreDataStore<Message>(entityName: "Test", managedContext: memoryContext)
         }
-    }
-
-    class func message() -> ModelProtocol {
-        return CoreDataFactory.model(withName: "MessageNew",MessageNew.self)
-    }
    
-}
 ```
 
 Now, you are ready to make calls to your local storage and fetch data. You can now perform following requests to your local storage:- 
 
 ```Swift
-	   let paramsDic: [String:Any]? = [“from”: “1234567890”, “to”:”0987654321”]
-	   CoreDataFactory.message().query(params: paramsDic, options: [:], callback: { (error:NSError?, results:Any?) in	
+	   let paramsDic: [String:Any]? = [“from_user_key”: “1234567890”, “to_user_key”:”0987654321”]
+	   messageModel.query(params: paramsDic, options: [:], callback: { (error:NSError?, results:Any?) in	
             // Do with results 
        })
 ```
