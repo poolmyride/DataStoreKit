@@ -1,5 +1,5 @@
 PODS:
-  - DataStoreKit (0.1.0)
+  - DataStoreKit (3.0.5)
 
 DEPENDENCIES:
   - DataStoreKit (from `../`)
@@ -9,6 +9,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  DataStoreKit: 6d5423c8d838fe61c050bc975aca59fb05488dda
+  DataStoreKit: a3f5bb9376db601c55e93c57cfd17c78abbaaa68
 
-COCOAPODS: 0.38.0
+PODFILE CHECKSUM: 597c59ac2204657557f5e31707cb59633b6f9c7d
+
+COCOAPODS: 1.2.0

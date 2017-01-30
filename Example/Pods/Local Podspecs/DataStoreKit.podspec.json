@@ -1,25 +1,21 @@
 {
   "name": "DataStoreKit",
-  "version": "0.1.0",
-  "summary": "A short description of DataStoreKit.",
-  "description": "",
-  "homepage": "https://github.com/<GITHUB_USERNAME>/DataStoreKit",
+  "version": "3.0.5",
   "license": "MIT",
+  "summary": "Consistent interface for accessing data across different ios storage and networking layers",
+  "homepage": "https://github.com/poolmyride/DataStoreKit",
   "authors": {
-    "Rajat Talwar": "cuterajat26@gmail.com"
+    "Pool My Ride": "cuterajat26@gmail.com"
   },
   "source": {
-    "git": "https://github.com/<GITHUB_USERNAME>/DataStoreKit.git",
-    "tag": "0.1.0"
+    "git": "https://github.com/poolmyride/DataStoreKit.git",
+    "tag": "3.0.5"
   },
   "platforms": {
-    "ios": "8.0"
+    "ios": "8.0",
+    "osx": "10.10",
+    "tvos": "9.0",
+    "watchos": "2.0"
   },
-  "requires_arc": true,
-  "source_files": "Pod/Classes/**/*",
-  "resource_bundles": {
-    "DataStoreKit": [
-      "Pod/Assets/*.png"
-    ]
-  }
+  "source_files": "Pod/Classes/**/*.swift"
 }
