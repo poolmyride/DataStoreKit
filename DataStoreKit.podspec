@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
 s.name = 'DataStoreKit'
-s.version = '3.0.5'
+s.version = '3.0.6'
 s.license = 'MIT'
 s.summary = 'Consistent interface for accessing data across different ios storage and networking layers'
 s.homepage = 'https://github.com/poolmyride/DataStoreKit'
